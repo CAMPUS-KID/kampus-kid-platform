@@ -1,0 +1,23 @@
+{
+    "name": "aortegal1/dockerfirebase",
+    "description": "conexion de php con firebase y docker",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "andres ortega"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "google/cloud-firestore": "^0.1.0",
+        "firebase/php-jwt": "*",
+        "grpc/grpc": "*"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "App\\": "App"
+        }
+    }
+}

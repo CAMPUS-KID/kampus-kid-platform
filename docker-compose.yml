@@ -1,0 +1,112 @@
+version: '3.1'
+
+services:
+# MICROSERVICES
+  ms-campus-kid-auth:
+    container_name: ms-campus-kid-auth
+    build: ./ms-campus-kid-auth
+    depends_on:
+      - db-auth
+    ports:
+      - 4000:4000
+    environment:
+      - PORT=4000
+  ms-campus-kid-grades:
+    container_name: ms-campus-kid-grades
+    build: ./ms-campus-kid-grades
+    depends_on:
+      - ms-campus-kid-schedule
+      - db-grade
+    ports:
+      - 4001:4001
+    environment:
+      - PORT=4001
+      - SECRET_KEY=1234P
+      - DB_HOST=host.docker.internal
+      - DB_USER=root
+      - DB_PASS=1234
+      - DB_DATABASE=db_grade
+      - DB_PORT=4006
+  ms-campus-kid-request:
+    container_name: ms-campus-kid-request
+    build: ./ms-campus-kid-request
+    ports:
+      - 4002:4002
+    environment:
+      - PORT=4002
+  ms-campus-kid-schedule:
+    container_name: ms-campus-kid-schedule
+    build: ./ms-campus-kid-schedule
+    depends_on:
+      - db-grade
+    ports:
+      - 4003:4003
+    environment:
+      - PORT=4003
+  ms-campus-kid-school:
+    container_name: ms-campus-kid-school
+    build: ./ms-campus-kid-school
+    depends_on:
+      - ms-campus-kid-subjects
+      - db-subject
+    ports:
+      - 4004:4004
+    environment:
+      - PORT=4004
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_HOST=host.docker.internal
+      - DB_PORT=4007
+      - DB_NAME=db_subject
+  ms-campus-kid-subjects:
+    container_name: ms-campus-kid-subjects
+    build: ./ms-campus-kid-subjects
+    depends_on:
+      - db-subject
+    ports:
+      - 4005:4005
+    environment:
+      - PORT=4005
+# DATABASES
+  db-grade:
+    container_name: db-grade
+    image: postgres
+    ports:
+      - 4006:5432
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: root
+      POSTGRES_DB: db_grade
+  db-subject:
+    container_name: db-subject
+    image: mysql
+    ports:
+      - 4007:3306
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: db_subject
+      MYSQL_ROOT_HOST: '%'
+  db-auth:
+    container_name: db-auth
+    image: mongo
+    restart: always
+    ports:
+      - 4008:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+# EXTRA APPLICATIONS
+#  mongo-express:
+#    image: mongo-express
+#    restart: always
+#    depends_on:
+#      - db-auth
+#    ports:
+#      - 4009:8081
+#    environment:
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: 1234
+#      ME_CONFIG_MONGODB_URL: mongodb://root:1234@mongo:27017/
