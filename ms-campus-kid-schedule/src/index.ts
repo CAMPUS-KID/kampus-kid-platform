@@ -1,11 +1,11 @@
+import "dotenv/config";
+import "reflect-metadata";
 import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
-
-dotenv.config();
+import DBGrade from './connection/connection'
 
 const app: Express = express();
-const port = process.env.PORT || 4003;
+const port = process.env.PORT;
 
 app.use(cors());
 app.get('/', (req: Request, res: Response) => {
@@ -13,5 +13,6 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
+  console.log(process.env.DB_PASS);
   console.log(`⚡️[server]: Server is running att https://localhost:${port}`);
 });

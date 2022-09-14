@@ -10,8 +10,8 @@ class Estudiante():
         
     def to_JSON(self):
         return {
-            'id_estudiante': self.id_estudiante,
-            'correo_estudiante': self.correo_estudiante,
-            'nombre_estudiante': self.nombre_estudiante,
-            'id_facultad': self.id_facultad
+            'id': self.id_estudiante,
+            'email': self.correo_estudiante,
+            'name': self.nombre_estudiante,
+            'facultyId': self.id_facultad
         }

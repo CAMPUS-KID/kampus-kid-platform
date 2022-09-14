@@ -43,6 +43,11 @@ services:
       - 4003:4003
     environment:
       - PORT=4003
+      - DB_HOST=host.docker.internal
+      - DB_USER=root
+      - DB_PASS=1234
+      - DB_DATABASE=db_grade
+      - DB_PORT=4006
   ms-campus-kid-school:
     container_name: ms-campus-kid-school
     build: ./ms-campus-kid-school
@@ -64,7 +69,7 @@ services:
     depends_on:
       - db-subject
     ports:
-      - 4005:4005
+      - 4005:80
     environment:
       - PORT=4005
 # DATABASES

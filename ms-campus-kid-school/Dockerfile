@@ -10,6 +10,6 @@ COPY *.go ./
 
 RUN go build -o /ms-campus-kid-school
 
-EXPOSE 8080
+EXPOSE 4004
 
 CMD [ "/ms-campus-kid-school" ]
