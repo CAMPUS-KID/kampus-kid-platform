@@ -10,7 +10,7 @@ class EstudianteModel():
             estudiantes = []
             
             with connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM estudiante")
+                cursor.execute("SELECT * FROM student")
                 resultset = cursor.fetchall()
                 
                 for row in resultset:
@@ -28,7 +28,7 @@ class EstudianteModel():
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM estudiante WHERE id_estudiante = %s", (id,))
+                cursor.execute("SELECT * FROM student WHERE id = %s", (id,))
                 row= cursor.fetchone()
                 
                 estudiante = None
@@ -48,7 +48,7 @@ class EstudianteModel():
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("INSERT INTO estudiante (id_estudiante, correo_estudiante, nombre_estudiante, id_facultad) VALUES (%s, %s, %s, %s)", (estudiante.id_estudiante, estudiante.correo_estudiante, estudiante.nombre_estudiante, estudiante.id_facultad))
+                cursor.execute("INSERT INTO student (id, email, name, facultyId) VALUES (%s, %s, %s, %s)", (estudiante.id_estudiante, estudiante.correo_estudiante, estudiante.nombre_estudiante, estudiante.id_facultad))
                 affected_rows= cursor.rowcount
                 connection.commit()
                     
@@ -64,8 +64,8 @@ class EstudianteModel():
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("""UPDATE estudiante SET correo_estudiante = %s, nombre_estudiante = %s, id_facultad = %s
-                                WHERE id_estudiante = %s""", (estudiante.correo_estudiante, estudiante.nombre_estudiante, estudiante.id_facultad, estudiante.id_estudiante))
+                cursor.execute("""UPDATE student SET email = %s, name = %s, facultyId = %s
+                                WHERE id = %s""", (estudiante.correo_estudiante, estudiante.nombre_estudiante, estudiante.id_facultad, estudiante.id_estudiante))
                 affected_rows= cursor.rowcount
                 connection.commit()
                     
@@ -81,7 +81,7 @@ class EstudianteModel():
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM estudiante WHERE id_estudiante = %s", (estudiante.id_estudiante,))
+                cursor.execute("DELETE FROM student WHERE id = %s", (estudiante.id_estudiante,))
                 affected_rows= cursor.rowcount
                 connection.commit()
                     
