@@ -1,0 +1,694 @@
+{
+	"info": {
+		"_postman_id": "39b35554-1f60-48dd-ba89-0e7e28dd1a38",
+		"name": "campus-kid",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23150197"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": []
+		},
+		{
+			"name": "grades",
+			"item": [
+				{
+					"name": "Student",
+					"item": [
+						{
+							"name": "Fetch Students",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/sites",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"sites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Students",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Id_site\": \"1\",\n    \"Site_name\": \"Sede Bogotá\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:4004/sites",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"sites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Students",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/sites/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"sites",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Students",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Id_site\": \"1\",\n    \"Site_name\": \"Sede Medellín\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:4004/sites",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"sites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch Student By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/sites/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"sites",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fetch Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:4001/users",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4001",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "requests",
+			"item": []
+		},
+		{
+			"name": "shcedule",
+			"item": []
+		},
+		{
+			"name": "schools",
+			"item": [
+				{
+					"name": "Sites",
+					"item": [
+						{
+							"name": "Fetch Sites",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/sites",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"sites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Site",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Id_site\": \"1\",\n    \"Site_name\": \"Sede Bogotá\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:4004/sites",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"sites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Site",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/sites/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"sites",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Site",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Id_site\": \"1\",\n    \"Site_name\": \"Sede Medellín\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:4004/sites",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"sites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch Site By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/sites/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"sites",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Careers",
+					"item": [
+						{
+							"name": "Fetch Careers",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/careers",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"careers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Careers",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Id_career\": \"1\",\n    \"Career_name\": \"Ingenieria de Sistemas\",\n    \"Id_faculty\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:4004/careers",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"careers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Careers",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/careers/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"careers",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Careers",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Id_career\": \"1\",\n    \"Career_name\": \"Ingenieria de Sistemas\",\n    \"Id_faculty\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:4004/careers",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"careers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch Career By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/careers/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"careers",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Faculties",
+					"item": [
+						{
+							"name": "Fetch Faculties",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/facultys",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"facultys"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Faculties",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Id_faculty\": \"1\",\n    \"Faculty_name\": \"Ingenieria de Sistemas\",\n    \"Id_site\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:4004/facultys",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"facultys"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Faculties",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/facultys/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"facultys",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Faculties",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Id_faculty\": \"1\",\n    \"Faculty_name\": \"Ingenieria de Sistemas\",\n    \"Id_site\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:4004/facultys",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"facultys"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch Faculty By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4004/facultys/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4004",
+									"path": [
+										"facultys",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "subjects",
+			"item": [
+				{
+					"name": "Courses",
+					"item": [
+						{
+							"name": "Fetch Courses",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:4005/api/course",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4005",
+									"path": [
+										"api",
+										"course"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Courses",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"course_name\": \"Arquitectura de Software\",\n    \"course_description\": \"Diagramas y mas\",\n    \"id_faculty\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:4005/api/course",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4005",
+									"path": [
+										"api",
+										"course"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch Course By Name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\"Arquitectura de Software\"",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:4005/api/course",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "4005",
+									"path": [
+										"api",
+										"course"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
