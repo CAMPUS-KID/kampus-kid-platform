@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
-import Student from "../models/student";
+import { Student } from "./models";
 
-const DBGrade = new DataSource({
+const AppDataSource = new DataSource({
     type: "postgres",
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT),
@@ -15,6 +15,12 @@ const DBGrade = new DataSource({
     logging: false
 });
 
-DBGrade.initialize();
+AppDataSource.initialize()
+    .then(() => {
+        console.log("Data Source has been initialized!")
+    })
+    .catch((err) => {
+        console.error("Error during Data Source initialization", err)
+    });
 
-export default DBGrade;
+export default AppDataSource;
