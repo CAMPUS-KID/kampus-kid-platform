@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -15,14 +16,16 @@ namespace DataBase.Migrations
                 name: "Site",
                 columns: table => new
                 {
-                    id_site = table.Column<string>(type: "varchar(255)", nullable: false)
+                    Id_Site = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Site_Name = table.Column<string>(type: "varchar(32)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    site_name = table.Column<string>(type: "longtext", nullable: false)
+                    Site_Code = table.Column<string>(type: "varchar(16)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Site", x => x.id_site);
+                    table.PrimaryKey("PK_Site", x => x.Id_Site);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -30,21 +33,22 @@ namespace DataBase.Migrations
                 name: "Faculty",
                 columns: table => new
                 {
-                    id_faculty = table.Column<string>(type: "varchar(255)", nullable: false)
+                    Id_Faculty = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Faculty_Name = table.Column<string>(type: "varchar(32)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    id_site = table.Column<string>(type: "varchar(255)", nullable: false)
+                    Faculty_Code = table.Column<string>(type: "varchar(16)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    faculty_name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Id_Site = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Faculty", x => x.id_faculty);
+                    table.PrimaryKey("PK_Faculty", x => x.Id_Faculty);
                     table.ForeignKey(
-                        name: "FK_Faculty_Site_id_site",
-                        column: x => x.id_site,
+                        name: "FK_Faculty_Site_Id_Site",
+                        column: x => x.Id_Site,
                         principalTable: "Site",
-                        principalColumn: "id_site",
+                        principalColumn: "Id_Site",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -53,21 +57,20 @@ namespace DataBase.Migrations
                 name: "Career",
                 columns: table => new
                 {
-                    id_career = table.Column<string>(type: "varchar(255)", nullable: false)
+                    Id_Career = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Career_Name = table.Column<string>(type: "varchar(64)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    career_name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    id_faculty = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Id_Faculty = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Career", x => x.id_career);
+                    table.PrimaryKey("PK_Career", x => x.Id_Career);
                     table.ForeignKey(
-                        name: "FK_Career_Faculty_id_faculty",
-                        column: x => x.id_faculty,
+                        name: "FK_Career_Faculty_Id_Faculty",
+                        column: x => x.Id_Faculty,
                         principalTable: "Faculty",
-                        principalColumn: "id_faculty",
+                        principalColumn: "Id_Faculty",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -76,41 +79,42 @@ namespace DataBase.Migrations
                 name: "Course",
                 columns: table => new
                 {
-                    id_course = table.Column<string>(type: "varchar(255)", nullable: false)
+                    Id_Course = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Course_Name = table.Column<string>(type: "varchar(64)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    course_name = table.Column<string>(type: "longtext", nullable: false)
+                    Course_Description = table.Column<string>(type: "varchar(256)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    course_description = table.Column<string>(type: "longtext", nullable: false)
+                    Course_Code = table.Column<string>(type: "varchar(16)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    id_faculty = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Id_Faculty = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Course", x => x.id_course);
+                    table.PrimaryKey("PK_Course", x => x.Id_Course);
                     table.ForeignKey(
-                        name: "FK_Course_Faculty_id_faculty",
-                        column: x => x.id_faculty,
+                        name: "FK_Course_Faculty_Id_Faculty",
+                        column: x => x.Id_Faculty,
                         principalTable: "Faculty",
-                        principalColumn: "id_faculty",
+                        principalColumn: "Id_Faculty",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Career_id_faculty",
+                name: "IX_Career_Id_Faculty",
                 table: "Career",
-                column: "id_faculty");
+                column: "Id_Faculty");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Course_id_faculty",
+                name: "IX_Course_Id_Faculty",
                 table: "Course",
-                column: "id_faculty");
+                column: "Id_Faculty");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Faculty_id_site",
+                name: "IX_Faculty_Id_Site",
                 table: "Faculty",
-                column: "id_site");
+                column: "Id_Site");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(SubjectsContext))]
-    [Migration("20220912124330_InitDB")]
+    [Migration("20220929023932_InitDB")]
     partial class InitDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,98 +22,111 @@ namespace DataBase.Migrations
 
             modelBuilder.Entity("DataBase.Career", b =>
                 {
-                    b.Property<string>("id_career")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Id_Career")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("career_name")
+                    b.Property<string>("Career_Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(64)");
 
-                    b.Property<string>("id_faculty")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Id_Faculty")
+                        .HasColumnType("int");
 
-                    b.HasKey("id_career");
+                    b.HasKey("Id_Career");
 
-                    b.HasIndex("id_faculty");
+                    b.HasIndex("Id_Faculty");
 
                     b.ToTable("Career", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Course", b =>
                 {
-                    b.Property<string>("id_course")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Id_Course")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("course_description")
+                    b.Property<string>("Course_Code")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(16)");
 
-                    b.Property<string>("course_name")
+                    b.Property<string>("Course_Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(256)");
 
-                    b.Property<string>("id_faculty")
+                    b.Property<string>("Course_Name")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(64)");
 
-                    b.HasKey("id_course");
+                    b.Property<int>("Id_Faculty")
+                        .HasColumnType("int");
 
-                    b.HasIndex("id_faculty");
+                    b.HasKey("Id_Course");
+
+                    b.HasIndex("Id_Faculty");
 
                     b.ToTable("Course", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Faculty", b =>
                 {
-                    b.Property<string>("id_faculty")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Id_Faculty")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("faculty_name")
+                    b.Property<string>("Faculty_Code")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(16)");
 
-                    b.Property<string>("id_site")
+                    b.Property<string>("Faculty_Name")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(32)");
 
-                    b.HasKey("id_faculty");
+                    b.Property<int>("Id_Site")
+                        .HasColumnType("int");
 
-                    b.HasIndex("id_site");
+                    b.HasKey("Id_Faculty");
+
+                    b.HasIndex("Id_Site");
 
                     b.ToTable("Faculty", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Site", b =>
                 {
-                    b.Property<string>("id_site")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Id_Site")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("site_name")
+                    b.Property<string>("Site_Code")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(16)");
 
-                    b.HasKey("id_site");
+                    b.Property<string>("Site_Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(32)");
+
+                    b.HasKey("Id_Site");
 
                     b.ToTable("Site", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Career", b =>
                 {
-                    b.HasOne("DataBase.Faculty", "faculty")
+                    b.HasOne("DataBase.Faculty", "Faculty")
                         .WithMany("careers")
-                        .HasForeignKey("id_faculty")
+                        .HasForeignKey("Id_Faculty")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("faculty");
+                    b.Navigation("Faculty");
                 });
 
             modelBuilder.Entity("DataBase.Course", b =>
                 {
                     b.HasOne("DataBase.Faculty", "Faculty")
                         .WithMany("courses")
-                        .HasForeignKey("id_faculty")
+                        .HasForeignKey("Id_Faculty")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -124,7 +137,7 @@ namespace DataBase.Migrations
                 {
                     b.HasOne("DataBase.Site", "Site")
                         .WithMany("faculties")
-                        .HasForeignKey("id_site")
+                        .HasForeignKey("Id_Site")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

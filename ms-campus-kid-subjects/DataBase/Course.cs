@@ -11,11 +11,16 @@ namespace DataBase
     public class Course
     {
         [Key]
-        public string id_course { get; set; }
-        public string course_name { get; set; }
-        public string course_description { get; set; }
-        public string id_faculty { get; set; }
-        [ForeignKey("id_faculty")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id_Course { get; set; }
+        [Column(TypeName = "varchar(64)")]
+        public string Course_Name { get; set; }
+        [Column(TypeName = "varchar(256)")]
+        public string Course_Description { get; set; }
+        [Column(TypeName = "varchar(16)")]
+        public string Course_Code { get; set; }
+        public int Id_Faculty { get; set; }
+        [ForeignKey("Id_Faculty")]
         public virtual Faculty Faculty { get; set; }
 
     }

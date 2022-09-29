@@ -1,5 +1,6 @@
 ﻿using DataBase;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExampleDocker.Controllers
@@ -16,7 +17,7 @@ namespace ExampleDocker.Controllers
         [HttpGet]
         public IEnumerable<Course> Get() => _context.courses.ToList();
         [HttpGet("{id}")]
-        public async Task<ActionResult<Course>> getCourseById(string id)
+        public async Task<ActionResult<Course>> getCourseById(int id)
         {
             var courseItem = await _context.courses.FindAsync(id);
             if (courseItem == null)
@@ -33,7 +34,44 @@ namespace ExampleDocker.Controllers
             _context.courses.Add(course);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(getCourseById), new { id = course.id_course }, course);
+            return CreatedAtAction(nameof(getCourseById), new { id = course.Id_Course }, course);
+        }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Course>> UpdateCourse(int id, Course course)
+        {
+            if(id != course.Id_Course)
+            {
+                return BadRequest();
+            }
+            _context.Entry(course).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                if (!(_context.courses.Any(e => e.Id_Course == id))) {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCourse(int id)
+        {
+            var item = await _context.courses.FindAsync(id);
+            if(item == null)
+            {
+                return NotFound();
+            }
+
+            _context.courses.Remove(item);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
         [HttpGet]
         [Route("Search")]
@@ -42,7 +80,7 @@ namespace ExampleDocker.Controllers
             IQueryable<Course> courseList = _context.courses;
 
             if (!String.IsNullOrEmpty(query)){
-                courseList = courseList.Where(e => e.course_name.Contains(query));
+                courseList = courseList.Where(e => e.Course_Name.Contains(query) || e.Course_Code.Contains(query) || e.Course_Description.Contains(query));
             }
             return await courseList.ToListAsync();
         }
