@@ -11,10 +11,12 @@ namespace DataBase
     public class Career
     {
         [Key]
-        public string id_career { get; set; }
-        public string career_name { get; set; }
-        public string id_faculty { get; set; }
-        [ForeignKey("id_faculty")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+        [Column(TypeName = "varchar(64)")]
+        public string name { get; set; }
+        public int facultyId { get; set; }
+        [ForeignKey("facultyId")]
         public virtual Faculty faculty { get; set; }
 
     }

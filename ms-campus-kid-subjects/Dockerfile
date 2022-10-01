@@ -7,17 +7,17 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["ExampleDocker/ExampleDocker.csproj", "ExampleDocker/"]
+COPY ["ExampleDocker/subjects-ms.csproj", "ExampleDocker/"]
 COPY ["DataBase/DataBase.csproj", "DataBase/"]
-RUN dotnet restore "ExampleDocker/ExampleDocker.csproj"
+RUN dotnet restore "ExampleDocker/subjects-ms.csproj"
 COPY . .
 WORKDIR "/src/ExampleDocker"
-RUN dotnet build "ExampleDocker.csproj" -c Release -o /app/build
+RUN dotnet build "subjects-ms.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ExampleDocker.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "subjects-ms.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ExampleDocker.dll"]
+ENTRYPOINT ["dotnet", "subjects-ms.dll"]
