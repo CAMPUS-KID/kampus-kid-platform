@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +13,16 @@ namespace DataBase
     public class Faculty
     {
         [Key]
-        public string id_faculty { get; set; }
-        public string id_site { get; set; }
-        public string faculty_name { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+        [Column(TypeName = "varchar(32)")]
+        public string name { get; set; }
+        [Column(TypeName = "varchar(16)")]
+        public string code { get; set; }
         public virtual ICollection<Course> courses { get; set;}
         public virtual ICollection<Career> careers { get; set; }
-        [ForeignKey("id_site")]
-        public virtual Site Site { get; set; }
+        public int siteId { get; set; }
+        [ForeignKey("siteId")]
+        public virtual Site site { get; set; }
     }
 }
