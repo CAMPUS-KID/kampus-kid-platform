@@ -28,17 +28,22 @@ namespace ExampleDocker.Controllers
         }
         [HttpPost]
         [Route("Save")]
-        public async Task<ActionResult<Course>> saveCourse(Course course)
-        {
-            _context.courses.Add(course);
+        public async Task<ActionResult<Course>> saveCourse(CourseInput course)
+        {   
+            Course course1 = new Course();
+            course1.description = course.description;
+            course1.name = course.name;
+            course1.code = course.code;
+            course1.facultyId = course.facultyId;
+            _context.courses.Add(course1);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(getCourseById), new { id = course.idCourse }, course);
+            return CreatedAtAction(nameof(getCourseById), new { id = course.name }, course);
         }
         [HttpPut("{id}")]
         public async Task<ActionResult<Course>> updateCourse(int id, Course course)
         {
-            if(id != course.idCourse)
+            if(id != course.id)
             {
                 return BadRequest();
             }
@@ -49,7 +54,7 @@ namespace ExampleDocker.Controllers
             }
             catch(DbUpdateConcurrencyException)
             {
-                if (!(_context.courses.Any(e => e.idCourse == id))) {
+                if (!(_context.courses.Any(e => e.id == id))) {
                     return NotFound();
                 }
                 else

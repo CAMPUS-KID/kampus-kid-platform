@@ -20,27 +20,27 @@ namespace DataBase.Migrations
 
             modelBuilder.Entity("DataBase.Career", b =>
                 {
-                    b.Property<int>("idCareer")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("idFaculty")
+                    b.Property<int>("facultyId")
                         .HasColumnType("int");
 
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("varchar(64)");
 
-                    b.HasKey("idCareer");
+                    b.HasKey("id");
 
-                    b.HasIndex("idFaculty");
+                    b.HasIndex("facultyId");
 
                     b.ToTable("Career", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Course", b =>
                 {
-                    b.Property<int>("idCourse")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -52,23 +52,23 @@ namespace DataBase.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(256)");
 
-                    b.Property<int>("idFaculty")
+                    b.Property<int>("facultyId")
                         .HasColumnType("int");
 
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("varchar(64)");
 
-                    b.HasKey("idCourse");
+                    b.HasKey("id");
 
-                    b.HasIndex("idFaculty");
+                    b.HasIndex("facultyId");
 
                     b.ToTable("Course", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Faculty", b =>
                 {
-                    b.Property<int>("idFaculty")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -76,23 +76,23 @@ namespace DataBase.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(16)");
 
-                    b.Property<int>("idSite")
-                        .HasColumnType("int");
-
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("varchar(32)");
 
-                    b.HasKey("idFaculty");
+                    b.Property<int>("siteId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("idSite");
+                    b.HasKey("id");
+
+                    b.HasIndex("siteId");
 
                     b.ToTable("Faculty", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Site", b =>
                 {
-                    b.Property<int>("idSite")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -104,42 +104,42 @@ namespace DataBase.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(32)");
 
-                    b.HasKey("idSite");
+                    b.HasKey("id");
 
                     b.ToTable("Site", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Career", b =>
                 {
-                    b.HasOne("DataBase.Faculty", "Faculty")
+                    b.HasOne("DataBase.Faculty", "faculty")
                         .WithMany("careers")
-                        .HasForeignKey("idFaculty")
+                        .HasForeignKey("facultyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Faculty");
+                    b.Navigation("faculty");
                 });
 
             modelBuilder.Entity("DataBase.Course", b =>
                 {
-                    b.HasOne("DataBase.Faculty", "Faculty")
+                    b.HasOne("DataBase.Faculty", "faculty")
                         .WithMany("courses")
-                        .HasForeignKey("idFaculty")
+                        .HasForeignKey("facultyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Faculty");
+                    b.Navigation("faculty");
                 });
 
             modelBuilder.Entity("DataBase.Faculty", b =>
                 {
-                    b.HasOne("DataBase.Site", "Site")
+                    b.HasOne("DataBase.Site", "site")
                         .WithMany("faculties")
-                        .HasForeignKey("idSite")
+                        .HasForeignKey("siteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Site");
+                    b.Navigation("site");
                 });
 
             modelBuilder.Entity("DataBase.Faculty", b =>

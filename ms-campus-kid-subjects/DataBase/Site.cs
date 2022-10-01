@@ -12,7 +12,7 @@ namespace DataBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int idSite { get; set; }
+        public int id { get; set; }
         [Column(TypeName ="varchar(32)")]
         public string name { get; set; }
         [Column(TypeName = "varchar(16)")]
