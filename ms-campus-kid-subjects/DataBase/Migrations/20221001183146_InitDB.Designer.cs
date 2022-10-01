@@ -10,103 +10,103 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(SubjectsContext))]
-    [Migration("20220929023932_InitDB")]
+    [Migration("20221001183146_InitDB")]
     partial class InitDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("DataBase.Career", b =>
                 {
-                    b.Property<int>("Id_Career")
+                    b.Property<int>("idCareer")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Career_Name")
+                    b.Property<int>("idFaculty")
+                        .HasColumnType("int");
+
+                    b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("varchar(64)");
 
-                    b.Property<int>("Id_Faculty")
-                        .HasColumnType("int");
+                    b.HasKey("idCareer");
 
-                    b.HasKey("Id_Career");
-
-                    b.HasIndex("Id_Faculty");
+                    b.HasIndex("idFaculty");
 
                     b.ToTable("Career", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Course", b =>
                 {
-                    b.Property<int>("Id_Course")
+                    b.Property<int>("idCourse")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Course_Code")
+                    b.Property<string>("code")
                         .IsRequired()
                         .HasColumnType("varchar(16)");
 
-                    b.Property<string>("Course_Description")
+                    b.Property<string>("description")
                         .IsRequired()
                         .HasColumnType("varchar(256)");
 
-                    b.Property<string>("Course_Name")
+                    b.Property<int>("idFaculty")
+                        .HasColumnType("int");
+
+                    b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("varchar(64)");
 
-                    b.Property<int>("Id_Faculty")
-                        .HasColumnType("int");
+                    b.HasKey("idCourse");
 
-                    b.HasKey("Id_Course");
-
-                    b.HasIndex("Id_Faculty");
+                    b.HasIndex("idFaculty");
 
                     b.ToTable("Course", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Faculty", b =>
                 {
-                    b.Property<int>("Id_Faculty")
+                    b.Property<int>("idFaculty")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Faculty_Code")
+                    b.Property<string>("code")
                         .IsRequired()
                         .HasColumnType("varchar(16)");
 
-                    b.Property<string>("Faculty_Name")
+                    b.Property<int>("idSite")
+                        .HasColumnType("int");
+
+                    b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("varchar(32)");
 
-                    b.Property<int>("Id_Site")
-                        .HasColumnType("int");
+                    b.HasKey("idFaculty");
 
-                    b.HasKey("Id_Faculty");
-
-                    b.HasIndex("Id_Site");
+                    b.HasIndex("idSite");
 
                     b.ToTable("Faculty", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Site", b =>
                 {
-                    b.Property<int>("Id_Site")
+                    b.Property<int>("idSite")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Site_Code")
+                    b.Property<string>("code")
                         .IsRequired()
                         .HasColumnType("varchar(16)");
 
-                    b.Property<string>("Site_Name")
+                    b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("varchar(32)");
 
-                    b.HasKey("Id_Site");
+                    b.HasKey("idSite");
 
                     b.ToTable("Site", (string)null);
                 });
@@ -115,7 +115,7 @@ namespace DataBase.Migrations
                 {
                     b.HasOne("DataBase.Faculty", "Faculty")
                         .WithMany("careers")
-                        .HasForeignKey("Id_Faculty")
+                        .HasForeignKey("idFaculty")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -126,7 +126,7 @@ namespace DataBase.Migrations
                 {
                     b.HasOne("DataBase.Faculty", "Faculty")
                         .WithMany("courses")
-                        .HasForeignKey("Id_Faculty")
+                        .HasForeignKey("idFaculty")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -137,7 +137,7 @@ namespace DataBase.Migrations
                 {
                     b.HasOne("DataBase.Site", "Site")
                         .WithMany("faculties")
-                        .HasForeignKey("Id_Site")
+                        .HasForeignKey("idSite")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

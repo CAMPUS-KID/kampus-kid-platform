@@ -12,11 +12,11 @@ namespace DataBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id_Site { get; set; }
+        public int idSite { get; set; }
         [Column(TypeName ="varchar(32)")]
-        public string Site_Name { get; set; }
+        public string name { get; set; }
         [Column(TypeName = "varchar(16)")]
-        public string Site_Code { get; set; }
+        public string code { get; set; }
         public virtual ICollection<Faculty> faculties { get; set; }
     }
 }

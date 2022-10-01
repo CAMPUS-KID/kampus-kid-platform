@@ -12,12 +12,12 @@ namespace DataBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id_Career { get; set; }
+        public int idCareer { get; set; }
         [Column(TypeName = "varchar(64)")]
-        public string Career_Name { get; set; }
-        public int Id_Faculty { get; set; }
-        [ForeignKey("Id_Faculty")]
-        public virtual Faculty Faculty { get; set; }
+        public string name { get; set; }
+        public int idFaculty { get; set; }
+        [ForeignKey("idFaculty")]
+        public virtual Faculty faculty { get; set; }
 
     }
 }

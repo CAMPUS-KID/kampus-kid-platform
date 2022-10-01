@@ -12,16 +12,16 @@ namespace DataBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id_Course { get; set; }
+        public int idCourse { get; set; }
         [Column(TypeName = "varchar(64)")]
-        public string Course_Name { get; set; }
+        public string name { get; set; }
         [Column(TypeName = "varchar(256)")]
-        public string Course_Description { get; set; }
+        public string description { get; set; }
         [Column(TypeName = "varchar(16)")]
-        public string Course_Code { get; set; }
-        public int Id_Faculty { get; set; }
-        [ForeignKey("Id_Faculty")]
-        public virtual Faculty Faculty { get; set; }
+        public string code { get; set; }
+        public int idFaculty { get; set; }
+        [ForeignKey("idFaculty")]
+        public virtual Faculty faculty { get; set; }
 
     }
 }

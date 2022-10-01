@@ -14,15 +14,15 @@ namespace DataBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id_Faculty { get; set; }
+        public int idFaculty { get; set; }
         [Column(TypeName = "varchar(32)")]
-        public string Faculty_Name { get; set; }
+        public string name { get; set; }
         [Column(TypeName = "varchar(16)")]
-        public string Faculty_Code { get; set; }
+        public string code { get; set; }
         public virtual ICollection<Course> courses { get; set;}
         public virtual ICollection<Career> careers { get; set; }
-        public int Id_Site { get; set; }
-        [ForeignKey("Id_Site")]
-        public virtual Site Site { get; set; }
+        public int idSite { get; set; }
+        [ForeignKey("idSite")]
+        public virtual Site site { get; set; }
     }
 }

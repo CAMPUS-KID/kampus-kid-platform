@@ -15,7 +15,7 @@ namespace ExampleDocker.Controllers
             _context = context;
         }
         [HttpGet]
-        public IEnumerable<Course> Get() => _context.courses.ToList();
+        public IEnumerable<Course> get() => _context.courses.ToList();
         [HttpGet("{id}")]
         public async Task<ActionResult<Course>> getCourseById(int id)
         {
@@ -30,16 +30,15 @@ namespace ExampleDocker.Controllers
         [Route("Save")]
         public async Task<ActionResult<Course>> saveCourse(Course course)
         {
-
             _context.courses.Add(course);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(getCourseById), new { id = course.Id_Course }, course);
+            return CreatedAtAction(nameof(getCourseById), new { id = course.idCourse }, course);
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<Course>> UpdateCourse(int id, Course course)
+        public async Task<ActionResult<Course>> updateCourse(int id, Course course)
         {
-            if(id != course.Id_Course)
+            if(id != course.idCourse)
             {
                 return BadRequest();
             }
@@ -50,7 +49,7 @@ namespace ExampleDocker.Controllers
             }
             catch(DbUpdateConcurrencyException)
             {
-                if (!(_context.courses.Any(e => e.Id_Course == id))) {
+                if (!(_context.courses.Any(e => e.idCourse == id))) {
                     return NotFound();
                 }
                 else
@@ -61,7 +60,7 @@ namespace ExampleDocker.Controllers
             return NoContent();
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCourse(int id)
+        public async Task<IActionResult> deleteCourse(int id)
         {
             var item = await _context.courses.FindAsync(id);
             if(item == null)
@@ -80,7 +79,7 @@ namespace ExampleDocker.Controllers
             IQueryable<Course> courseList = _context.courses;
 
             if (!String.IsNullOrEmpty(query)){
-                courseList = courseList.Where(e => e.Course_Name.Contains(query) || e.Course_Code.Contains(query) || e.Course_Description.Contains(query));
+                courseList = courseList.Where(e => e.name.Contains(query) || e.code.Contains(query) || e.description.Contains(query));
             }
             return await courseList.ToListAsync();
         }
