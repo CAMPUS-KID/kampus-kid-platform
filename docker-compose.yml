@@ -1,12 +1,10 @@
-version: '3.1'
+version: '3.5'
 
 services:
 # MICROSERVICES
   ms-campus-kid-auth:
     container_name: ms-campus-kid-auth
     build: ./ms-campus-kid-auth
-    depends_on:
-      - db-auth
     ports:
       - 4000:4000
     environment:
@@ -15,8 +13,10 @@ services:
     container_name: ms-campus-kid-grades
     build: ./ms-campus-kid-grades
     depends_on:
-      - ms-campus-kid-schedule
-      - db-grade
+      db-grade:
+        condition: service_healthy
+    links: 
+        - db-grade
     ports:
       - 4001:4001
     environment:
@@ -38,7 +38,10 @@ services:
     container_name: ms-campus-kid-schedule
     build: ./ms-campus-kid-schedule
     depends_on:
-      - db-grade
+      db-grade:
+        condition: service_healthy
+    links: 
+        - db-grade
     ports:
       - 4003:4003
     environment:
@@ -52,8 +55,10 @@ services:
     container_name: ms-campus-kid-school
     build: ./ms-campus-kid-school
     depends_on:
-      - ms-campus-kid-subjects
-      - db-subject
+      db-subject:
+        condition: service_healthy
+    links: 
+        - db-subject
     ports:
       - 4004:4004
     environment:
@@ -67,7 +72,10 @@ services:
     container_name: ms-campus-kid-subjects
     build: ./ms-campus-kid-subjects
     depends_on:
-      - db-subject
+      db-subject:
+        condition: service_healthy
+    links: 
+        - db-subject
     ports:
       - 4005:80
     environment:
@@ -83,6 +91,13 @@ services:
       POSTGRES_PASSWORD: 1234
       POSTGRES_USER: root
       POSTGRES_DB: db_grade
+      PGPASSWORD: 1234
+    healthcheck:
+        test: ["CMD-SHELL", "pg_isready", "-d", "db_grade"]
+        interval: 15s
+        timeout: 10s
+        retries: 5
+        start_period: 30s
   db-subject:
     container_name: db-subject
     image: mysql
@@ -94,6 +109,12 @@ services:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: db_subject
       MYSQL_ROOT_HOST: '%'
+    healthcheck:
+        test:  ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        interval: 15s
+        timeout: 10s
+        retries: 5
+        start_period: 30s
   db-auth:
     container_name: db-auth
     image: mongo
@@ -104,3 +125,9 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 1234
       MONGO_INITDB_DATABASE: db_auth
+    healthcheck:
+        test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
+        interval: 15s
+        timeout: 10s
+        retries: 5
+        start_period: 30s
