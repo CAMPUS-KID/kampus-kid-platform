@@ -6,7 +6,7 @@ COPY go.mod ./
 COPY go.sum ./
 RUN go mod download
 
-COPY go/*.go ./
+COPY src/*.go ./
 
 RUN go build -o /ms-campus-kid-school
 
