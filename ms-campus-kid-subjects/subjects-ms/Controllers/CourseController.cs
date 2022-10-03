@@ -41,28 +41,27 @@ namespace ExampleDocker.Controllers
             return CreatedAtAction(nameof(getCourseById), new { id = course.name }, course);
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<Course>> updateCourse(int id, Course course)
+        public async Task<ActionResult<Course>> updateCourse(int id, CourseInput course)
         {
-            if(id != course.id)
+            var courseItem = await _context.courses.FindAsync(id);
+            if(courseItem == null)
             {
-                return BadRequest();
+                return NotFound();
             }
-            _context.Entry(course).State = EntityState.Modified;
+            courseItem.name = course.name;
+            courseItem.description = course.name;
+            courseItem.code = course.code;
+            courseItem.facultyId = course.facultyId;
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch(DbUpdateConcurrencyException)
+            catch(DbUpdateConcurrencyException) 
             {
-                if (!(_context.courses.Any(e => e.id == id))) {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();   
             }
             return NoContent();
+
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> deleteCourse(int id)
