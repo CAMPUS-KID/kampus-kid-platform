@@ -14,12 +14,13 @@ DATABASE_CONNECTION_URI = f'postgresql+psycopg2://{user}:{password}@{host}:{port
 
 db = flask_sqlalchemy.SQLAlchemy()
 
-class Cats(db.Model):
-    __tablename__ = 'cats'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    price = db.Column(db.Integer)
-    breed = db.Column(db.String(100))
+class Estudiante(db.Model):
+    __tablename__ = 'estudiante'
+    id = db.Column(db.Integer, primary_key = True)
+    correo_estudiante = db.Column(db.String(100), nullable=False, unique=True)
+    nombre_estudiante = db.Column(db.String(100), nullable=False,)
+    id_facultad = db.Column(db.Integer, nullable=False, unique=True)
+    # created_at = db.Column(db.Datetime(), default=datetime.now())
 
 def get_all(model):
     data = model.query.all()
@@ -55,41 +56,45 @@ def create_app():
 
 app = create_app()
 
-
+# Recibir info sobre todos los estudiantes
 @app.route('/', methods=['GET'])
 def fetch():
-    cats = get_all(Cats)
-    all_cats = []
-    for cat in cats:
-        new_cat = {
-            "id": cat.id,
-            "name": cat.name,
-            "price": cat.price,
-            "breed": cat.breed
+    estudiante = db.get_all(Estudiante)
+    all_estudiante = []
+    for e in estudiante:
+        new_estudiante = {
+            "id_estudiante": e.id,
+            "correo_estudiante": e.correo_estudiante,
+            "nombre_estudiante": e.nombre_estudiante,
+            "id_facultad": e.id_facultad
         }
 
-        all_cats.append(new_cat)
-    return json.dumps(all_cats), 200
+        all_estudiante.append(new_estudiante)
+    return json.dumps(all_estudiante), 200
 
+# Añadir nuevo estudiante
 @app.route('/add', methods=['POST'])
 def add():
     data = request.get_json()
-    name = data['name']
-    price = data['price']
-    breed = data['breed']
+    correo_estudiante = data['correo_estudiante']
+    nombre_estudiante = data['nombre_estudiante']
+    id_facultad = data['id_facultad']
 
-    add_instance(Cats, name=name, price=price, breed=breed)
+    db.add_instance(Estudiante, correo_estudiante=correo_estudiante, nombre_estudiante=nombre_estudiante, id_facultad=id_facultad)
     return json.dumps("Added"), 200
 
-@app.route('/remove/<cat_id>', methods=['DELETE'])
-def remove(cat_id):
-    delete_instance(Cats, id=cat_id)
+# Eliminar estudiante
+@app.route('/delete/<id_estudiante>', methods=['DELETE'])
+def remove(id_estudiante):
+    Estudiante.db.delete_instance(Estudiante.Estudiante, id=id_estudiante)
     return json.dumps("Deleted"), 200
 
-
-@app.route('/edit/<cat_id>', methods=['PATCH'])
-def edit(cat_id):
+# Editar estudiante
+@app.route('/edit/<id_estudiante>', methods=['PATCH'])
+def edit(id_estudiante):
     data = request.get_json()
-    new_price = data['price']
-    edit_instance(Cats, id=cat_id, price=new_price)
+    new_correo_estudiante = data['correo_estudiante']
+    new_nombre_estudiante = data['nombre_estudiante']
+    db.edit_instance(Estudiante, id=id_estudiante, correo_estudiante=new_correo_estudiante)
+    db.edit_instance(Estudiante, id=id_estudiante, nombre_estudiante=new_nombre_estudiante)
     return json.dumps("Edited"), 200
