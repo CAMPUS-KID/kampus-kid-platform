@@ -4,13 +4,14 @@ from flask import request
 import flask_sqlalchemy
 import os
 
-user = os.environ['postgres']
-password = os.environ['test123']
-host = os.environ['postgres']
-port = os.environ['5432']
-database = os.environ['estudiantes_sqlalchemy']
+#user = os.environ['postgres']
+#password = os.environ['test123']
+#host = os.environ['postgres']
+#port = os.environ['5432']
+#database = os.environ['estudiantes_sqlalchemy']
 
-DATABASE_CONNECTION_URI = f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}'
+#DATABASE_CONNECTION_URI = f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}'
+DATABASE_CONNECTION_URI = 'postgresql+psycopg2://postgres:test123@localhost:5432/estudiantes_sqlalchemy'
 
 db = flask_sqlalchemy.SQLAlchemy()
 
