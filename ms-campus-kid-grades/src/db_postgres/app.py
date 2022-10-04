@@ -2,25 +2,18 @@ import json
 from flask import Flask
 from flask import request
 import flask_sqlalchemy
-import os
-
-#user = os.environ['postgres']
-#password = os.environ['test123']
-#host = os.environ['postgres']
-#port = os.environ['5432']
-#database = os.environ['estudiantes_sqlalchemy']
 
 #DATABASE_CONNECTION_URI = f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}'
-DATABASE_CONNECTION_URI = 'postgresql+psycopg2://postgres:test123@localhost:5432/estudiantes_sqlalchemy'
+DATABASE_CONNECTION_URI = 'postgresql+psycopg2://root:4006@host.docker.internal:5432/db_grade'
 
 db = flask_sqlalchemy.SQLAlchemy()
 
-class Estudiante(db.Model):
-    __tablename__ = 'estudiante'
+class Student(db.Model):
+    __tablename__ = 'student'
     id = db.Column(db.Integer, primary_key = True)
-    correo_estudiante = db.Column(db.String(100), nullable=False, unique=True)
-    nombre_estudiante = db.Column(db.String(100), nullable=False,)
-    id_facultad = db.Column(db.Integer, nullable=False, unique=True)
+    email_student = db.Column(db.String(100), nullable=False, unique=True)
+    name_student = db.Column(db.String(100), nullable=False,)
+    id_faculty = db.Column(db.Integer, nullable=False, unique=True)
     # created_at = db.Column(db.Datetime(), default=datetime.now())
 
 def get_all(model):
@@ -57,45 +50,47 @@ def create_app():
 
 app = create_app()
 
-# Recibir info sobre todos los estudiantes
+# fetch info
 @app.route('/', methods=['GET'])
 def fetch():
-    estudiante = db.get_all(Estudiante)
-    all_estudiante = []
-    for e in estudiante:
-        new_estudiante = {
-            "id_estudiante": e.id,
-            "correo_estudiante": e.correo_estudiante,
-            "nombre_estudiante": e.nombre_estudiante,
-            "id_facultad": e.id_facultad
+    student = db.get_all(Student)
+    all_student = []
+    for e in student:
+        new_student = {
+            "id_student": e.id,
+            "email_student": e.email_student,
+            "name_student": e.name_student,
+            "id_faculty": e.id_faculty
         }
 
-        all_estudiante.append(new_estudiante)
-    return json.dumps(all_estudiante), 200
+        all_student.append(new_student)
+    return json.dumps(all_student), 200
 
-# Añadir nuevo estudiante
+# Add new student
 @app.route('/add', methods=['POST'])
 def add():
     data = request.get_json()
-    correo_estudiante = data['correo_estudiante']
-    nombre_estudiante = data['nombre_estudiante']
-    id_facultad = data['id_facultad']
+    email_student = data['email_student']
+    name_student = data['name_student']
+    id_faculty = data['id_faculty']
 
-    db.add_instance(Estudiante, correo_estudiante=correo_estudiante, nombre_estudiante=nombre_estudiante, id_facultad=id_facultad)
+    db.add_instance(Student, email_student=email_student, name_student=name_student, id_faculty=id_faculty)
     return json.dumps("Added"), 200
 
-# Eliminar estudiante
-@app.route('/delete/<id_estudiante>', methods=['DELETE'])
-def remove(id_estudiante):
-    Estudiante.db.delete_instance(Estudiante.Estudiante, id=id_estudiante)
+# Eliminar student
+@app.route('/delete/<id_student>', methods=['DELETE'])
+def remove(id_student):
+    Student.db.delete_instance(Student, id=id_student)
     return json.dumps("Deleted"), 200
 
-# Editar estudiante
-@app.route('/edit/<id_estudiante>', methods=['PATCH'])
-def edit(id_estudiante):
+# Editar student
+@app.route('/edit/<id_student>', methods=['PATCH'])
+def edit(id_student):
     data = request.get_json()
-    new_correo_estudiante = data['correo_estudiante']
-    new_nombre_estudiante = data['nombre_estudiante']
-    db.edit_instance(Estudiante, id=id_estudiante, correo_estudiante=new_correo_estudiante)
-    db.edit_instance(Estudiante, id=id_estudiante, nombre_estudiante=new_nombre_estudiante)
+    new_email_student = data['email_student']
+    new_name_student = data['nombre_estudiante']
+    new_id_faculty = data['id_faculty']
+    db.edit_instance(Student, id=id_student, email_student=new_email_student)
+    db.edit_instance(Student, id=id_student, name_student=new_name_student)
+    db.edit_instance(Student, id=id_student, id_faculty=new_id_faculty)
     return json.dumps("Edited"), 200
