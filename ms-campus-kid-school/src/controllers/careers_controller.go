@@ -10,7 +10,7 @@ func CreateCareer(career utils.Career) error {
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("INSERT INTO Career(Career_Name, Id_Faculty) VALUES (?, ?)", career.Career_Name, career.Id_Faculty)
+	_, err = bd.Exec("INSERT INTO Career(name, facultyId) VALUES (?, ?)", career.Career_Name, career.Id_Faculty)
 	return err
 }
 
@@ -20,7 +20,7 @@ func DeleteCareer(id int64) error {
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("DELETE FROM Career WHERE Id_Career = ?", id)
+	_, err = bd.Exec("DELETE FROM Career WHERE id = ?", id)
 	return err
 }
 
@@ -30,7 +30,7 @@ func UpdateCareer(career utils.Career) error {
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("UPDATE Career SET career_Name = ?, Id_Faculty = ? WHERE Id_Career = ?", career.Career_Name, career.Id_Faculty, career.Id_Career)
+	_, err = bd.Exec("UPDATE Career SET name = ?, facultyId = ? WHERE id = ?", career.Career_Name, career.Id_Faculty, career.Id_Career)
 	return err
 }
 func GetCareers() ([]utils.Career, error) {
@@ -65,7 +65,7 @@ func GetCareersById(id int64) (utils.Career, error) {
 	if err != nil {
 		return career, err
 	}
-	row := bd.QueryRow("SELECT * FROM Career where Id_Career = ?", id)
+	row := bd.QueryRow("SELECT * FROM Career where id = ?", id)
 	err = row.Scan(&career.Id_Career, &career.Career_Name, &career.Id_Faculty)
 	if err != nil {
 		return career, err

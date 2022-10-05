@@ -10,7 +10,7 @@ func CreateSite(site utils.Site) error {
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("INSERT INTO Site(Site_Name, Site_Code) VALUES (?, ?)", site.Site_Name, site.Site_Code)
+	_, err = bd.Exec("INSERT INTO Site(name, code) VALUES (?, ?)", site.Site_Name, site.Site_Code)
 	return err
 }
 
@@ -20,7 +20,7 @@ func DeleteSite(id int64) error {
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("DELETE FROM Site WHERE Id_Site = ?", id)
+	_, err = bd.Exec("DELETE FROM Site WHERE id = ?", id)
 	return err
 }
 
@@ -30,7 +30,7 @@ func UpdateSite(site utils.Site) error {
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("UPDATE Site SET Site_Name = ?, Site_Code = ? WHERE id_site = ?", site.Site_Name, site.Site_Code, site.Id_Site)
+	_, err = bd.Exec("UPDATE Site SET name = ?, code = ? WHERE id = ?", site.Site_Name, site.Site_Code, site.Id_Site)
 	return err
 }
 func GetSites() ([]utils.Site, error) {
@@ -65,7 +65,7 @@ func GetSitesById(id int64) (utils.Site, error) {
 	if err != nil {
 		return site, err
 	}
-	row := bd.QueryRow("SELECT * FROM Site where Id_Site = ?", id)
+	row := bd.QueryRow("SELECT * FROM Site where id = ?", id)
 	err = row.Scan(&site.Id_Site, &site.Site_Name, &site.Site_Code)
 	if err != nil {
 		return site, err

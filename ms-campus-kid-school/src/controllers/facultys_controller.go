@@ -10,7 +10,7 @@ func CreateFaculty(faculty utils.Faculty) error {
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("INSERT INTO Faculty(Faculty_Name, Faculty_Code, Id_Site) VALUES (?, ?, ?)", faculty.Faculty_Name, faculty.Faculty_Code, faculty.Id_Site)
+	_, err = bd.Exec("INSERT INTO Faculty(name, code, siteId) VALUES (?, ?, ?)", faculty.Faculty_Name, faculty.Faculty_Code, faculty.Id_Site)
 	return err
 }
 
@@ -20,7 +20,7 @@ func DeleteFaculty(id int64) error {
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("DELETE FROM Faculty WHERE Id_Faculty = ?", id)
+	_, err = bd.Exec("DELETE FROM Faculty WHERE id = ?", id)
 	return err
 }
 
@@ -30,7 +30,7 @@ func UpdateFaculty(faculty utils.Faculty) error {
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("UPDATE Faculty SET Faculty_Name = ?, Faculty_Code = ?,  Id_Site = ? WHERE Id_Faculty = ?", faculty.Faculty_Name, faculty.Faculty_Code, faculty.Id_Site, faculty.Id_Faculty)
+	_, err = bd.Exec("UPDATE Faculty SET name = ?, code = ?,  siteId = ? WHERE id = ?", faculty.Faculty_Name, faculty.Faculty_Code, faculty.Id_Site, faculty.Id_Faculty)
 	return err
 }
 func GetFacultys() ([]utils.Faculty, error) {
@@ -65,7 +65,7 @@ func GetFacultysById(id int64) (utils.Faculty, error) {
 	if err != nil {
 		return faculty, err
 	}
-	row := bd.QueryRow("SELECT * FROM Faculty where id_faculty = ?", id)
+	row := bd.QueryRow("SELECT * FROM Faculty where id = ?", id)
 	err = row.Scan(&faculty.Id_Faculty, &faculty.Faculty_Name, &faculty.Faculty_Code, &faculty.Id_Site)
 	if err != nil {
 		return faculty, err
