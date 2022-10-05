@@ -3,7 +3,7 @@ package routes
 import (
 	"encoding/json"
 	"ms_campus_kid_school/src/controllers"
-	"ms_campus_kid_school/src/type_defs"
+	"ms_campus_kid_school/src/utils"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -25,7 +25,14 @@ func SetupRoutesForFacultys(router *mux.Router) {
 
 	router.HandleFunc("/facultys/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		faculty, err := controllers.GetFacultysById(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+
+		faculty, err := controllers.GetFacultysById(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
@@ -35,7 +42,7 @@ func SetupRoutesForFacultys(router *mux.Router) {
 
 	router.HandleFunc("/facultys", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var faculty type_defs.Faculty
+		var faculty utils.Faculty
 		err := json.NewDecoder(r.Body).Decode(&faculty)
 		if err != nil {
 			respondWithError(err, w)
@@ -51,7 +58,7 @@ func SetupRoutesForFacultys(router *mux.Router) {
 
 	router.HandleFunc("/facultys", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var faculty type_defs.Faculty
+		var faculty utils.Faculty
 		err := json.NewDecoder(r.Body).Decode(&faculty)
 		if err != nil {
 			respondWithError(err, w)
@@ -67,7 +74,13 @@ func SetupRoutesForFacultys(router *mux.Router) {
 
 	router.HandleFunc("/facultys/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		err := controllers.DeleteFaculty(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+		err = controllers.DeleteFaculty(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {

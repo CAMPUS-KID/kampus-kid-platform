@@ -3,7 +3,7 @@ package routes
 import (
 	"encoding/json"
 	"ms_campus_kid_school/src/controllers"
-	"ms_campus_kid_school/src/type_defs"
+	"ms_campus_kid_school/src/utils"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -25,7 +25,14 @@ func SetupRoutesForSites(router *mux.Router) {
 
 	router.HandleFunc("/sites/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		site, err := controllers.GetSitesById(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+
+		site, err := controllers.GetSitesById(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
@@ -35,7 +42,7 @@ func SetupRoutesForSites(router *mux.Router) {
 
 	router.HandleFunc("/sites", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var site type_defs.Site
+		var site utils.Site
 		err := json.NewDecoder(r.Body).Decode(&site)
 		if err != nil {
 			respondWithError(err, w)
@@ -51,7 +58,7 @@ func SetupRoutesForSites(router *mux.Router) {
 
 	router.HandleFunc("/sites", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var site type_defs.Site
+		var site utils.Site
 		err := json.NewDecoder(r.Body).Decode(&site)
 		if err != nil {
 			respondWithError(err, w)
@@ -67,7 +74,14 @@ func SetupRoutesForSites(router *mux.Router) {
 
 	router.HandleFunc("/sites/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		err := controllers.DeleteSite(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+
+		err = controllers.DeleteSite(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {

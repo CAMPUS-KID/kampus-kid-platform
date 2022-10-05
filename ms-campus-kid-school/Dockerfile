@@ -5,8 +5,7 @@ WORKDIR /app
 COPY go.mod ./
 COPY go.sum ./
 RUN go mod download
-
-COPY src/*.go ./
+COPY src/* ./
 
 RUN go build -o /ms-campus-kid-school
 

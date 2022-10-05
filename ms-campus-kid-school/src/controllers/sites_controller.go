@@ -2,54 +2,54 @@ package controllers
 
 import (
 	"ms_campus_kid_school/src/connection"
-	"ms_campus_kid_school/src/type_defs"
+	"ms_campus_kid_school/src/utils"
 )
 
-func CreateSite(site type_defs.Site) error {
+func CreateSite(site utils.Site) error {
 	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("INSERT INTO Site VALUES (?, ?)", site.Id_site, site.Site_name)
+	_, err = bd.Exec("INSERT INTO Site(Site_Name, Site_Code) VALUES (?, ?)", site.Site_Name, site.Site_Code)
 	return err
 }
 
-func DeleteSite(id string) error {
+func DeleteSite(id int64) error {
 
 	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("DELETE FROM Site WHERE id_site = ?", id)
+	_, err = bd.Exec("DELETE FROM Site WHERE Id_Site = ?", id)
 	return err
 }
 
 // It takes the ID to make the update
-func UpdateSite(site type_defs.Site) error {
+func UpdateSite(site utils.Site) error {
 	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("UPDATE Site SET site_name = ? WHERE id_site = ?", site.Site_name, site.Id_site)
+	_, err = bd.Exec("UPDATE Site SET Site_Name = ?, Site_Code = ? WHERE id_site = ?", site.Site_Name, site.Site_Code, site.Id_Site)
 	return err
 }
-func GetSites() ([]type_defs.Site, error) {
+func GetSites() ([]utils.Site, error) {
 	//Declare an array because if there's error, we return it empty
-	sites := []type_defs.Site{}
+	sites := []utils.Site{}
 	bd, err := connection.GetDB()
 	if err != nil {
 		return sites, err
 	}
 	// Get rows so we can iterate them
-	rows, err := bd.Query("SELECT id_site, site_name FROM Site")
+	rows, err := bd.Query("SELECT * FROM Site")
 	if err != nil {
 		return sites, err
 	}
 	// Iterate rows...
 	for rows.Next() {
 		// In each step, scan one row
-		var site type_defs.Site
-		err = rows.Scan(&site.Id_site, &site.Site_name)
+		var site utils.Site
+		err = rows.Scan(&site.Id_Site, &site.Site_Name, &site.Site_Code)
 		if err != nil {
 			return sites, err
 		}
@@ -59,29 +59,14 @@ func GetSites() ([]type_defs.Site, error) {
 	return sites, nil
 }
 
-func GetSitesById(id string) (type_defs.Site, error) {
-	var site type_defs.Site
+func GetSitesById(id int64) (utils.Site, error) {
+	var site utils.Site
 	bd, err := connection.GetDB()
 	if err != nil {
 		return site, err
 	}
-	row := bd.QueryRow("SELECT id_site, site_name FROM Site where id_site = ?", id)
-	err = row.Scan(&site.Id_site, &site.Site_name)
-	if err != nil {
-		return site, err
-	}
-	// Success!
-	return site, nil
-}
-
-func GetSitesByName(name string) (type_defs.Site, error) {
-	var site type_defs.Site
-	bd, err := connection.GetDB()
-	if err != nil {
-		return site, err
-	}
-	row := bd.QueryRow("SELECT id_site, site_name FROM Site where site_name = ?", name)
-	err = row.Scan(&site.Id_site, &site.Site_name)
+	row := bd.QueryRow("SELECT * FROM Site where Id_Site = ?", id)
+	err = row.Scan(&site.Id_Site, &site.Site_Name, &site.Site_Code)
 	if err != nil {
 		return site, err
 	}

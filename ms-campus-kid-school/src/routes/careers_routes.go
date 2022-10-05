@@ -3,7 +3,7 @@ package routes
 import (
 	"encoding/json"
 	"ms_campus_kid_school/src/controllers"
-	"ms_campus_kid_school/src/type_defs"
+	"ms_campus_kid_school/src/utils"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -25,7 +25,14 @@ func SetupRoutesForCareers(router *mux.Router) {
 
 	router.HandleFunc("/careers/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		career, err := controllers.GetCareersById(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+
+		career, err := controllers.GetCareersById(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
@@ -35,7 +42,7 @@ func SetupRoutesForCareers(router *mux.Router) {
 
 	router.HandleFunc("/careers", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var career type_defs.Career
+		var career utils.Career
 		err := json.NewDecoder(r.Body).Decode(&career)
 		if err != nil {
 			respondWithError(err, w)
@@ -51,7 +58,7 @@ func SetupRoutesForCareers(router *mux.Router) {
 
 	router.HandleFunc("/careers", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var career type_defs.Career
+		var career utils.Career
 		err := json.NewDecoder(r.Body).Decode(&career)
 		if err != nil {
 			respondWithError(err, w)
@@ -67,7 +74,14 @@ func SetupRoutesForCareers(router *mux.Router) {
 
 	router.HandleFunc("/careers/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		err := controllers.DeleteCareer(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+
+		err = controllers.DeleteCareer(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
