@@ -137,7 +137,7 @@ services:
       - "host.docker.internal:host-gateway"
   db-auth:
     container_name: db-auth
-    build: ./db-campus-kid-auth
+    image: mongo
     restart: always
     ports:
       - 4008:27017
@@ -146,10 +146,10 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: 1234
       MONGO_INITDB_DATABASE: db_auth
     healthcheck:
-        test:  ["CMD", "docker-healthcheck"]
+        test:  echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
         interval: 15s
         timeout: 10s
-        retries: 2
+        retries: 20
         start_period: 60s
     extra_hosts:
       - "host.docker.internal:host-gateway"
