@@ -1,7 +1,12 @@
-package main
+package controllers
 
-func createFaculty(faculty Faculty) error {
-	bd, err := getDB()
+import (
+	"ms_campus_kid_school/src/connection"
+	"ms_campus_kid_school/src/type_defs"
+)
+
+func CreateFaculty(faculty type_defs.Faculty) error {
+	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
@@ -9,9 +14,9 @@ func createFaculty(faculty Faculty) error {
 	return err
 }
 
-func deleteFaculty(id string) error {
+func DeleteFaculty(id string) error {
 
-	bd, err := getDB()
+	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
@@ -20,18 +25,18 @@ func deleteFaculty(id string) error {
 }
 
 // It takes the ID to make the update
-func updateFaculty(faculty Faculty) error {
-	bd, err := getDB()
+func UpdateFaculty(faculty type_defs.Faculty) error {
+	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
 	_, err = bd.Exec("UPDATE Faculty SET faculty_name = ?, id_site = ? WHERE id_faculty = ?", faculty.Faculty_name, faculty.Id_site, faculty.Id_faculty)
 	return err
 }
-func getFacultys() ([]Faculty, error) {
+func GetFacultys() ([]type_defs.Faculty, error) {
 	//Declare an array because if there's error, we return it empty
-	facultys := []Faculty{}
-	bd, err := getDB()
+	facultys := []type_defs.Faculty{}
+	bd, err := connection.GetDB()
 	if err != nil {
 		return facultys, err
 	}
@@ -43,7 +48,7 @@ func getFacultys() ([]Faculty, error) {
 	// Iterate rows...
 	for rows.Next() {
 		// In each step, scan one row
-		var faculty Faculty
+		var faculty type_defs.Faculty
 		err = rows.Scan(&faculty.Id_faculty, &faculty.Faculty_name, &faculty.Id_site)
 		if err != nil {
 			return facultys, err
@@ -54,9 +59,9 @@ func getFacultys() ([]Faculty, error) {
 	return facultys, nil
 }
 
-func getFacultysById(id string) (Faculty, error) {
-	var faculty Faculty
-	bd, err := getDB()
+func GetFacultysById(id string) (type_defs.Faculty, error) {
+	var faculty type_defs.Faculty
+	bd, err := connection.GetDB()
 	if err != nil {
 		return faculty, err
 	}

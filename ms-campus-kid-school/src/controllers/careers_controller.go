@@ -1,7 +1,12 @@
-package main
+package controllers
 
-func createCareer(career Career) error {
-	bd, err := getDB()
+import (
+	"ms_campus_kid_school/src/connection"
+	"ms_campus_kid_school/src/type_defs"
+)
+
+func CreateCareer(career type_defs.Career) error {
+	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
@@ -9,9 +14,9 @@ func createCareer(career Career) error {
 	return err
 }
 
-func deleteCareer(id string) error {
+func DeleteCareer(id string) error {
 
-	bd, err := getDB()
+	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
@@ -20,18 +25,18 @@ func deleteCareer(id string) error {
 }
 
 // It takes the ID to make the update
-func updateCareer(career Career) error {
-	bd, err := getDB()
+func UpdateCareer(career type_defs.Career) error {
+	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
 	_, err = bd.Exec("UPDATE Career SET career_name = ?, id_faculty = ? WHERE id_career = ?", career.Career_name, career.Id_faculty, career.Id_career)
 	return err
 }
-func getCareers() ([]Career, error) {
+func GetCareers() ([]type_defs.Career, error) {
 	//Declare an array because if there's error, we return it empty
-	careers := []Career{}
-	bd, err := getDB()
+	careers := []type_defs.Career{}
+	bd, err := connection.GetDB()
 	if err != nil {
 		return careers, err
 	}
@@ -43,7 +48,7 @@ func getCareers() ([]Career, error) {
 	// Iterate rows...
 	for rows.Next() {
 		// In each step, scan one row
-		var career Career
+		var career type_defs.Career
 		err = rows.Scan(&career.Id_career, &career.Career_name, &career.Id_faculty)
 		if err != nil {
 			return careers, err
@@ -54,9 +59,9 @@ func getCareers() ([]Career, error) {
 	return careers, nil
 }
 
-func getCareersById(id string) (Career, error) {
-	var career Career
-	bd, err := getDB()
+func GetCareersById(id string) (type_defs.Career, error) {
+	var career type_defs.Career
+	bd, err := connection.GetDB()
 	if err != nil {
 		return career, err
 	}

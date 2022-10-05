@@ -1,7 +1,12 @@
-package main
+package controllers
 
-func createSite(site Site) error {
-	bd, err := getDB()
+import (
+	"ms_campus_kid_school/src/connection"
+	"ms_campus_kid_school/src/type_defs"
+)
+
+func CreateSite(site type_defs.Site) error {
+	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
@@ -9,9 +14,9 @@ func createSite(site Site) error {
 	return err
 }
 
-func deleteSite(id string) error {
+func DeleteSite(id string) error {
 
-	bd, err := getDB()
+	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
@@ -20,18 +25,18 @@ func deleteSite(id string) error {
 }
 
 // It takes the ID to make the update
-func updateSite(site Site) error {
-	bd, err := getDB()
+func UpdateSite(site type_defs.Site) error {
+	bd, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
 	_, err = bd.Exec("UPDATE Site SET site_name = ? WHERE id_site = ?", site.Site_name, site.Id_site)
 	return err
 }
-func getSites() ([]Site, error) {
+func GetSites() ([]type_defs.Site, error) {
 	//Declare an array because if there's error, we return it empty
-	sites := []Site{}
-	bd, err := getDB()
+	sites := []type_defs.Site{}
+	bd, err := connection.GetDB()
 	if err != nil {
 		return sites, err
 	}
@@ -43,7 +48,7 @@ func getSites() ([]Site, error) {
 	// Iterate rows...
 	for rows.Next() {
 		// In each step, scan one row
-		var site Site
+		var site type_defs.Site
 		err = rows.Scan(&site.Id_site, &site.Site_name)
 		if err != nil {
 			return sites, err
@@ -54,9 +59,9 @@ func getSites() ([]Site, error) {
 	return sites, nil
 }
 
-func getSitesById(id string) (Site, error) {
-	var site Site
-	bd, err := getDB()
+func GetSitesById(id string) (type_defs.Site, error) {
+	var site type_defs.Site
+	bd, err := connection.GetDB()
 	if err != nil {
 		return site, err
 	}
@@ -69,9 +74,9 @@ func getSitesById(id string) (Site, error) {
 	return site, nil
 }
 
-func getSitesByName(name string) (Site, error) {
-	var site Site
-	bd, err := getDB()
+func GetSitesByName(name string) (type_defs.Site, error) {
+	var site type_defs.Site
+	bd, err := connection.GetDB()
 	if err != nil {
 		return site, err
 	}
