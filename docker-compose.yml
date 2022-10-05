@@ -9,6 +9,8 @@ services:
       - 4000:4000
     environment:
       - PORT=4000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   ms-campus-kid-grades:
     container_name: ms-campus-kid-grades
     build: ./ms-campus-kid-grades
@@ -27,6 +29,8 @@ services:
       - DB_PASS=1234
       - DB_DATABASE=db_grade
       - DB_PORT=4006
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   ms-campus-kid-request:
     container_name: ms-campus-kid-request
     build: ./ms-campus-kid-request
@@ -34,6 +38,8 @@ services:
       - 4002:4002
     environment:
       - PORT=4002
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   ms-campus-kid-schedule:
     container_name: ms-campus-kid-schedule
     build: ./ms-campus-kid-schedule
@@ -51,6 +57,8 @@ services:
       - DB_PASS=1234
       - DB_DATABASE=db_grade
       - DB_PORT=4006
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   ms-campus-kid-school:
     container_name: ms-campus-kid-school
     build: ./ms-campus-kid-school
@@ -68,6 +76,8 @@ services:
       - DB_HOST=host.docker.internal
       - DB_PORT=4007
       - DB_NAME=db_subject
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   ms-campus-kid-subjects:
     container_name: ms-campus-kid-subjects
     build: ./ms-campus-kid-subjects
@@ -80,6 +90,8 @@ services:
       - 4005:80
     environment:
       - PORT=4005
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 # DATABASES
   db-grade:
     container_name: db-grade
@@ -97,7 +109,9 @@ services:
         interval: 15s
         timeout: 10s
         retries: 10
-        start_period: 30s
+        start_period: 60s
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   db-subject:
     container_name: db-subject
     image: mysql
@@ -113,7 +127,9 @@ services:
         interval: 15s
         timeout: 10s
         retries: 10
-        start_period: 30s
+        start_period: 60s
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   db-auth:
     container_name: db-auth
     image: mongo
@@ -129,4 +145,6 @@ services:
         interval: 15s
         timeout: 10s
         retries: 10
-        start_period: 30s
+        start_period: 60s
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
