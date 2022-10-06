@@ -5,6 +5,11 @@ services:
   ms-campus-kid-auth:
     container_name: ms-campus-kid-auth
     build: ./ms-campus-kid-auth
+    depends_on:
+      db-auth:
+        condition: service_healthy
+    links: 
+        - db-auth
     ports:
       - 4000:4000
     environment:
@@ -141,10 +146,10 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: 1234
       MONGO_INITDB_DATABASE: db_auth
     healthcheck:
-        test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
+        test:  echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
         interval: 15s
         timeout: 10s
-        retries: 10
+        retries: 20
         start_period: 60s
     extra_hosts:
       - "host.docker.internal:host-gateway"
