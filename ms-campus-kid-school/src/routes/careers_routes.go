@@ -1,19 +1,21 @@
-package main
+package routes
 
 import (
 	"encoding/json"
+	"ms_campus_kid_school/src/controllers"
+	"ms_campus_kid_school/src/utils"
 	"net/http"
 
 	"github.com/gorilla/mux"
 )
 
-func setupRoutesForCareers(router *mux.Router) {
+func SetupRoutesForCareers(router *mux.Router) {
 	// First enable CORS. If you don't need cors, comment the next line
 	enableCORS(router)
 
-	router.HandleFunc("/careers", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("/careers", func(w http.ResponseWriter, _ *http.Request) {
 
-		careers, err := getCareers()
+		careers, err := controllers.GetCareers()
 		if err == nil {
 			respondWithSuccess(careers, w)
 		} else {
@@ -23,7 +25,14 @@ func setupRoutesForCareers(router *mux.Router) {
 
 	router.HandleFunc("/careers/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		career, err := getCareersById(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+
+		career, err := controllers.GetCareersById(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
@@ -33,12 +42,12 @@ func setupRoutesForCareers(router *mux.Router) {
 
 	router.HandleFunc("/careers", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var career Career
+		var career utils.Career
 		err := json.NewDecoder(r.Body).Decode(&career)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := createCareer(career)
+			err := controllers.CreateCareer(career)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
@@ -49,12 +58,12 @@ func setupRoutesForCareers(router *mux.Router) {
 
 	router.HandleFunc("/careers", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var career Career
+		var career utils.Career
 		err := json.NewDecoder(r.Body).Decode(&career)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := updateCareer(career)
+			err := controllers.UpdateCareer(career)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
@@ -65,7 +74,14 @@ func setupRoutesForCareers(router *mux.Router) {
 
 	router.HandleFunc("/careers/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		err := deleteCareer(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+
+		err = controllers.DeleteCareer(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {

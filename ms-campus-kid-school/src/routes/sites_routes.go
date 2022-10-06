@@ -1,19 +1,21 @@
-package main
+package routes
 
 import (
 	"encoding/json"
+	"ms_campus_kid_school/src/controllers"
+	"ms_campus_kid_school/src/utils"
 	"net/http"
 
 	"github.com/gorilla/mux"
 )
 
-func setupRoutesForSites(router *mux.Router) {
+func SetupRoutesForSites(router *mux.Router) {
 	// First enable CORS. If you don't need cors, comment the next line
 	enableCORS(router)
 
 	router.HandleFunc("/sites", func(w http.ResponseWriter, r *http.Request) {
 
-		sites, err := getSites()
+		sites, err := controllers.GetSites()
 		if err == nil {
 			respondWithSuccess(sites, w)
 		} else {
@@ -23,7 +25,14 @@ func setupRoutesForSites(router *mux.Router) {
 
 	router.HandleFunc("/sites/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		site, err := getSitesById(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+
+		site, err := controllers.GetSitesById(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
@@ -33,12 +42,12 @@ func setupRoutesForSites(router *mux.Router) {
 
 	router.HandleFunc("/sites", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var site Site
+		var site utils.Site
 		err := json.NewDecoder(r.Body).Decode(&site)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := createSite(site)
+			err := controllers.CreateSite(site)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
@@ -49,12 +58,12 @@ func setupRoutesForSites(router *mux.Router) {
 
 	router.HandleFunc("/sites", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var site Site
+		var site utils.Site
 		err := json.NewDecoder(r.Body).Decode(&site)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := updateSite(site)
+			err := controllers.UpdateSite(site)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
@@ -65,7 +74,14 @@ func setupRoutesForSites(router *mux.Router) {
 
 	router.HandleFunc("/sites/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		err := deleteSite(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+
+		err = controllers.DeleteSite(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {

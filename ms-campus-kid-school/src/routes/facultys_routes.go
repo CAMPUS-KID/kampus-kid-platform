@@ -1,19 +1,21 @@
-package main
+package routes
 
 import (
 	"encoding/json"
+	"ms_campus_kid_school/src/controllers"
+	"ms_campus_kid_school/src/utils"
 	"net/http"
 
 	"github.com/gorilla/mux"
 )
 
-func setupRoutesForFacultys(router *mux.Router) {
+func SetupRoutesForFacultys(router *mux.Router) {
 	// First enable CORS. If you don't need cors, comment the next line
 	enableCORS(router)
 
-	router.HandleFunc("/facultys", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("/facultys", func(w http.ResponseWriter, _ *http.Request) {
 
-		facultys, err := getFacultys()
+		facultys, err := controllers.GetFacultys()
 		if err == nil {
 			respondWithSuccess(facultys, w)
 		} else {
@@ -23,7 +25,14 @@ func setupRoutesForFacultys(router *mux.Router) {
 
 	router.HandleFunc("/facultys/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		faculty, err := getFacultysById(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+
+		faculty, err := controllers.GetFacultysById(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
@@ -33,12 +42,12 @@ func setupRoutesForFacultys(router *mux.Router) {
 
 	router.HandleFunc("/facultys", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var faculty Faculty
+		var faculty utils.Faculty
 		err := json.NewDecoder(r.Body).Decode(&faculty)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := createFaculty(faculty)
+			err := controllers.CreateFaculty(faculty)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
@@ -49,12 +58,12 @@ func setupRoutesForFacultys(router *mux.Router) {
 
 	router.HandleFunc("/facultys", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
-		var faculty Faculty
+		var faculty utils.Faculty
 		err := json.NewDecoder(r.Body).Decode(&faculty)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := updateFaculty(faculty)
+			err := controllers.UpdateFaculty(faculty)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
@@ -65,7 +74,13 @@ func setupRoutesForFacultys(router *mux.Router) {
 
 	router.HandleFunc("/facultys/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
-		err := deleteFaculty(idAsString)
+
+		id, err := utils.StringToInt64(idAsString)
+		if err != nil {
+			respondWithError(err, w)
+			return
+		}
+		err = controllers.DeleteFaculty(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
