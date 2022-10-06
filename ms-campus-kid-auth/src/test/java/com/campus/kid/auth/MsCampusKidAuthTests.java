@@ -1,10 +1,10 @@
-package com.ms.campus.kid.auth;
+package com.campus.kid.auth;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AuthApplicationTests {
+class MsCampusKidAuthTests {
 
 	@Test
 	void contextLoads() {

@@ -8,8 +8,8 @@ def get_connection():
             port = config('DB_PORT'),
             host = config('DB_HOST'),
             user = config('DB_USER'),
-            password = config('DB_PASS'),
-            database = config('DB_DATABASE')
+            password = config('DB_PASSWORD'),
+            database = config('DB_NAME')
         )
     except DatabaseError as ex:
         raise ex

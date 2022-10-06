@@ -1,15 +1,15 @@
 version: '3.9'
 
 services:
-# MICROSERVICES
+  # MICROSERVICES
   ms-campus-kid-auth:
     container_name: ms-campus-kid-auth
     build: ./ms-campus-kid-auth
     depends_on:
       db-auth:
         condition: service_healthy
-    links: 
-        - db-auth
+    links:
+      - db-auth
     ports:
       - 4000:4000
     environment:
@@ -22,8 +22,8 @@ services:
     depends_on:
       db-grade:
         condition: service_healthy
-    links: 
-        - db-grade
+    links:
+      - db-grade
     ports:
       - 4001:4001
     environment:
@@ -31,8 +31,8 @@ services:
       - SECRET_KEY=1234P
       - DB_HOST=host.docker.internal
       - DB_USER=root
-      - DB_PASS=1234
-      - DB_DATABASE=db_grade
+      - DB_PASSWORD=1234
+      - DB_NAME=db_grade
       - DB_PORT=4006
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -51,16 +51,16 @@ services:
     depends_on:
       db-grade:
         condition: service_healthy
-    links: 
-        - db-grade
+    links:
+      - db-grade
     ports:
       - 4003:4003
     environment:
       - PORT=4003
       - DB_HOST=host.docker.internal
       - DB_USER=root
-      - DB_PASS=1234
-      - DB_DATABASE=db_grade
+      - DB_PASSWORD=1234
+      - DB_NAME=db_grade
       - DB_PORT=4006
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -70,8 +70,8 @@ services:
     depends_on:
       db-subject:
         condition: service_healthy
-    links: 
-        - db-subject
+    links:
+      - db-subject
     ports:
       - 4004:4004
     environment:
@@ -89,15 +89,15 @@ services:
     depends_on:
       db-subject:
         condition: service_healthy
-    links: 
-        - db-subject
+    links:
+      - db-subject
     ports:
       - 4005:80
     environment:
       - PORT=4005
     extra_hosts:
       - "host.docker.internal:host-gateway"
-# DATABASES
+  # DATABASES
   db-grade:
     container_name: db-grade
     image: postgres
@@ -110,11 +110,20 @@ services:
       POSTGRES_DB: db_grade
       PGPASSWORD: 1234
     healthcheck:
-        test: ["CMD", "pg_isready", "-q", "-U", "root", "-d", "db_grade"]
-        interval: 15s
-        timeout: 10s
-        retries: 10
-        start_period: 60s
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-q",
+          "-U",
+          "root",
+          "-d",
+          "db_grade"
+        ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
     extra_hosts:
       - "host.docker.internal:host-gateway"
   db-subject:
@@ -128,11 +137,11 @@ services:
       MYSQL_DATABASE: db_subject
       MYSQL_ROOT_HOST: '%'
     healthcheck:
-        test:  ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-        interval: 15s
-        timeout: 10s
-        retries: 10
-        start_period: 60s
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
     extra_hosts:
       - "host.docker.internal:host-gateway"
   db-auth:
@@ -146,10 +155,24 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: 1234
       MONGO_INITDB_DATABASE: db_auth
     healthcheck:
-        test:  echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
-        interval: 15s
-        timeout: 10s
-        retries: 20
-        start_period: 60s
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
     extra_hosts:
       - "host.docker.internal:host-gateway"
+  db-auth-seeder:
+    container_name: db-auth-seeder
+    build: ./db-campus-kid-auth-seeder
+    depends_on:
+      db-auth:
+        condition: service_healthy
+    links:
+      - db-auth
+    environment:
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_HOST=host.docker.internal
+      - DB_PORT=4008
+      - DB_NAME=db_auth

@@ -1,13 +1,13 @@
-package com.ms.campus.kid.auth;
+package com.campus.kid.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AuthApplication {
+public class MsCampusKidAuth {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AuthApplication.class, args);
+		SpringApplication.run(MsCampusKidAuth.class, args);
 	}
 
 }
