@@ -215,7 +215,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"Id_site\": \"1\",\n    \"Site_name\": \"Sede Bogotá\"\n}",
+									"raw": "{\n    \"site_name\": \"Sede Bogotá\",\n    \"site_code\": \"0001\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -269,7 +269,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"Id_site\": \"1\",\n    \"Site_name\": \"Sede Medellín\"\n}",
+									"raw": "{\n    \"id_site\": 1,\n    \"site_name\": \"Sede Medellín\",\n    \"site_code\": \"0002\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -350,7 +350,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"Id_career\": \"1\",\n    \"Career_name\": \"Ingenieria de Sistemas\",\n    \"Id_faculty\": \"1\"\n}",
+									"raw": "{\n    \"career_name\": \"Ingenieria de Sistemas\",\n    \"id_faculty\": 1\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -404,7 +404,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"Id_career\": \"1\",\n    \"Career_name\": \"Ingenieria de Sistemas\",\n    \"Id_faculty\": \"1\"\n}",
+									"raw": "{\n    \"id_career\": 1,\n    \"career_name\": \"Ingeniería industrial\",\n    \"id_faculty\": 1\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -485,7 +485,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"Id_faculty\": \"1\",\n    \"Faculty_name\": \"Ingenieria de Sistemas\",\n    \"Id_site\": \"1\"\n}",
+									"raw": "{\n    \"faculty_name\": \"Facultad de ingeniería\",\n    \"faculty_code\": \"0001\",\n    \"id_site\": 1\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -539,7 +539,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"Id_faculty\": \"1\",\n    \"Faculty_name\": \"Ingenieria de Sistemas\",\n    \"Id_site\": \"1\"\n}",
+									"raw": "{\n    \"id_faculty\": 1,\n    \"faculty_name\": \"Facultad de ciencias\",\n    \"faculty_code\": \"0002\",\n    \"id_site\": 1\n}",
 									"options": {
 										"raw": {
 											"language": "json"

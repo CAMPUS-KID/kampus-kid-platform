@@ -1,4 +1,4 @@
-package main
+package connection
 
 import (
 	"database/sql"
@@ -6,6 +6,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func getDB() (*sql.DB, error) {
+func GetDB() (*sql.DB, error) {
 	return sql.Open("mysql", ConnectionString)
 }

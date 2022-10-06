@@ -1,17 +1,19 @@
 package main
 
-//lets try again
 import (
 	"log"
 	"net/http"
 	"time"
+
+	"ms_campus_kid_school/src/connection"
+	"ms_campus_kid_school/src/routes"
 
 	"github.com/gorilla/mux"
 )
 
 func main() {
 	// Ping database
-	bd, err := getDB()
+	bd, err := connection.GetDB()
 	if err != nil {
 		log.Printf("Error with database" + err.Error())
 		return
@@ -24,9 +26,9 @@ func main() {
 	}
 	// Define routes
 	router := mux.NewRouter()
-	setupRoutesForSites(router)
-	setupRoutesForFacultys(router)
-	setupRoutesForCareers(router)
+	routes.SetupRoutesForSites(router)
+	routes.SetupRoutesForFacultys(router)
+	routes.SetupRoutesForCareers(router)
 	// .. here you can define more routes
 	// ...
 	// for example setupRoutesForGenres(router)
