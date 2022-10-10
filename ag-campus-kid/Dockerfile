@@ -11,5 +11,5 @@ RUN yarn
 # RUN npm ci --only=production
 # Bundle app source
 COPY . .
-EXPOSE 4003
-CMD [ "node", "bin/www" ]
+EXPOSE 4011
+CMD [ "node", "index.js" ]

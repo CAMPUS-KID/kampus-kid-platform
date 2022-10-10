@@ -162,6 +162,37 @@ services:
       start_period: 60s
     extra_hosts:
       - "host.docker.internal:host-gateway"
+#MESSAGE QUEUES
+  localstack:
+    container_name: localstack
+    image: localstack/localstack
+    ports:
+      - "4567-4584:4567-4584"
+      - "4009:8080"
+      - "4010:4566"
+    environment:
+      - SERVICES=sqs,dynamodb
+      - PORT_WEB_UI=8080
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEFAULT_REGION=us-east-2
+      - HOSTNAME_EXTERNAL=localstack
+    volumes:
+      - "~/tmp/localstack:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"      
+    healthcheck:
+      test:
+        - CMD
+        - bash
+        - -c
+        - awslocal dynamodb list-tables
+          && awslocal sqs list-queues
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# SETUP CONTAINERS
   db-auth-seeder:
     container_name: db-auth-seeder
     build: ./db-campus-kid-auth-seeder
@@ -176,3 +207,29 @@ services:
       - DB_HOST=host.docker.internal
       - DB_PORT=4008
       - DB_NAME=db_auth
+  setup-localstack:
+    container_name: localstack-setup
+    image: cgswong/aws
+    command: /init-localstack.sh
+    depends_on:
+      localstack:
+        condition: service_healthy
+    links:
+      - localstack
+    environment:
+    - "AWS_ACCESS_KEY_ID=dummy-key-id"
+    - "AWS_SECRET_ACCESS_KEY=dummy-secret-key"
+    - "AWS_REGION=us-east-2"
+    volumes:
+      - "./scripts/init-localstack.sh:/init-localstack.sh"   
+  #API_GATEWAY
+  ag-campus-kid:
+    container_name: ag-campus-kid
+    build: ./ag-campus-kid
+    ports:
+      - 4011:4011
+    environment:
+      - PORT=4011
+      - NODE_ENV=development
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

@@ -1,0 +1,26 @@
+const {
+  Student,
+  sequelize,
+} = require('../../../models');
+
+module.exports.create = async (entityData) => {
+  const transaction = await sequelize.transaction();
+  try {
+    const valuesToInsert = {
+      name: entityData.name,
+      email: entityData.email,
+      faculty: entityData.faculty,
+      career: entityData.career,
+    };
+    const createdCompany = await Student.create(valuesToInsert, {
+      transaction,
+    });
+
+    await transaction.commit();
+
+    return createdCompany.dataValues;
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
+};
