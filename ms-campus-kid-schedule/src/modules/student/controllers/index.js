@@ -1,5 +1,5 @@
-const CompanyController = require('./company');
+const StudentController = require('./student');
 
 module.exports = {
-  CompanyController,
+  StudentController,
 };

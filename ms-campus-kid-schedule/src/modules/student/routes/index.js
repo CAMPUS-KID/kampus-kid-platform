@@ -1,5 +1,5 @@
-const CompanyRouter = require('./company');
+const StudentRouter = require('./student');
 
 module.exports = {
-  CompanyRouter,
+  StudentRouter,
 };

@@ -12,10 +12,6 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "period",
       onDelete: "NO ACTION",
     });
-    entity.belongsTo(models.Subject, {
-      foreignKey: "subject",
-      onDelete: "NO ACTION",
-    });
   };
   return entity;
 };

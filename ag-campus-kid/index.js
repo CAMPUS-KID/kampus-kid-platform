@@ -9,21 +9,11 @@ const { stitchSchemas } = require("@graphql-tools/stitch");
 const express = require("express");
 const gqlMiddleware = require("express-graphql");
 
-const RealtimeSquema = require("./src/microservices/realtime");
-const TransportSquema = require("./src/microservices/transport");
-const JoinRoutesSquema = require("./src/microservices/joint-routes");
-const UserSquema = require("./src/microservices/user");
 const auth = require("./src/microservices/auth");
-const SocialSquema = require('./src/microservices/social');
 
 const schema = stitchSchemas({
   subschemas: [
-    { schema: RealtimeSquema, batch: true },
-    { schema: TransportSquema, batch: true },
-    { schema: JoinRoutesSquema, batch: true },
-    { schema: UserSquema, batch: true },
     { schema: auth, batch: true },
-    { schema: SocialSquema, batch: true },
   ],
 });
 

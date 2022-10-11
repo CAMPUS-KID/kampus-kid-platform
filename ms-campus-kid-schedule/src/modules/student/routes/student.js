@@ -1,9 +1,10 @@
-const { CompanyController } = require('../controllers');
+const { StudentController } = require('../controllers');
 
 const router = require('express').Router();
 
 router.post(
   '/',
-  CompanyController.register
+  StudentController.register
 );
+
 module.exports = router;

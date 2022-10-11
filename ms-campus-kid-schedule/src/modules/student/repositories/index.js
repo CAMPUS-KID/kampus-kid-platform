@@ -1,5 +1,5 @@
-const CompanyRepository = require('./company');
+const StudentRepository = require('./student');
 
 module.exports = {
-  CompanyRepository,
+  StudentRepository,
 };

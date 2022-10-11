@@ -12,13 +12,13 @@ module.exports.create = async (entityData) => {
       faculty: entityData.faculty,
       career: entityData.career,
     };
-    const createdCompany = await Student.create(valuesToInsert, {
+    const createdStudent = await Student.create(valuesToInsert, {
       transaction,
     });
 
     await transaction.commit();
 
-    return createdCompany.dataValues;
+    return createdStudent.dataValues;
   } catch (error) {
     await transaction.rollback();
     throw error;

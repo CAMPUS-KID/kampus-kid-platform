@@ -48,6 +48,7 @@ services:
   ms-campus-kid-schedule:
     container_name: ms-campus-kid-schedule
     build: ./ms-campus-kid-schedule
+    command: sequelize db:migrate --env production
     depends_on:
       db-grade:
         condition: service_healthy
@@ -62,6 +63,7 @@ services:
       - DB_PASSWORD=1234
       - DB_NAME=db_grade
       - DB_PORT=4006
+      - NODE_ENV=production
     extra_hosts:
       - "host.docker.internal:host-gateway"
   ms-campus-kid-school:

@@ -1,8 +1,8 @@
-const { CompanyRepository } = require('../repositories');
+const { StudentRepository } = require('../repositories');
 
 module.exports.register = async (req, res) => {
   try {
-    const created = await CompanyRepository.create(req.body);
+    const created = await StudentRepository.create(req.body);
     res.status(201).json({
       success: true,
       data: created,

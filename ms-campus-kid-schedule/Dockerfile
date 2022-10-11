@@ -6,10 +6,14 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
+RUN npm install -g sequelize-cli
+RUN npm install -g pg
+RUN npm install -g pg-hstore
 RUN yarn
 # If you are building your code for production
 # RUN npm ci --only=production
 # Bundle app source
 COPY . .
+
 EXPOSE 4003
 CMD [ "node", "bin/www" ]
