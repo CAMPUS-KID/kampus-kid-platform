@@ -1,104 +1,6 @@
 version: '3.9'
 
 services:
-  # MICROSERVICES
-  ms-campus-kid-auth:
-    container_name: ms-campus-kid-auth
-    build: ./ms-campus-kid-auth
-    depends_on:
-      db-auth:
-        condition: service_healthy
-    links:
-      - db-auth
-    ports:
-      - 4000:4000
-    environment:
-      - PORT=4000
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  ms-campus-kid-grades:
-    container_name: ms-campus-kid-grades
-    build: ./ms-campus-kid-grades
-    depends_on:
-      db-grade:
-        condition: service_healthy
-    links:
-      - db-grade
-    ports:
-      - 4001:4001
-    environment:
-      - PORT=4001
-      - SECRET_KEY=1234P
-      - DB_HOST=host.docker.internal
-      - DB_USER=root
-      - DB_PASSWORD=1234
-      - DB_NAME=db_grade
-      - DB_PORT=4006
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  ms-campus-kid-request:
-    container_name: ms-campus-kid-request
-    build: ./ms-campus-kid-request
-    ports:
-      - 4002:4002
-    environment:
-      - PORT=4002
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  ms-campus-kid-schedule:
-    container_name: ms-campus-kid-schedule
-    build: ./ms-campus-kid-schedule
-    command: sequelize db:migrate --env production
-    depends_on:
-      db-grade:
-        condition: service_healthy
-    links:
-      - db-grade
-    ports:
-      - 4003:4003
-    environment:
-      - PORT=4003
-      - DB_HOST=host.docker.internal
-      - DB_USER=root
-      - DB_PASSWORD=1234
-      - DB_NAME=db_grade
-      - DB_PORT=4006
-      - NODE_ENV=production
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  ms-campus-kid-school:
-    container_name: ms-campus-kid-school
-    build: ./ms-campus-kid-school
-    depends_on:
-      db-subject:
-        condition: service_healthy
-    links:
-      - db-subject
-    ports:
-      - 4004:4004
-    environment:
-      - PORT=4004
-      - DB_USER=root
-      - DB_PASSWORD=1234
-      - DB_HOST=host.docker.internal
-      - DB_PORT=4007
-      - DB_NAME=db_subject
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  ms-campus-kid-subjects:
-    container_name: ms-campus-kid-subjects
-    build: ./ms-campus-kid-subjects
-    depends_on:
-      db-subject:
-        condition: service_healthy
-    links:
-      - db-subject
-    ports:
-      - 4005:80
-    environment:
-      - PORT=4005
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
   # DATABASES
   db-grade:
     container_name: db-grade
@@ -164,6 +66,103 @@ services:
       start_period: 60s
     extra_hosts:
       - "host.docker.internal:host-gateway"
+  # MICROSERVICES
+  ms-campus-kid-auth:
+    container_name: ms-campus-kid-auth
+    build: ./ms-campus-kid-auth
+    depends_on:
+      db-auth:
+        condition: service_healthy
+    links:
+      - db-auth
+    ports:
+      - 4000:4000
+    environment:
+      - PORT=4000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  ms-campus-kid-grades:
+    container_name: ms-campus-kid-grades
+    build: ./ms-campus-kid-grades
+    depends_on:
+      db-grade:
+        condition: service_healthy
+    links:
+      - db-grade
+    ports:
+      - 4001:4001
+    environment:
+      - PORT=4001
+      - SECRET_KEY=1234P
+      - DB_HOST=host.docker.internal
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_NAME=db_grade
+      - DB_PORT=4006
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  ms-campus-kid-request:
+    container_name: ms-campus-kid-request
+    build: ./ms-campus-kid-request
+    ports:
+      - 4002:4002
+    environment:
+      - PORT=4002
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  ms-campus-kid-schedule:
+    container_name: ms-campus-kid-schedule
+    build: ./ms-campus-kid-schedule
+    depends_on:
+      db-grade:
+        condition: service_healthy
+    links:
+      - db-grade
+    ports:
+      - 4003:4003
+    environment:
+      - PORT=4003
+      - DB_HOST=host.docker.internal
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_NAME=db_grade
+      - DB_PORT=4006
+      - NODE_ENV=production
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  ms-campus-kid-school:
+    container_name: ms-campus-kid-school
+    build: ./ms-campus-kid-school
+    depends_on:
+      db-subject:
+        condition: service_healthy
+    links:
+      - db-subject
+    ports:
+      - 4004:4004
+    environment:
+      - PORT=4004
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_HOST=host.docker.internal
+      - DB_PORT=4007
+      - DB_NAME=db_subject
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  ms-campus-kid-subjects:
+    container_name: ms-campus-kid-subjects
+    build: ./ms-campus-kid-subjects
+    depends_on:
+      db-subject:
+        condition: service_healthy
+    links:
+      - db-subject
+    ports:
+      - 4005:80
+    environment:
+      - PORT=4005
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 #MESSAGE QUEUES
   localstack:
     container_name: localstack
@@ -180,7 +179,7 @@ services:
       - HOSTNAME_EXTERNAL=localstack
     volumes:
       - "~/tmp/localstack:/tmp/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"      
+      - "/var/run/docker.sock:/var/run/docker.sock"   
     healthcheck:
       test:
         - CMD
@@ -208,22 +207,7 @@ services:
       - DB_PASSWORD=1234
       - DB_HOST=host.docker.internal
       - DB_PORT=4008
-      - DB_NAME=db_auth
-  setup-localstack:
-    container_name: localstack-setup
-    image: cgswong/aws
-    command: /init-localstack.sh
-    depends_on:
-      localstack:
-        condition: service_healthy
-    links:
-      - localstack
-    environment:
-    - "AWS_ACCESS_KEY_ID=dummy-key-id"
-    - "AWS_SECRET_ACCESS_KEY=dummy-secret-key"
-    - "AWS_REGION=us-east-2"
-    volumes:
-      - "./scripts/init-localstack.sh:/init-localstack.sh"   
+      - DB_NAME=db_auth   
   #API_GATEWAY
   ag-campus-kid:
     container_name: ag-campus-kid

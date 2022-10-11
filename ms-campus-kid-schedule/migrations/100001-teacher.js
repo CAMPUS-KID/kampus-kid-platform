@@ -5,12 +5,12 @@ const TeacherDefinition = require('../table-definitions')
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable(
-      'Tecahers',
+      'Teachers',
       TeacherDefinition.build(Sequelize),
       TeacherDefinition.constraints
     );
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Tecahers');
+    return queryInterface.dropTable('Teachers');
   },
 };

@@ -1,16 +1,16 @@
 'use strict';
-const PeiodDefinition = require('../table-definitions')
-  .PeiodDefinition;
+const PeriodDefinition = require('../table-definitions')
+  .PeriodDefinition;
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable(
-      'Peiods',
-      PeiodDefinition.build(Sequelize),
-      PeiodDefinition.constraints
+      'Periods',
+      PeriodDefinition.build(Sequelize),
+      PeriodDefinition.constraints
     );
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Peiods');
+    return queryInterface.dropTable('Periods');
   },
 };

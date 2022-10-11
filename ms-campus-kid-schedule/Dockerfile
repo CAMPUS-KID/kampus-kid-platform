@@ -16,4 +16,4 @@ RUN yarn
 COPY . .
 
 EXPOSE 4003
-CMD [ "node", "bin/www" ]
+ENTRYPOINT [ "./startup.sh" ]
