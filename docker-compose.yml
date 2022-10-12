@@ -208,6 +208,21 @@ services:
       - DB_HOST=host.docker.internal
       - DB_PORT=4008
       - DB_NAME=db_auth   
+  setup-localstack:
+    container_name: localstack-setup
+    image: cgswong/aws
+    command: sh /init-localstack.sh
+    environment:
+    - "AWS_ACCESS_KEY_ID=dummy-key-id"
+    - "AWS_SECRET_ACCESS_KEY=dummy-secret-key"
+    - "AWS_REGION=us-east-2"
+    depends_on:
+      localstack:
+        condition: service_healthy
+    links:
+      - localstack
+    volumes:
+      - "./scripts/init-localstack.sh:/init-localstack.sh"  
   #API_GATEWAY
   ag-campus-kid:
     container_name: ag-campus-kid
