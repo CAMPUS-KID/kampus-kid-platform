@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  # DATABASES
+# DATABASES
   db-grade:
     container_name: db-grade
     image: postgres
@@ -66,7 +66,7 @@ services:
       start_period: 60s
     extra_hosts:
       - "host.docker.internal:host-gateway"
-  # MICROSERVICES
+# MICROSERVICES
   ms-campus-kid-auth:
     container_name: ms-campus-kid-auth
     build: ./ms-campus-kid-auth
@@ -163,7 +163,7 @@ services:
       - PORT=4005
     extra_hosts:
       - "host.docker.internal:host-gateway"
-#MESSAGE QUEUES
+# MESSAGE QUEUE
   localstack:
     container_name: localstack
     image: localstack/localstack
@@ -191,6 +191,28 @@ services:
       timeout: 10s
       retries: 10
       start_period: 30s
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# API_GATEWAY
+  ag-campus-kid:
+    container_name: ag-campus-kid
+    build: ./ag-campus-kid
+    ports:
+      - 4011:4011
+    environment:
+      - PORT=4011
+      - NODE_ENV=production
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# APPS
+  app-campus-kid-admin:
+    container_name: app-campus-kid-admin
+    build: ./app-campus-kid-admin
+    ports:
+      - 4012:4012
+    environment:
+      - PORT=4012
+      - NODE_ENV=production
     extra_hosts:
       - "host.docker.internal:host-gateway"
 # SETUP CONTAINERS
@@ -223,14 +245,3 @@ services:
       - localstack
     volumes:
       - "./scripts/init-localstack.sh:/init-localstack.sh"  
-  #API_GATEWAY
-  ag-campus-kid:
-    container_name: ag-campus-kid
-    build: ./ag-campus-kid
-    ports:
-      - 4011:4011
-    environment:
-      - PORT=4011
-      - NODE_ENV=development
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
