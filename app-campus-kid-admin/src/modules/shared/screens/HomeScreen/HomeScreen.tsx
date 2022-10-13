@@ -3,7 +3,7 @@ import { ExampleDiv } from './HomeScreen.style';
 
 const HomeScreen = () => {
   return (
-    <ExampleDiv/>
+    <ExampleDiv>Example div</ExampleDiv>
   );
 }
 
