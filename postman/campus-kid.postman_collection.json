@@ -1,14 +1,44 @@
 {
 	"info": {
-		"_postman_id": "975682c0-b04b-4cfd-bd1c-f02511c2acf1",
+		"_postman_id": "06cfcc47-7dbb-4987-9f39-1fb391fe3ddf",
 		"name": "campus-kid",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17318891"
+		"_exporter_id": "23157627"
 	},
 	"item": [
 		{
 			"name": "auth",
-			"item": []
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"el\",\n    \"email\":\"elenanitodelbosqweqweque@mod.com\",\n    \"password\":\"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "grades",
