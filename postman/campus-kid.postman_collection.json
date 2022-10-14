@@ -658,7 +658,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4005/api/course/save",
+									"raw": "http://127.0.0.1:4005/api/course",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -669,8 +669,7 @@
 									"port": "4005",
 									"path": [
 										"api",
-										"course",
-										"save"
+										"course"
 									]
 								}
 							},

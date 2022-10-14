@@ -27,7 +27,6 @@ namespace ExampleDocker.Controllers
             return courseItem;
         }
         [HttpPost]
-        [Route("Save")]
         public async Task<ActionResult<Course>> saveCourse(CourseInput course)
         {   
             Course course1 = new Course();
