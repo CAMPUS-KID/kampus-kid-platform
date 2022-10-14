@@ -9,21 +9,22 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func SetupRoutesForFacultys(router *mux.Router) {
+//function that expose the FACULTY CRUD methods with an API REST
+func SetupRoutesForFaculties(router *mux.Router) {
 	// First enable CORS. If you don't need cors, comment the next line
 	enableCORS(router)
 
-	router.HandleFunc("/facultys", func(w http.ResponseWriter, _ *http.Request) {
+	router.HandleFunc("/faculties", func(w http.ResponseWriter, _ *http.Request) {
 
-		facultys, err := controllers.GetFacultys()
+		faculties, err := controllers.GetFaculties()
 		if err == nil {
-			respondWithSuccess(facultys, w)
+			respondWithSuccess(faculties, w)
 		} else {
 			respondWithError(err, w)
 		}
 	}).Methods(http.MethodGet)
 
-	router.HandleFunc("/facultys/{id}", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("/faculties/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
 
 		id, err := utils.StringToInt64(idAsString)
@@ -32,7 +33,7 @@ func SetupRoutesForFacultys(router *mux.Router) {
 			return
 		}
 
-		faculty, err := controllers.GetFacultysById(id)
+		faculty, err := controllers.GetFacultiesById(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
@@ -40,7 +41,7 @@ func SetupRoutesForFacultys(router *mux.Router) {
 		}
 	}).Methods(http.MethodGet)
 
-	router.HandleFunc("/facultys", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("/faculties", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
 		var faculty utils.Faculty
 		err := json.NewDecoder(r.Body).Decode(&faculty)
@@ -56,7 +57,7 @@ func SetupRoutesForFacultys(router *mux.Router) {
 		}
 	}).Methods(http.MethodPost)
 
-	router.HandleFunc("/facultys", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("/faculties", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
 		var faculty utils.Faculty
 		err := json.NewDecoder(r.Body).Decode(&faculty)
@@ -72,7 +73,7 @@ func SetupRoutesForFacultys(router *mux.Router) {
 		}
 	}).Methods(http.MethodPut)
 
-	router.HandleFunc("/facultys/{id}", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("/faculties/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
 
 		id, err := utils.StringToInt64(idAsString)

@@ -9,6 +9,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+//function that expose the CAREER CRUD methods with an API REST
 func SetupRoutesForCareers(router *mux.Router) {
 	// First enable CORS. If you don't need cors, comment the next line
 	enableCORS(router)

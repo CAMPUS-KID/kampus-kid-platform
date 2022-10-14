@@ -16,5 +16,3 @@ var (
 		os.Getenv("DB_PORT"),
 		os.Getenv("DB_NAME"))
 )
-
-const AllowedCORSDomain = "http://localhost"

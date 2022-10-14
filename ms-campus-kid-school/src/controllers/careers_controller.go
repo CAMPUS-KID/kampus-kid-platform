@@ -5,43 +5,45 @@ import (
 	"ms_campus_kid_school/src/utils"
 )
 
+//function that inserts a new field in the table "CAREER"
 func CreateCareer(career utils.Career) error {
-	bd, err := connection.GetDB()
+	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("INSERT INTO Career(name, facultyId) VALUES (?, ?)", career.Career_Name, career.Id_Faculty)
+	_, err = db.Exec("INSERT INTO CAREER(name, facultyId) VALUES (?, ?)", career.Name, career.FacultyId)
 	return err
 }
 
+//function that deletes a row in the table "CAREER"
 func DeleteCareer(id int64) error {
-
-	bd, err := connection.GetDB()
+	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("DELETE FROM Career WHERE id = ?", id)
+	_, err = db.Exec("DELETE FROM CAREER WHERE id = ?", id)
 	return err
 }
 
-// It takes the ID to make the update
+//function that updates a row in the table "CAREER"
 func UpdateCareer(career utils.Career) error {
-	bd, err := connection.GetDB()
+	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("UPDATE Career SET name = ?, facultyId = ? WHERE id = ?", career.Career_Name, career.Id_Faculty, career.Id_Career)
+	_, err = db.Exec("UPDATE CAREER SET name = ?, facultyId = ? WHERE id = ?", career.Name, career.FacultyId, career.Id)
 	return err
 }
+
+//function that returns all the fields of the table "CAREER"
 func GetCareers() ([]utils.Career, error) {
-	//Declare an array because if there's error, we return it empty
 	careers := []utils.Career{}
-	bd, err := connection.GetDB()
+	db, err := connection.GetDB()
 	if err != nil {
 		return careers, err
 	}
 	// Get rows so we can iterate them
-	rows, err := bd.Query("SELECT * FROM Career")
+	rows, err := db.Query("SELECT * FROM CAREER")
 	if err != nil {
 		return careers, err
 	}
@@ -49,7 +51,7 @@ func GetCareers() ([]utils.Career, error) {
 	for rows.Next() {
 		// In each step, scan one row
 		var career utils.Career
-		err = rows.Scan(&career.Id_Career, &career.Career_Name, &career.Id_Faculty)
+		err = rows.Scan(&career.Id, &career.Name, &career.FacultyId)
 		if err != nil {
 			return careers, err
 		}
@@ -59,17 +61,18 @@ func GetCareers() ([]utils.Career, error) {
 	return careers, nil
 }
 
+//function that returns a field from the table "CAREER"
 func GetCareersById(id int64) (utils.Career, error) {
 	var career utils.Career
-	bd, err := connection.GetDB()
+	db, err := connection.GetDB()
 	if err != nil {
 		return career, err
 	}
-	row := bd.QueryRow("SELECT * FROM Career where id = ?", id)
-	err = row.Scan(&career.Id_Career, &career.Career_Name, &career.Id_Faculty)
+	row := db.QueryRow("SELECT * FROM CAREER where id = ?", id)
+	err = row.Scan(&career.Id, &career.Name, &career.FacultyId)
 	if err != nil {
 		return career, err
 	}
-	// Success!
+
 	return career, nil
 }
