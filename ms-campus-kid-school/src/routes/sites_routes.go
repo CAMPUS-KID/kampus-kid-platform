@@ -9,11 +9,12 @@ import (
 	"github.com/gorilla/mux"
 )
 
+//function that expose the SITE CRUD methods with an API REST
 func SetupRoutesForSites(router *mux.Router) {
 	// First enable CORS. If you don't need cors, comment the next line
 	enableCORS(router)
 
-	router.HandleFunc("/sites", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("/sites", func(w http.ResponseWriter, _ *http.Request) {
 
 		sites, err := controllers.GetSites()
 		if err == nil {
