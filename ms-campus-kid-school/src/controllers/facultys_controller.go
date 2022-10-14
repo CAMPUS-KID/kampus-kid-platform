@@ -5,37 +5,37 @@ import (
 	"ms_campus_kid_school/src/utils"
 )
 
-//function that inserts a new field in the table "FACULTY"
+//function that inserts a new field in the table "Faculty"
 func CreateFaculty(faculty utils.Faculty) error {
 	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = db.Exec("INSERT INTO FACULTY(name, code, siteId) VALUES (?, ?, ?)", faculty.Name, faculty.Code, faculty.SiteId)
+	_, err = db.Exec("INSERT INTO Faculty(name, code, siteId) VALUES (?, ?, ?)", faculty.Name, faculty.Code, faculty.SiteId)
 	return err
 }
 
-//function that deletes a row in the table "FACULTY"
+//function that deletes a row in the table "Faculty"
 func DeleteFaculty(id int64) error {
 	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = db.Exec("DELETE FROM FACULTY WHERE id = ?", id)
+	_, err = db.Exec("DELETE FROM Faculty WHERE id = ?", id)
 	return err
 }
 
-//function that updates a row in the table "FACULTY"
+//function that updates a row in the table "Faculty"
 func UpdateFaculty(faculty utils.Faculty) error {
 	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = db.Exec("UPDATE FACULTY SET name = ?, code = ?,  siteId = ? WHERE id = ?", faculty.Name, faculty.Code, faculty.SiteId, faculty.Id)
+	_, err = db.Exec("UPDATE Faculty SET name = ?, code = ?,  siteId = ? WHERE id = ?", faculty.Name, faculty.Code, faculty.SiteId, faculty.Id)
 	return err
 }
 
-//function that returns all the fields of the table "FACULTY"
+//function that returns all the fields of the table "Faculty"
 func GetFaculties() ([]utils.Faculty, error) {
 	//Declare an array because if there's error, we return it empty
 	faculties := []utils.Faculty{}
@@ -44,7 +44,7 @@ func GetFaculties() ([]utils.Faculty, error) {
 		return faculties, err
 	}
 	// Get rows so we can iterate them
-	rows, err := db.Query("SELECT * FROM FACULTY")
+	rows, err := db.Query("SELECT * FROM Faculty")
 	if err != nil {
 		return faculties, err
 	}
@@ -62,14 +62,14 @@ func GetFaculties() ([]utils.Faculty, error) {
 	return faculties, nil
 }
 
-//function that returns a field from the table "FACULTY"
+//function that returns a field from the table "Faculty"
 func GetFacultiesById(id int64) (utils.Faculty, error) {
 	var faculty utils.Faculty
 	db, err := connection.GetDB()
 	if err != nil {
 		return faculty, err
 	}
-	row := db.QueryRow("SELECT * FROM FACULTY where id = ?", id)
+	row := db.QueryRow("SELECT * FROM Faculty where id = ?", id)
 	err = row.Scan(&faculty.Id, &faculty.Name, &faculty.Code, &faculty.SiteId)
 	if err != nil {
 		return faculty, err
