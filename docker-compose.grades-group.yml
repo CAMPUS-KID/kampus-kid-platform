@@ -1,0 +1,142 @@
+version: '3.9'
+
+services:
+# DATABASES
+  db-grade:
+    container_name: db-grade
+    image: postgres
+    ports:
+      - 4006:5432
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: root
+      POSTGRES_DB: db_grade
+      PGPASSWORD: 1234
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-q",
+          "-U",
+          "root",
+          "-d",
+          "db_grade"
+        ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  db-auth:
+    container_name: db-auth
+    image: mongo
+    restart: always
+    ports:
+      - 4008:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+      MONGO_INITDB_DATABASE: db_auth
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# MICROSERVICES
+  ms-campus-kid-auth:
+    container_name: ms-campus-kid-auth
+    build: ./ms-campus-kid-auth
+    depends_on:
+      db-auth:
+        condition: service_healthy
+    links:
+      - db-auth
+    ports:
+      - 4000:4000
+    environment:
+      - PORT=4000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  ms-campus-kid-grades:
+    container_name: ms-campus-kid-grades
+    build: ./ms-campus-kid-grades
+    depends_on:
+      db-grade:
+        condition: service_healthy
+    links:
+      - db-grade
+    ports:
+      - 4001:4001
+    environment:
+      - PORT=4001
+      - SECRET_KEY=1234P
+      - DB_HOST=host.docker.internal
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_NAME=db_grade
+      - DB_PORT=4006
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  ms-campus-kid-schedule:
+    container_name: ms-campus-kid-schedule
+    build: ./ms-campus-kid-schedule
+    depends_on:
+      db-grade:
+        condition: service_healthy
+    links:
+      - db-grade
+    ports:
+      - 4003:4003
+    environment:
+      - PORT=4003
+      - DB_HOST=host.docker.internal
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_NAME=db_grade
+      - DB_PORT=4006
+      - NODE_ENV=production
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# API_GATEWAY
+  ag-campus-kid:
+    container_name: ag-campus-kid
+    build: ./ag-campus-kid
+    ports:
+      - 4011:4011
+    environment:
+      - PORT=4011
+      - NODE_ENV=production
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# APPS
+  app-campus-kid-admin:
+    container_name: app-campus-kid-admin
+    build: ./app-campus-kid-admin
+    ports:
+      - 4012:4012
+    environment:
+      - PORT=4012
+      - NODE_ENV=production
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# SETUP CONTAINERS
+  db-auth-seeder:
+    container_name: db-auth-seeder
+    build: ./db-campus-kid-auth-seeder
+    depends_on:
+      db-auth:
+        condition: service_healthy
+    links:
+      - db-auth
+    environment:
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_HOST=host.docker.internal
+      - DB_PORT=4008
+      - DB_NAME=db_auth   

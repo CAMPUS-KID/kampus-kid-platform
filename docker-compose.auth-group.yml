@@ -1,0 +1,63 @@
+version: '3.9'
+
+services:
+# DATABASES
+  db-auth:
+    container_name: db-auth
+    image: mongo
+    restart: always
+    ports:
+      - 4008:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+      MONGO_INITDB_DATABASE: db_auth
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# MICROSERVICES
+  ms-campus-kid-auth:
+    container_name: ms-campus-kid-auth
+    build: ./ms-campus-kid-auth
+    depends_on:
+      db-auth:
+        condition: service_healthy
+    links:
+      - db-auth
+    ports:
+      - 4000:4000
+    environment:
+      - PORT=4000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# API_GATEWAY
+  ag-campus-kid:
+    container_name: ag-campus-kid
+    build: ./ag-campus-kid
+    ports:
+      - 4011:4011
+    environment:
+      - PORT=4011
+      - NODE_ENV=production
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# SETUP CONTAINERS
+  db-auth-seeder:
+    container_name: db-auth-seeder
+    build: ./db-campus-kid-auth-seeder
+    depends_on:
+      db-auth:
+        condition: service_healthy
+    links:
+      - db-auth
+    environment:
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_HOST=host.docker.internal
+      - DB_PORT=4008
+      - DB_NAME=db_auth   
