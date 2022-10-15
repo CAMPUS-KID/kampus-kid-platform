@@ -16,4 +16,4 @@ RUN yarn
 COPY . .
 
 EXPOSE 4003
-ENTRYPOINT [ "./startup.sh" ]
+ENTRYPOINT [ "sh", "./startup.sh" ]

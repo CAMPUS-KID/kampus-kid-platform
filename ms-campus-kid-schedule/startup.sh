@@ -1,4 +1,4 @@
 #!/bin/bash
 
-npm run migrate
+yarn migrate
 node bin/www
