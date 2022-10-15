@@ -1,0 +1,24 @@
+input subjectInput{
+    name: String!
+    description: String!
+    code: String!
+    facultyId: int!
+}
+input searchInput{
+    query: String
+}
+type Subject{
+    id: int
+    name: String
+    description: String
+    code: String
+    facultyId: int
+}
+
+type Query{
+    getSubjects: [Subject]
+}
+
+type Mutation{
+    createSubject(data: subjectInput!) : String
+}
