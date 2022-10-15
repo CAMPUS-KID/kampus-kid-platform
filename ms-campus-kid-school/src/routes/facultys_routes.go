@@ -48,11 +48,11 @@ func SetupRoutesForFaculties(router *mux.Router) {
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := controllers.CreateFaculty(faculty)
+			err := controllers.CreateFaculty(&faculty)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
-				respondWithSuccess(true, w)
+				respondWithSuccess(faculty, w)
 			}
 		}
 	}).Methods(http.MethodPost)
@@ -64,11 +64,11 @@ func SetupRoutesForFaculties(router *mux.Router) {
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := controllers.UpdateFaculty(faculty)
+			err := controllers.UpdateFaculty(&faculty)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
-				respondWithSuccess(true, w)
+				respondWithSuccess(faculty, w)
 			}
 		}
 	}).Methods(http.MethodPut)

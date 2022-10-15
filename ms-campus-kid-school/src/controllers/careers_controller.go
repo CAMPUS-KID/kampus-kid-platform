@@ -6,12 +6,19 @@ import (
 )
 
 //function that inserts a new field in the table "Career"
-func CreateCareer(career utils.Career) error {
+func CreateCareer(career *utils.Career) error {
 	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
 	_, err = db.Exec("INSERT INTO Career(name, facultyId) VALUES (?, ?)", career.Name, career.FacultyId)
+
+	row := db.QueryRow("SELECT * FROM Career where name = ? AND facultyId = ?", career.Name, career.FacultyId)
+	err = row.Scan(&career.Id, &career.Name, &career.FacultyId)
+	if err != nil {
+		return err
+	}
+
 	return err
 }
 
@@ -26,12 +33,19 @@ func DeleteCareer(id int64) error {
 }
 
 //function that updates a row in the table "Career"
-func UpdateCareer(career utils.Career) error {
+func UpdateCareer(career *utils.Career) error {
 	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
 	_, err = db.Exec("UPDATE Career SET name = ?, facultyId = ? WHERE id = ?", career.Name, career.FacultyId, career.Id)
+
+	row := db.QueryRow("SELECT * FROM Career where id = ?", career.Id)
+	err = row.Scan(&career.Id, &career.Name, &career.FacultyId)
+	if err != nil {
+		return err
+	}
+
 	return err
 }
 
