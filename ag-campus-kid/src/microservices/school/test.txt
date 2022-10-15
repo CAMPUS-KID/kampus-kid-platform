@@ -1,0 +1,74 @@
+///////////////////////////////SITES///////////////////////////////
+query GetSites{
+  getSites{
+    id
+    name
+    code
+  }
+}
+
+mutation CreateSites($siteInput:SiteInput!){
+  createSite(data:$siteInput){
+    id
+    name
+    code
+  }
+}
+
+{
+  "siteInput": {
+    "name": "sede Bogota",
+    "code": "0001"
+  }
+}
+
+/////////////////////////////FACULTIES/////////////////////////////
+query GetFaculties{
+  getFaculties{
+    id
+    name
+    code
+    siteId
+  }
+}
+
+mutation CreateFaculties($facultyInput:FacultyInput!){
+  createFaculty(data:$facultyInput){
+    id
+    name
+    code
+    siteId
+  }
+}
+
+{
+  "facultyInput": {
+    "name": "facultad de ingeneria",
+    "code": "0001",
+    "siteId": 1
+  }
+}
+
+//////////////////////////////CAREERS//////////////////////////////
+query GetCareers{
+  getCareers{
+    id
+    name
+    facultyId
+  }
+}
+
+mutation CreateCareers($careerInput:CareerInput!){
+  createCareer(data:$careerInput){
+    id
+    name
+    facultyId
+  }
+}
+
+{
+  "careerInput": {
+    "name": "ingeniería de sistemas",
+    "facultyId": 1
+  }
+}

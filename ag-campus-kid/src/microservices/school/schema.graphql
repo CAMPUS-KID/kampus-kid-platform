@@ -3,16 +3,44 @@ input SiteInput{
   code: String!
 }
 
+input FacultyInput{
+  name:   String!
+  code:   String!
+  siteId: Int!
+}
+
+input CareerInput{
+  name:   String!
+  facultyId: Int!
+}
+
 type Site{
-  id: String
+  id:   Int
   name: String
   code: String
 }
 
+type Faculty{
+  id:     Int
+  name:   String
+  code:   String
+  siteId: Int
+}
+
+type Career{
+  id:         Int
+  name:       String
+  facultyId:  Int
+}
+
 type Query{
-  getSites: [Site]
+  getSites:     [Site]
+  getFaculties: [Faculty]
+  getCareers:   [Career]
 }
 
 type Mutation{
-  createSite(data: SiteInput!): Boolean
+  createSite(data: SiteInput!):       Site
+  createFaculty(data: FacultyInput!): Faculty
+  createCareer(data: CareerInput!):   Career
 }
