@@ -14,7 +14,7 @@ func SetupRoutesForSites(router *mux.Router) {
 	// First enable CORS. If you don't need cors, comment the next line
 	enableCORS(router)
 
-	router.HandleFunc("/sites", func(w http.ResponseWriter, _ *http.Request) {
+	router.HandleFunc(apiRoute+"/sites", func(w http.ResponseWriter, _ *http.Request) {
 
 		sites, err := controllers.GetSites()
 		if err == nil {
@@ -24,7 +24,7 @@ func SetupRoutesForSites(router *mux.Router) {
 		}
 	}).Methods(http.MethodGet)
 
-	router.HandleFunc("/sites/{id}", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/sites/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
 
 		id, err := utils.StringToInt64(idAsString)
@@ -41,7 +41,7 @@ func SetupRoutesForSites(router *mux.Router) {
 		}
 	}).Methods(http.MethodGet)
 
-	router.HandleFunc("/sites", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/sites", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
 		var site utils.Site
 		err := json.NewDecoder(r.Body).Decode(&site)
@@ -57,7 +57,7 @@ func SetupRoutesForSites(router *mux.Router) {
 		}
 	}).Methods(http.MethodPost)
 
-	router.HandleFunc("/sites", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/sites", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
 		var site utils.Site
 		err := json.NewDecoder(r.Body).Decode(&site)
@@ -73,7 +73,7 @@ func SetupRoutesForSites(router *mux.Router) {
 		}
 	}).Methods(http.MethodPut)
 
-	router.HandleFunc("/sites/{id}", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/sites/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
 
 		id, err := utils.StringToInt64(idAsString)

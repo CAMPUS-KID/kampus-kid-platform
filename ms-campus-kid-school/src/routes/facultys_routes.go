@@ -14,7 +14,7 @@ func SetupRoutesForFaculties(router *mux.Router) {
 	// First enable CORS. If you don't need cors, comment the next line
 	enableCORS(router)
 
-	router.HandleFunc("/faculties", func(w http.ResponseWriter, _ *http.Request) {
+	router.HandleFunc(apiRoute+"/faculties", func(w http.ResponseWriter, _ *http.Request) {
 
 		faculties, err := controllers.GetFaculties()
 		if err == nil {
@@ -24,7 +24,7 @@ func SetupRoutesForFaculties(router *mux.Router) {
 		}
 	}).Methods(http.MethodGet)
 
-	router.HandleFunc("/faculties/{id}", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/faculties/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
 
 		id, err := utils.StringToInt64(idAsString)
@@ -41,7 +41,7 @@ func SetupRoutesForFaculties(router *mux.Router) {
 		}
 	}).Methods(http.MethodGet)
 
-	router.HandleFunc("/faculties", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/faculties", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
 		var faculty utils.Faculty
 		err := json.NewDecoder(r.Body).Decode(&faculty)
@@ -57,7 +57,7 @@ func SetupRoutesForFaculties(router *mux.Router) {
 		}
 	}).Methods(http.MethodPost)
 
-	router.HandleFunc("/faculties", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/faculties", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
 		var faculty utils.Faculty
 		err := json.NewDecoder(r.Body).Decode(&faculty)
@@ -73,7 +73,7 @@ func SetupRoutesForFaculties(router *mux.Router) {
 		}
 	}).Methods(http.MethodPut)
 
-	router.HandleFunc("/faculties/{id}", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/faculties/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
 
 		id, err := utils.StringToInt64(idAsString)

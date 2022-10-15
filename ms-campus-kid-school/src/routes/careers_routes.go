@@ -14,7 +14,7 @@ func SetupRoutesForCareers(router *mux.Router) {
 	// First enable CORS. If you don't need cors, comment the next line
 	enableCORS(router)
 
-	router.HandleFunc("/careers", func(w http.ResponseWriter, _ *http.Request) {
+	router.HandleFunc(apiRoute+"/careers", func(w http.ResponseWriter, _ *http.Request) {
 
 		careers, err := controllers.GetCareers()
 		if err == nil {
@@ -24,7 +24,7 @@ func SetupRoutesForCareers(router *mux.Router) {
 		}
 	}).Methods(http.MethodGet)
 
-	router.HandleFunc("/careers/{id}", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/careers/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
 
 		id, err := utils.StringToInt64(idAsString)
@@ -41,7 +41,7 @@ func SetupRoutesForCareers(router *mux.Router) {
 		}
 	}).Methods(http.MethodGet)
 
-	router.HandleFunc("/careers", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/careers", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
 		var career utils.Career
 		err := json.NewDecoder(r.Body).Decode(&career)
@@ -57,7 +57,7 @@ func SetupRoutesForCareers(router *mux.Router) {
 		}
 	}).Methods(http.MethodPost)
 
-	router.HandleFunc("/careers", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/careers", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
 		var career utils.Career
 		err := json.NewDecoder(r.Body).Decode(&career)
@@ -73,7 +73,7 @@ func SetupRoutesForCareers(router *mux.Router) {
 		}
 	}).Methods(http.MethodPut)
 
-	router.HandleFunc("/careers/{id}", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(apiRoute+"/careers/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
 
 		id, err := utils.StringToInt64(idAsString)

@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "8a4994a2-efe7-46a5-bed5-d2ea83b8a6f5",
+		"_postman_id": "cca9f18f-a6a9-48d1-a38a-d4d310cca360",
 		"name": "campus-kid",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17318891"
+		"_exporter_id": "23281965"
 	},
 	"item": [
 		{
@@ -192,7 +192,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/sites",
+									"raw": "http://127.0.0.1:4004/api/sites",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -202,6 +202,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"sites"
 									]
 								}
@@ -223,7 +224,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/sites",
+									"raw": "http://127.0.0.1:4004/api/sites",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -233,6 +234,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"sites"
 									]
 								}
@@ -245,7 +247,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/sites/1",
+									"raw": "http://127.0.0.1:4004/api/sites/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -255,6 +257,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"sites",
 										"1"
 									]
@@ -277,7 +280,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/sites",
+									"raw": "http://127.0.0.1:4004/api/sites",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -287,6 +290,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"sites"
 									]
 								}
@@ -299,7 +303,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/sites/1",
+									"raw": "http://127.0.0.1:4004/api/sites/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -309,6 +313,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"sites",
 										"1"
 									]
@@ -327,7 +332,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/careers",
+									"raw": "http://127.0.0.1:4004/api/careers",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -337,6 +342,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"careers"
 									]
 								}
@@ -358,7 +364,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/careers",
+									"raw": "http://127.0.0.1:4004/api/careers",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -368,6 +374,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"careers"
 									]
 								}
@@ -380,7 +387,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/careers/1",
+									"raw": "http://127.0.0.1:4004/api/careers/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -390,6 +397,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"careers",
 										"1"
 									]
@@ -412,7 +420,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/careers",
+									"raw": "http://127.0.0.1:4004/api/careers",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -422,6 +430,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"careers"
 									]
 								}
@@ -434,7 +443,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/careers/1",
+									"raw": "http://127.0.0.1:4004/api/careers/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -444,6 +453,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"careers",
 										"1"
 									]
@@ -462,7 +472,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/faculties",
+									"raw": "http://127.0.0.1:4004/api/faculties",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -472,6 +482,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"faculties"
 									]
 								}
@@ -493,7 +504,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/faculties",
+									"raw": "http://127.0.0.1:4004/api/faculties",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -503,6 +514,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"faculties"
 									]
 								}
@@ -515,7 +527,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/faculties/1",
+									"raw": "http://127.0.0.1:4004/api/faculties/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -525,6 +537,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"faculties",
 										"1"
 									]
@@ -547,7 +560,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/faculties",
+									"raw": "http://127.0.0.1:4004/api/faculties",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -557,6 +570,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"faculties"
 									]
 								}
@@ -569,7 +583,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/faculties/1",
+									"raw": "http://127.0.0.1:4004/api/faculties/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -579,6 +593,7 @@
 									],
 									"port": "4004",
 									"path": [
+										"api",
 										"faculties",
 										"1"
 									]
