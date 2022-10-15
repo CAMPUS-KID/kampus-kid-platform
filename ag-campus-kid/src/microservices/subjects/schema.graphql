@@ -1,10 +1,10 @@
-input subjectInput{
+input SubjectInput{
     name: String!
     description: String!
     code: String!
     facultyId: Int!
 }
-input searchInput{
+input SearchInput{
     query: String
 }
 type Subject{
@@ -17,8 +17,9 @@ type Subject{
 
 type Query{
     getSubjects: [Subject]
+    getSubjectsById(id: Int!): Subject
 }
 
 type Mutation{
-    createSubject(data: subjectInput!) : Subject
+    createSubject(data: SubjectInput!) : String
 }

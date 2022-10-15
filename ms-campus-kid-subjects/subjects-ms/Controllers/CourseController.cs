@@ -43,12 +43,12 @@ namespace ExampleDocker.Controllers
         public async Task<ActionResult<Course>> updateCourse(int id, CourseInput course)
         {
             var courseItem = await _context.courses.FindAsync(id);
-            if(courseItem == null)
+            if (courseItem == null)
             {
                 return NotFound();
             }
             courseItem.name = course.name;
-            courseItem.description = course.name;
+            courseItem.description = course.description;
             courseItem.code = course.code;
             courseItem.facultyId = course.facultyId;
             try

@@ -8,4 +8,7 @@ module.exports = {
   getSubjects: async () => {
     return await HttpProvider.get(`${baseUrl}/api/course`);
   },
+  getSubjectsById: async (root,{id}) => {
+    return await HttpProvider.get(`${baseUrl}/api/course/`+id);
+  },
 };
