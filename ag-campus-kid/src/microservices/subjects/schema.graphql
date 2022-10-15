@@ -20,5 +20,5 @@ type Query{
 }
 
 type Mutation{
-    createSubject(data: subjectInput!) : String
+    createSubject(data: subjectInput!) : Subject
 }
