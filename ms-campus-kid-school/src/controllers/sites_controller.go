@@ -6,12 +6,19 @@ import (
 )
 
 //function that inserts a new field in the table "Site"
-func CreateSite(site utils.Site) error {
+func CreateSite(site *utils.Site) error {
 	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
 	_, err = db.Exec("INSERT INTO Site(name, code) VALUES (?, ?)", site.Name, site.Code)
+
+	row := db.QueryRow("SELECT * FROM Site WHERE name = ? AND code = ?", site.Name, site.Code)
+	err = row.Scan(&site.Id, &site.Name, &site.Code)
+	if err != nil {
+		return err
+	}
+
 	return err
 }
 
@@ -26,12 +33,19 @@ func DeleteSite(id int64) error {
 }
 
 //function that updates a row in the table "Site"
-func UpdateSite(site utils.Site) error {
+func UpdateSite(site *utils.Site) error {
 	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
 	_, err = db.Exec("UPDATE Site SET name = ?, code = ? WHERE id = ?", site.Name, site.Code, site.Id)
+
+	row := db.QueryRow("SELECT * FROM Site where id = ?", site.Id)
+	err = row.Scan(&site.Id, &site.Name, &site.Code)
+	if err != nil {
+		return err
+	}
+
 	return err
 }
 

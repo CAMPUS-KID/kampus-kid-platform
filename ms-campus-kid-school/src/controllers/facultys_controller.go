@@ -6,12 +6,19 @@ import (
 )
 
 //function that inserts a new field in the table "Faculty"
-func CreateFaculty(faculty utils.Faculty) error {
+func CreateFaculty(faculty *utils.Faculty) error {
 	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
 	_, err = db.Exec("INSERT INTO Faculty(name, code, siteId) VALUES (?, ?, ?)", faculty.Name, faculty.Code, faculty.SiteId)
+
+	row := db.QueryRow("SELECT * FROM Faculty where name = ? AND code = ? AND siteId = ?", faculty.Name, faculty.Code, faculty.SiteId)
+	err = row.Scan(&faculty.Id, &faculty.Name, &faculty.Code, &faculty.SiteId)
+	if err != nil {
+		return err
+	}
+
 	return err
 }
 
@@ -26,12 +33,19 @@ func DeleteFaculty(id int64) error {
 }
 
 //function that updates a row in the table "Faculty"
-func UpdateFaculty(faculty utils.Faculty) error {
+func UpdateFaculty(faculty *utils.Faculty) error {
 	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
 	_, err = db.Exec("UPDATE Faculty SET name = ?, code = ?,  siteId = ? WHERE id = ?", faculty.Name, faculty.Code, faculty.SiteId, faculty.Id)
+
+	row := db.QueryRow("SELECT * FROM Faculty where id = ?", faculty.Id)
+	err = row.Scan(&faculty.Id, &faculty.Name, &faculty.Code, &faculty.SiteId)
+	if err != nil {
+		return err
+	}
+
 	return err
 }
 
