@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "NO ACTION",
     });
     entity.belongsTo(models.Teacher, {
-      foreignKey: "tecaher",
+      foreignKey: "teacher",
       onDelete: "NO ACTION",
     });
     entity.hasMany(models.Enrollment, {

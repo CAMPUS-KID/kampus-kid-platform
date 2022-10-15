@@ -5,6 +5,7 @@ const StudentDefinition = require('./student');
 const SubjectPeriodDefinition = require('./subject-period');
 const TeacherDefinition = require('./teacher');
 const ScheduleDefinition = require('./schedule');
+const GradeDefinition = require('./grade');
 
 module.exports = {
   EnrollmentDefinition,
@@ -13,5 +14,6 @@ module.exports = {
   StudentDefinition,
   SubjectPeriodDefinition,
   TeacherDefinition,
-  ScheduleDefinition
+  ScheduleDefinition,
+  GradeDefinition
 };
