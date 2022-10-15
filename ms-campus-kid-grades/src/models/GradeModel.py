@@ -13,7 +13,7 @@ class gradeModel():
             grs = []
             
             with connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM Grades")
+                cursor.execute('SELECT * FROM "Grades"')
                 resultset = cursor.fetchall()
                 
                 for row in resultset:
@@ -31,7 +31,7 @@ class gradeModel():
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM Grades WHERE id = %s", (id,))
+                cursor.execute('SELECT * FROM "Grades" WHERE id = %s', (id,))
                 row= cursor.fetchone()
                 
                 gr = None
@@ -51,7 +51,7 @@ class gradeModel():
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("INSERT INTO Grades (id, enrollment, description, grade, percentage, isActive, createdAt, updatedAt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (gr.id, gr.enrollment, gr.description, gr.grade, gr.percentage, gr.isActive, gr.createdAt, gr.updatedAt))
+                cursor.execute('INSERT INTO "Grades" (id, enrollment, description, grade, percentage, "isActive", "createdAt", "updatedAt") VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (gr.id, gr.enrollment, gr.description, gr.grade, gr.percentage, gr.isActive, gr.createdAt, gr.updatedAt))
                 affected_rows= cursor.rowcount
                 connection.commit()
                     
@@ -67,8 +67,8 @@ class gradeModel():
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("""UPDATE Grades SET enrollment= %s, description= %s, grade= %s, percentage= %s, isActive= %s, createdAt= %s, updatedAt= %s
-                                WHERE id = %s""", (gr.enrollment, gr.description, gr.grade, gr.percentage, gr.isActive, gr.createdAt, gr.updatedAt, gr.id))
+                cursor.execute('''UPDATE "Grades" SET enrollment= %s, description= %s, grade= %s, percentage= %s, "isActive"= %s, "createdAt"= %s, "updatedAt"= %s
+                                WHERE id = %s''', (gr.enrollment, gr.description, gr.grade, gr.percentage, gr.isActive, gr.createdAt, gr.updatedAt, gr.id))
                 affected_rows= cursor.rowcount
                 connection.commit()
                     
@@ -84,7 +84,7 @@ class gradeModel():
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM Grades WHERE id = %s", (gr.id,))
+                cursor.execute('DELETE FROM "Grades" WHERE id = %s', (gr.id,))
                 affected_rows= cursor.rowcount
                 connection.commit()
                     
