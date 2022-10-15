@@ -1,46 +1,75 @@
+# Crete inputs
 input SiteInput{
   name: String!
   code: String!
 }
-
 input FacultyInput{
   name:   String!
   code:   String!
   siteId: Int!
 }
-
 input CareerInput{
-  name:   String!
-  facultyId: Int!
+  name:       String!
+  facultyId:  Int!
 }
 
+# Update inputs
+input SiteUpdate{
+  id:   Int!
+  name: String!
+  code: String!
+}
+input FacultyUpdate{
+  id:     Int!
+  name:   String!
+  code:   String!
+  siteId: Int!
+}
+input CareerUpdate{
+  Id:         Int!
+  name:       String!
+  facultyId:  Int!
+}
+
+# Types
 type Site{
   id:   Int
   name: String
   code: String
 }
-
 type Faculty{
   id:     Int
   name:   String
   code:   String
   siteId: Int
 }
-
 type Career{
   id:         Int
   name:       String
   facultyId:  Int
 }
 
+# Query list
 type Query{
-  getSites:     [Site]
-  getFaculties: [Faculty]
-  getCareers:   [Career]
+  getSites:                   [Site]
+  getFaculties:               [Faculty]
+  getCareers:                 [Career]
+
+  getSitesById(id: Int!):     Site
+  getFacultiesById(id: Int!): Faculty
+  getCareersById(id: Int!):   Career
+
 }
 
+#Mutation list
 type Mutation{
+  # Creators
   createSite(data: SiteInput!):       Site
   createFaculty(data: FacultyInput!): Faculty
   createCareer(data: CareerInput!):   Career
+
+  # Updaters
+  updateSite(data: SiteUpdate!):       Site
+  updateFaculty(data: FacultyUpdate!): Faculty
+  updateCareer(data: CareerUpdate!):   Career
 }
