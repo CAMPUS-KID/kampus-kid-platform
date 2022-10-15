@@ -1,7 +1,7 @@
 "use strict";
 
-// const env = process.env.NODE_ENV || 'development';
-// require('dotenv').config({ path: `./environment/.env.${env}` });
+const env = process.env.NODE_ENV || 'development';
+require('dotenv').config({ path: `./environment/.env.${env}` });
 
 const cors = require("cors");
 
@@ -10,15 +10,18 @@ const express = require("express");
 const gqlMiddleware = require("express-graphql");
 
 const auth = require("./src/microservices/auth");
+const school = require("./src/microservices/school");
 
 const schema = stitchSchemas({
   subschemas: [
     { schema: auth, batch: true },
+    { schema: school, batch: true },
   ],
 });
 
 const app = express();
 const port = process.env.PORT || 3000;
+
 app.use(cors());
 app.use(
   "/api",
