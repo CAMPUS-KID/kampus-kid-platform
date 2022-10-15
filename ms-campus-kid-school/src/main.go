@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// Ping database
-	bd, err := connection.GetDB()
+	db, err := connection.GetDB()
 	if err != nil {
 		log.Printf("Error with database" + err.Error())
 		return
 	} else {
-		err = bd.Ping()
+		err = db.Ping()
 		if err != nil {
 			log.Printf("Error making connection to DB. Please check credentials. The error is: " + err.Error())
 			return
@@ -27,7 +27,7 @@ func main() {
 	// Define routes
 	router := mux.NewRouter()
 	routes.SetupRoutesForSites(router)
-	routes.SetupRoutesForFacultys(router)
+	routes.SetupRoutesForFaculties(router)
 	routes.SetupRoutesForCareers(router)
 	// .. here you can define more routes
 	// ...

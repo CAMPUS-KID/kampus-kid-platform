@@ -5,43 +5,46 @@ import (
 	"ms_campus_kid_school/src/utils"
 )
 
+//function that inserts a new field in the table "Site"
 func CreateSite(site utils.Site) error {
-	bd, err := connection.GetDB()
+	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("INSERT INTO Site(name, code) VALUES (?, ?)", site.Site_Name, site.Site_Code)
+	_, err = db.Exec("INSERT INTO Site(name, code) VALUES (?, ?)", site.Name, site.Code)
 	return err
 }
 
+//function that deletes a row in the table "Site"
 func DeleteSite(id int64) error {
-
-	bd, err := connection.GetDB()
+	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("DELETE FROM Site WHERE id = ?", id)
+	_, err = db.Exec("DELETE FROM Site WHERE id = ?", id)
 	return err
 }
 
-// It takes the ID to make the update
+//function that updates a row in the table "Site"
 func UpdateSite(site utils.Site) error {
-	bd, err := connection.GetDB()
+	db, err := connection.GetDB()
 	if err != nil {
 		return err
 	}
-	_, err = bd.Exec("UPDATE Site SET name = ?, code = ? WHERE id = ?", site.Site_Name, site.Site_Code, site.Id_Site)
+	_, err = db.Exec("UPDATE Site SET name = ?, code = ? WHERE id = ?", site.Name, site.Code, site.Id)
 	return err
 }
+
+//function that returns all the fields of the table "Site"
 func GetSites() ([]utils.Site, error) {
 	//Declare an array because if there's error, we return it empty
 	sites := []utils.Site{}
-	bd, err := connection.GetDB()
+	db, err := connection.GetDB()
 	if err != nil {
 		return sites, err
 	}
 	// Get rows so we can iterate them
-	rows, err := bd.Query("SELECT * FROM Site")
+	rows, err := db.Query("SELECT * FROM Site")
 	if err != nil {
 		return sites, err
 	}
@@ -49,7 +52,7 @@ func GetSites() ([]utils.Site, error) {
 	for rows.Next() {
 		// In each step, scan one row
 		var site utils.Site
-		err = rows.Scan(&site.Id_Site, &site.Site_Name, &site.Site_Code)
+		err = rows.Scan(&site.Id, &site.Name, &site.Code)
 		if err != nil {
 			return sites, err
 		}
@@ -59,17 +62,18 @@ func GetSites() ([]utils.Site, error) {
 	return sites, nil
 }
 
+//function that returns a field from the table "Site"
 func GetSitesById(id int64) (utils.Site, error) {
 	var site utils.Site
-	bd, err := connection.GetDB()
+	db, err := connection.GetDB()
 	if err != nil {
 		return site, err
 	}
-	row := bd.QueryRow("SELECT * FROM Site where id = ?", id)
-	err = row.Scan(&site.Id_Site, &site.Site_Name, &site.Site_Code)
+	row := db.QueryRow("SELECT * FROM Site where id = ?", id)
+	err = row.Scan(&site.Id, &site.Name, &site.Code)
 	if err != nil {
 		return site, err
 	}
-	// Success!
+
 	return site, nil
 }
