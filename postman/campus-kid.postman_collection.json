@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "975682c0-b04b-4cfd-bd1c-f02511c2acf1",
+		"_postman_id": "8a4994a2-efe7-46a5-bed5-d2ea83b8a6f5",
 		"name": "campus-kid",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17318891"
@@ -710,7 +710,8 @@
 									"query": [
 										{
 											"key": "query",
-											"value": "magnetismo"
+											"value": "magnetismo",
+											"description": "Insert the term by which you want to search for a course"
 										}
 									]
 								}
