@@ -15,5 +15,7 @@ RUN yarn
 # Bundle app source
 COPY . .
 
+RUN sed 's/\r$//' startup.sh > startup-cleaned.sh
+
 EXPOSE 4003
-ENTRYPOINT [ "sh", "./startup.sh" ]
+ENTRYPOINT [ "sh", "./startup-cleaned.sh" ]
