@@ -2,17 +2,17 @@ input subjectInput{
     name: String!
     description: String!
     code: String!
-    facultyId: int!
+    facultyId: Int!
 }
 input searchInput{
     query: String
 }
 type Subject{
-    id: int
+    id: Int
     name: String
     description: String
     code: String
-    facultyId: int
+    facultyId: Int
 }
 
 type Query{
