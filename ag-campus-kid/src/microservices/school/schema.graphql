@@ -1,18 +1,82 @@
+# Crete inputs
 input SiteInput{
   name: String!
   code: String!
 }
+input FacultyInput{
+  name:   String!
+  code:   String!
+  siteId: Int!
+}
+input CareerInput{
+  name:       String!
+  facultyId:  Int!
+}
 
+# Update inputs
+input SiteUpdate{
+  id:   Int!
+  name: String!
+  code: String!
+}
+input FacultyUpdate{
+  id:     Int!
+  name:   String!
+  code:   String!
+  siteId: Int!
+}
+input CareerUpdate{
+  id:         Int!
+  name:       String!
+  facultyId:  Int!
+}
+
+# Types
 type Site{
-  id: String
+  id:   Int
   name: String
   code: String
 }
-
-type Query{
-  getSites: [Site]
+type Faculty{
+  id:     Int
+  name:   String
+  code:   String
+  siteId: Int
+}
+type Career{
+  id:         Int
+  name:       String
+  facultyId:  Int
 }
 
+# Query list
+type Query{
+  # Getters
+  getSites:                   [Site]
+  getFaculties:               [Faculty]
+  getCareers:                 [Career]
+
+  # Getters by id
+  getSitesById(id: Int!):     Site
+  getFacultiesById(id: Int!): Faculty
+  getCareersById(id: Int!):   Career
+
+}
+
+#Mutation list
 type Mutation{
-  createSite(data: SiteInput!): Boolean
+  # Creators
+  createSite(data: SiteInput!):       Site
+  createFaculty(data: FacultyInput!): Faculty
+  createCareer(data: CareerInput!):   Career
+
+  # Updaters
+  updateSite(data: SiteUpdate!):       Site
+  updateFaculty(data: FacultyUpdate!): Faculty
+  updateCareer(data: CareerUpdate!):   Career
+
+  # Deleters
+  deleteSites(id: Int!):     Boolean
+  deleteFaculties(id: Int!): Boolean
+  deleteCareers(id: Int!):   Boolean
 }
