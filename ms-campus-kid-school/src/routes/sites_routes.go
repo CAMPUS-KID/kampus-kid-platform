@@ -48,11 +48,11 @@ func SetupRoutesForSites(router *mux.Router) {
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := controllers.CreateSite(site)
+			err := controllers.CreateSite(&site)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
-				respondWithSuccess(true, w)
+				respondWithSuccess(site, w)
 			}
 		}
 	}).Methods(http.MethodPost)
@@ -64,11 +64,11 @@ func SetupRoutesForSites(router *mux.Router) {
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := controllers.UpdateSite(site)
+			err := controllers.UpdateSite(&site)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
-				respondWithSuccess(true, w)
+				respondWithSuccess(site, w)
 			}
 		}
 	}).Methods(http.MethodPut)

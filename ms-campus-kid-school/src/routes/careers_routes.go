@@ -48,11 +48,11 @@ func SetupRoutesForCareers(router *mux.Router) {
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := controllers.CreateCareer(career)
+			err := controllers.CreateCareer(&career)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
-				respondWithSuccess(true, w)
+				respondWithSuccess(career, w)
 			}
 		}
 	}).Methods(http.MethodPost)
@@ -64,11 +64,11 @@ func SetupRoutesForCareers(router *mux.Router) {
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := controllers.UpdateCareer(career)
+			err := controllers.UpdateCareer(&career)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
-				respondWithSuccess(true, w)
+				respondWithSuccess(career, w)
 			}
 		}
 	}).Methods(http.MethodPut)
