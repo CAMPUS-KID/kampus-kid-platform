@@ -1,54 +1,57 @@
-from database.db import get_connection
-from .entities.Estudiante import Estudiante
+import sys
+sys.dont_write_bytecode = True
 
-class EstudianteModel():
+from database.db import get_connection
+from .entities.Grade import Grades
+
+class gradeModel():
     
     @classmethod
-    def get_estudiantes(self):
+    def get_grades(self):
         try:
             connection = get_connection()
-            estudiantes = []
+            grs = []
             
             with connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM student")
+                cursor.execute('SELECT * FROM "Grades"')
                 resultset = cursor.fetchall()
                 
                 for row in resultset:
-                    estudiante = Estudiante(row[0], row[1], row[2], row[3]) 
-                    estudiantes.append(estudiante.to_JSON())
+                    gr = Grades(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]) 
+                    grs.append(gr.to_JSON())
                     
             connection.close()
-            return estudiantes
+            return grs
         except Exception as ex:
             raise Exception(ex)
     
     @classmethod
-    def get_estudiante(self, id):
+    def get_grade(self, id):
         try:
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM student WHERE id = %s", (id,))
+                cursor.execute('SELECT * FROM "Grades" WHERE id = %s', (id,))
                 row= cursor.fetchone()
                 
-                estudiante = None
+                gr = None
                 if row != None:
-                    estudiante = Estudiante(row[0], row[1], row[2], row[3]) 
-                    estudiante = estudiante.to_JSON()
+                    gr = Grades(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]) 
+                    gr = gr.to_JSON()
                     
             connection.close()
-            return estudiante
+            return gr
         except Exception as ex:
             raise Exception(ex)
         
     
     @classmethod
-    def add_estudiante(self, estudiante):
+    def add_grade(self, gr):
         try:
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("INSERT INTO student (id, email, name, facultyId) VALUES (%s, %s, %s, %s)", (estudiante.id_estudiante, estudiante.correo_estudiante, estudiante.nombre_estudiante, estudiante.id_facultad))
+                cursor.execute('INSERT INTO "Grades" (id, enrollment, description, grade, percentage, "isActive", "createdAt", "updatedAt") VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (gr.id, gr.enrollment, gr.description, gr.grade, gr.percentage, gr.isActive, gr.createdAt, gr.updatedAt))
                 affected_rows= cursor.rowcount
                 connection.commit()
                     
@@ -59,13 +62,13 @@ class EstudianteModel():
         
     
     @classmethod
-    def update_estudiante(self, estudiante):
+    def update_grade(self, gr):
         try:
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("""UPDATE student SET email = %s, name = %s, facultyId = %s
-                                WHERE id = %s""", (estudiante.correo_estudiante, estudiante.nombre_estudiante, estudiante.id_facultad, estudiante.id_estudiante))
+                cursor.execute('''UPDATE "Grades" SET enrollment= %s, description= %s, grade= %s, percentage= %s, "isActive"= %s, "createdAt"= %s, "updatedAt"= %s
+                                WHERE id = %s''', (gr.enrollment, gr.description, gr.grade, gr.percentage, gr.isActive, gr.createdAt, gr.updatedAt, gr.id))
                 affected_rows= cursor.rowcount
                 connection.commit()
                     
@@ -76,12 +79,12 @@ class EstudianteModel():
         
     
     @classmethod
-    def delete_estudiante(self, estudiante):
+    def delete_grade(self, gr):
         try:
             connection = get_connection()
             
             with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM student WHERE id = %s", (estudiante.id_estudiante,))
+                cursor.execute('DELETE FROM "Grades" WHERE id = %s', (gr.id,))
                 affected_rows= cursor.rowcount
                 connection.commit()
                     
