@@ -25,5 +25,16 @@ module.exports = {
   },
   updateCareer: async (root, { data }) => {
     return await HttpProvider.put(`${baseUrl}/api/careers`, data);
-  }  
+  },
+
+  //Deleters
+  deleteSites: async (root, { id }) => {
+    return await HttpProvider.deleted(`${baseUrl}/api/sites/` + id);
+  },
+  deleteFaculties: async (root, { id }) => {
+    return await HttpProvider.deleted(`${baseUrl}/api/faculties/` + id);
+  },
+  deleteCareers: async (root, { id }) => {
+    return await HttpProvider.deleted(`${baseUrl}/api/careers/` + id);
+  }
 };

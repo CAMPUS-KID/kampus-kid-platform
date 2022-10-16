@@ -51,10 +51,12 @@ type Career{
 
 # Query list
 type Query{
+  # Getters
   getSites:                   [Site]
   getFaculties:               [Faculty]
   getCareers:                 [Career]
 
+  # Getters by id
   getSitesById(id: Int!):     Site
   getFacultiesById(id: Int!): Faculty
   getCareersById(id: Int!):   Career
@@ -72,4 +74,9 @@ type Mutation{
   updateSite(data: SiteUpdate!):       Site
   updateFaculty(data: FacultyUpdate!): Faculty
   updateCareer(data: CareerUpdate!):   Career
+
+  # Deleters
+  deleteSites(id: Int!):     Boolean
+  deleteFaculties(id: Int!): Boolean
+  deleteCareers(id: Int!):   Boolean
 }

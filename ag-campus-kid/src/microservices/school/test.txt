@@ -20,10 +20,27 @@ mutation CreateSites($siteInput:SiteInput!){
   }
 }
 
+mutation UpdateSites($siteUpdate:SiteUpdate!){
+  updateSite(data:$siteUpdate){
+    id
+    name
+    code
+  }
+}
+
+mutation DeleteSites{
+  deleteSites(id: 2)
+}
+
 {
   "siteInput": {
     "name": "sede Bogota",
     "code": "0001"
+  },
+  "siteUpdate": {
+    "id"	: 1,
+    "name": "sede Medellín",
+    "code": "0002"
   }
 }
 
