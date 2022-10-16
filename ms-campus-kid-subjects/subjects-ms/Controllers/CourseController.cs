@@ -39,9 +39,10 @@ namespace ExampleDocker.Controllers
 
             return CreatedAtAction(nameof(getCourseById), new { id = course.name }, course);
         }
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Course>> updateCourse(int id, CourseInput course)
+        [HttpPut]
+        public async Task<ActionResult<Course>> updateCourse(CourseUpdateInput course)
         {
+            var id = course.id;
             var courseItem = await _context.courses.FindAsync(id);
             if (courseItem == null)
             {
@@ -59,7 +60,7 @@ namespace ExampleDocker.Controllers
             {
                 return NotFound();   
             }
-            return NoContent();
+            return Ok(courseItem);
 
         }
         [HttpDelete("{id}")]
@@ -73,7 +74,7 @@ namespace ExampleDocker.Controllers
 
             _context.courses.Remove(item);
             await _context.SaveChangesAsync();
-            return NoContent();
+            return  Ok(item.id+" deleted");
         }
         [HttpGet]
         [Route("Search")]
