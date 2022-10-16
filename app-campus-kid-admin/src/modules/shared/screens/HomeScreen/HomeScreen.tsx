@@ -1,9 +1,15 @@
 import React from 'react';
-import { ExampleDiv } from './HomeScreen.style';
+import { ExampleDiv, Card,Square } from './HomeScreen.style';
 
 const HomeScreen = () => {
   return (
-    <ExampleDiv>Example div</ExampleDiv>
+    <>
+      <ExampleDiv>Example div</ExampleDiv>
+      <Card>
+        <Square></Square>
+        <Square></Square>
+      </Card>
+    </>
   );
 }
 
