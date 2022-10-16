@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "cca9f18f-a6a9-48d1-a38a-d4d310cca360",
+		"_postman_id": "e224d52d-6031-4760-9a7e-c10888f0de1c",
 		"name": "campus-kid",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23281965"
+		"_exporter_id": "17318891"
 	},
 	"item": [
 		{
@@ -740,7 +740,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"name\": \"Nuevo Calculo diferencial\",\r\n  \"description\": \"Descripcion actualizada calculo\",\r\n  \"code\": \"100010-B\",\r\n  \"facultyId\": 1\r\n}",
+									"raw": "{\r\n  \"id\": 1, \r\n  \"name\": \"Nuevo Calculo diferencial\",\r\n  \"description\": \"Descripcion actualizada calculo\",\r\n  \"code\": \"100010-B\",\r\n  \"facultyId\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -748,7 +748,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4005/api/Course/1",
+									"raw": "http://127.0.0.1:4005/api/Course",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -759,8 +759,7 @@
 									"port": "4005",
 									"path": [
 										"api",
-										"Course",
-										"1"
+										"Course"
 									]
 								}
 							},
