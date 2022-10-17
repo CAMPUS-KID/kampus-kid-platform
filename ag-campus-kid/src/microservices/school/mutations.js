@@ -29,12 +29,12 @@ module.exports = {
 
   //Deleters
   deleteSites: async (root, { id }) => {
-    return await HttpProvider.deleted(`${baseUrl}/api/sites/` + id);
+    return await HttpProvider.deleted(`${baseUrl}/api/sites/${id}`);
   },
   deleteFaculties: async (root, { id }) => {
-    return await HttpProvider.deleted(`${baseUrl}/api/faculties/` + id);
+    return await HttpProvider.deleted(`${baseUrl}/api/faculties/${id}`);
   },
   deleteCareers: async (root, { id }) => {
-    return await HttpProvider.deleted(`${baseUrl}/api/careers/` + id);
+    return await HttpProvider.deleted(`${baseUrl}/api/careers/${id}`);
   }
 };

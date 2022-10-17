@@ -9,9 +9,9 @@ module.exports = {
     return await HttpProvider.get(`${baseUrl}/api/course`);
   },
   getSubjectsById: async (root,{id}) => {
-    return await HttpProvider.get(`${baseUrl}/api/course/`+id);
+    return await HttpProvider.get(`${baseUrl}/api/course/${id}`);
   },
   searchSubject: async (root,{query}) => {
-    return await HttpProvider.get(`${baseUrl}/api/course/Search?query=`+query);
+    return await HttpProvider.get(`${baseUrl}/api/course/Search?query=${query}`);
   },
 };

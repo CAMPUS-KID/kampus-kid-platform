@@ -18,12 +18,12 @@ module.exports = {
 
   //getters by id
   getSitesById: async (root,{ id }) => {
-    return await HttpProvider.get(`${baseUrl}/api/sites/` + id);
+    return await HttpProvider.get(`${baseUrl}/api/sites/${id}`);
   },
   getFacultiesById: async (root,{ id }) => {
-    return await HttpProvider.get(`${baseUrl}/api/faculties/` + id);
+    return await HttpProvider.get(`${baseUrl}/api/faculties/${id}`);
   },
   getCareersById: async (root,{ id }) => {
-    return await HttpProvider.get(`${baseUrl}/api/careers/` + id);
+    return await HttpProvider.get(`${baseUrl}/api/careers/${id}`);
   }
 };

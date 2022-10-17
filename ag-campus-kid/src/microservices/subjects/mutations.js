@@ -12,6 +12,6 @@ module.exports = {
     return await HttpProvider.put(`${baseUrl}/api/course`, data);
   },
   deleteSubject: async(root, {id}) =>{
-    return await HttpProvider.deleted(`${baseUrl}/api/course/`+id);
+    return await HttpProvider.deleted(`${baseUrl}/api/course/${id}`);
   },
 };
