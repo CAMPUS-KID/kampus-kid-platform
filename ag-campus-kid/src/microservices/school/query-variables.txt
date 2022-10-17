@@ -1,0 +1,34 @@
+{
+  "siteInput": {
+    "name": "sede Bogota",
+    "code": "0001"
+  },
+  "facultyInput": {
+    "name": "facultad de ingeneria",
+    "code": "0001",
+    "siteId": 1
+  },
+  "careerInput": {
+    "name": "ingeniería de sistemas",
+    "facultyId": 1
+  },
+
+
+  
+  "siteUpdate": {
+    "id"	: 1,
+    "name": "sede Medellín",
+    "code": "0002"
+  },
+  "facultyUpdate": {
+    "id"	: 1,
+    "name": "facultad de ciencias",
+    "code": "0002",
+    "siteId": 1
+  },
+  "careerUpdate": {
+    "id" : 1,
+    "name": "ingeniería industrial",
+    "facultyId": 1
+  }
+}

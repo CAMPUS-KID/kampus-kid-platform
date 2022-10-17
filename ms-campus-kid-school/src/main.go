@@ -29,9 +29,6 @@ func main() {
 	routes.SetupRoutesForSites(router)
 	routes.SetupRoutesForFaculties(router)
 	routes.SetupRoutesForCareers(router)
-	// .. here you can define more routes
-	// ...
-	// for example setupRoutesForGenres(router)
 
 	// Setup and start server
 	port := ":4004"

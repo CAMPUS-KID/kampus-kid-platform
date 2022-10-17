@@ -1,0 +1,125 @@
+# CREATORS
+mutation CreateSites($siteInput:SiteInput!){
+  createSite(data:$siteInput){
+    id
+    name
+    code
+  }
+}
+mutation CreateFaculties($facultyInput:FacultyInput!){
+  createFaculty(data:$facultyInput){
+    id
+    name
+    code
+    siteId
+  }
+}
+mutation CreateCareers($careerInput:CareerInput!){
+  createCareer(data:$careerInput){
+    id
+    name
+    facultyId
+  }
+}
+
+# GETTERS
+query GetSites{
+  getSites{
+    id
+    name
+    code
+  }
+}
+query GetFaculties{
+  getFaculties{
+    id
+    name
+    code
+    siteId
+  }
+}
+query GetCareers{
+  getCareers{
+    id
+    name
+    facultyId
+  }
+}
+query GetAll{
+  getSites{
+    id
+    name
+    code
+  },
+  getFaculties{
+    id
+    name
+    code
+    siteId
+  },
+  getCareers{
+    id
+    name
+    facultyId
+  }
+}
+
+# GETTERS BY ID
+query GetSitesById{
+  getSitesById(id: 1){
+    id
+    name
+    code
+  }
+}
+query GetFacultiesById{
+  getFacultiesById(id: 1){
+    id
+    name
+    code
+    siteId
+  }
+}
+query GetCareersById{
+	getCareersById(id: 1){
+    id
+    name
+    facultyId
+  }
+}
+
+
+# UPDATERS
+mutation UpdateSites($siteUpdate:SiteUpdate!){
+  updateSite(data:$siteUpdate){
+    id
+    name
+    code
+  }
+}
+mutation UpdateFaculties($facultyUpdate:FacultyUpdate!){
+  updateFaculty(data:$facultyUpdate){
+    id
+    name
+    code
+    siteId
+  }
+}
+mutation UpdateCareers($careerUpdate:CareerUpdate!){
+  updateCareer(data:$careerUpdate){
+    id
+    name
+    facultyId
+  }
+}
+
+# DELETERS
+mutation DeleteSites{
+  deleteSites(id: 1)
+}
+mutation DeleteFaculties{
+  deleteFaculties(id: 1)
+}
+mutation DeleteCareers{
+  deleteCareers(id: 1)
+}
