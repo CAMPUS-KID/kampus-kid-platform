@@ -1,3 +1,6 @@
+import sys
+sys.dont_write_bytecode = True
+
 import psycopg2
 from psycopg2 import DatabaseError
 from decouple import config
