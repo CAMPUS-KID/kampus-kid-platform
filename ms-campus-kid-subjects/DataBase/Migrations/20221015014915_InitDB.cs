@@ -107,14 +107,32 @@ namespace DataBase.Migrations
                 column: "facultyId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Course_code",
+                table: "Course",
+                column: "code",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Course_facultyId",
                 table: "Course",
                 column: "facultyId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Faculty_code",
+                table: "Faculty",
+                column: "code",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Faculty_siteId",
                 table: "Faculty",
                 column: "siteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Site_name_code",
+                table: "Site",
+                columns: new[] { "name", "code" },
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

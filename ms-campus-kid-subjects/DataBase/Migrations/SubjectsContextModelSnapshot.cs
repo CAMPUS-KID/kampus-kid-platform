@@ -61,6 +61,9 @@ namespace DataBase.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("code")
+                        .IsUnique();
+
                     b.HasIndex("facultyId");
 
                     b.ToTable("Course", (string)null);
@@ -85,6 +88,9 @@ namespace DataBase.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("code")
+                        .IsUnique();
+
                     b.HasIndex("siteId");
 
                     b.ToTable("Faculty", (string)null);
@@ -105,6 +111,9 @@ namespace DataBase.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.HasKey("id");
+
+                    b.HasIndex("name", "code")
+                        .IsUnique();
 
                     b.ToTable("Site", (string)null);
                 });

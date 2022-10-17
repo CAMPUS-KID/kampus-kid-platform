@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(SubjectsContext))]
-    [Migration("20221001200002_InitDB")]
+    [Migration("20221015014915_InitDB")]
     partial class InitDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,6 +63,9 @@ namespace DataBase.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("code")
+                        .IsUnique();
+
                     b.HasIndex("facultyId");
 
                     b.ToTable("Course", (string)null);
@@ -87,6 +90,9 @@ namespace DataBase.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("code")
+                        .IsUnique();
+
                     b.HasIndex("siteId");
 
                     b.ToTable("Faculty", (string)null);
@@ -107,6 +113,9 @@ namespace DataBase.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.HasKey("id");
+
+                    b.HasIndex("name", "code")
+                        .IsUnique();
 
                     b.ToTable("Site", (string)null);
                 });

@@ -11,11 +11,13 @@ const gqlMiddleware = require("express-graphql");
 
 const auth = require("./src/microservices/auth");
 const school = require("./src/microservices/school");
+const subjects= require("./src/microservices/subjects");
 
 const schema = stitchSchemas({
   subschemas: [
     { schema: auth, batch: true },
     { schema: school, batch: true },
+    { schema: subjects, batch: true }
   ],
 });
 
