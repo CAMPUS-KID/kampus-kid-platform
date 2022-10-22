@@ -1,0 +1,32 @@
+input GradeInput{
+  id : Int
+  enrollment : Int
+  description : String
+  grade : Int
+  percentage : Int 
+  isActive : Boolean
+  createdAt : timestamptz
+  updatedAt : timestamptz
+}
+
+type Grade{
+  id : Int
+  enrollment : Int
+  description : String
+  grade : Int
+  percentage : Int 
+  isActive : Boolean
+  createdAt : timestamptz
+  updatedAt : timestamptz
+}
+
+type Query{
+  getGrades: [Grade]
+  getGradeById(id : Int!): Grade
+}
+
+type Mutation{
+  createGrades(data: GradeInput!): Int
+  updateGrades(id: Int!, data: GradeInput!): Int
+  deleteGrades(id: Int!): Int
+}
