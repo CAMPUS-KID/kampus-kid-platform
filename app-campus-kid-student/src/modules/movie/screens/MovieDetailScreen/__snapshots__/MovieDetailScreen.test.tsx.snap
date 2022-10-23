@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDetailScreen should render 1`] = `
+<RNCSafeAreaView>
+  <View>
+    <Image
+      source={
+        Object {
+          "uri": "undefined/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+        }
+      }
+      style={
+        Object {
+          "height": 300,
+          "width": "100%",
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#181818",
+          "fontFamily": "Roobert-Bold",
+          "fontSize": 28,
+          "textAlign": "center",
+        }
+      }
+    >
+      Spider-Man: No Way Home
+    </Text>
+  </View>
+</RNCSafeAreaView>
+`;

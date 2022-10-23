@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabBar should render 1`] = `
+<View
+  accessibilityLabel="tab item"
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  nativeID="animatedComponent"
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "flexBasis": 0,
+      "flexGrow": 1,
+      "flexShrink": 1,
+      "opacity": 1,
+      "paddingBottom": 10,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 10,
+    }
+  }
+  testID="tab-bar-item-tab-item"
+>
+  <SvgImage
+    color="#F00303"
+    fill="#F00303"
+    height={30}
+    width={30}
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "Inter",
+          "fontSize": 10,
+        },
+        Object {
+          "color": "#F00303",
+        },
+      ]
+    }
+  >
+    Home
+  </Text>
+</View>
+`;

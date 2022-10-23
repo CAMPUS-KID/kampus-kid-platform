@@ -1,0 +1,138 @@
+{
+  "name": "jonnymovie",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "align:android": "rm -rf ./build && mkdir build && zipalign -p 4 ./android/app/build/outputs/apk/release/app-release.apk ./build/release.apk",
+    "android": "react-native run-android",
+    "build:android": "cd android && ./gradlew assembleRelease",
+    "ci:check": "yarn ts:check && yarn lint && yarn prettier:check && yarn spellcheck && yarn test",
+    "clean:android": "cd android && ./gradlew clean && cd ../",
+    "clean:ios": "cd ios && xcodebuild clean && cd ../",
+    "clean": "yarn clean:android && yarn clean:ios",
+    "format": "yarn prettier --write \"(src|scripts)/**/*.{ts,tsx,js}\"",
+    "ios": "ENVFILE=.env && react-native run-ios",
+    "lint": "eslint . --ext .ts,.tsx",
+    "pod": "pod install --project-directory=ios/ --repo-update",
+    "prepare": "husky install && chmod ug+x .husky/* && chmod ug+x .git/hooks/*",
+    "prettier": "prettier --parser typescript --single-quote",
+    "prettier:check": "yarn prettier --list-different \"(src|scripts)/**/*.{ts,tsx,js}\"",
+    "release:android": "yarn build:android && yarn align:android && yarn sign:android",
+    "sign:android": "apksigner sign --ks ./android/app/release.keystore ./build/release.apk",
+    "start": "react-native start",
+    "spellcheck": "cspell --no-progress --relative \"src/**/*.{ts,tsx,js}\"",
+    "test:simple": "cross-env TZ=America/Los_Angeles jest --watchAll=false --coverage",
+    "test": "yarn test:simple --clear-cache && yarn test:simple",
+    "ts:check": "tsc --project ./tsconfig.json --noEmit --skipLibCheck"
+  },
+  "lint-staged": {
+    "(src|scripts)/**/*.{ts,tsx,js}": [
+      "prettier --write",
+      "eslint"
+    ]
+  },
+  "dependencies": {
+    "@emotion/native": "^11.0.0",
+    "@emotion/react": "^11.7.1",
+    "@react-navigation/bottom-tabs": "^6.0.9",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/stack": "^6.0.11",
+    "@types/ramda": "0.27.32",
+    "babel-plugin-root-import": "^6.6.0",
+    "i18next": "^21.6.7",
+    "moment": "^2.29.1",
+    "ramda": "0.27.1",
+    "react": "17.0.2",
+    "react-i18next": "^11.15.3",
+    "react-native": "0.66.4",
+    "react-native-config": "^1.4.5",
+    "react-native-gesture-handler": "^2.2.0",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.10.2",
+    "react-native-svg": "^12.1.1",
+    "react-native-svg-transformer": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@testing-library/react-native": "^9.0.0",
+    "@types/jest": "^26.0.23",
+    "@types/react-native": "^0.66.4",
+    "@types/react-test-renderer": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "babel-jest": "^26.6.3",
+    "cross-env": "^7.0.3",
+    "cspell": "^5.16.0",
+    "eslint": "^7.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "husky": "^7.0.4",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.66.2",
+    "prettier": "^2.5.1",
+    "react-native-testing-library": "^6.0.0",
+    "react-test-renderer": "^17.0.2",
+    "typescript": "^4.4.4"
+  },
+  "resolutions": {
+    "@types/react": "^17"
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{ts,tsx,js}",
+      "!<rootDir>/src/test-shared/**/*.ts",
+      "!<rootDir>/src/**/*.test.{ts,tsx,js}",
+      "!<rootDir>/src/**/styles.ts",
+      "!<rootDir>/src/**/index.tsx",
+      "!<rootDir>/src/**/index.ts",
+      "!<rootDir>/src/shared/types/*.ts",
+      "!<rootDir>/src/shared/enums/*.ts",
+      "!<rootDir>/src/shared/constants/*.ts",
+      "!<rootDir>/src/shared/hooks/useStackNavigation/*.ts",
+      "!<rootDir>/src/shared/hooks/useNavigate/*.ts",
+      "!<rootDir>/src/shared/assistants/*.ts",
+      "!<rootDir>/src/shared/services/**/*.ts",
+      "!<rootDir>/src/theme/**/*.ts",
+      "!<rootDir>/src/App.tsx",
+      "!<rootDir>/i18n.ts",
+      "!<rootDir>/src/navigation/*.{ts,tsx,js}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "coverageReporters": [
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "reporters": [
+      "default"
+    ],
+    "setupFiles": [
+      "./jestSetup.js"
+    ],
+    "moduleNameMapper": {
+      "\\.svg": "<rootDir>/__mocks__/svgMock.js"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|@react-native|@react-native-community|@react-navigation|react-native-color-matrix-image-filters|rn-color-matrices|concat-color-matrices|react-native-barcode-builder|jsbarcode|recoil)"
+    ]
+  }
+}

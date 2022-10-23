@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SerieDetailScreen should render 1`] = `
+<RNCSafeAreaView>
+  <View>
+    <Image
+      source={
+        Object {
+          "uri": "undefined/pTEFqAjLd5YTsMD6NSUxV6Dq7A6.jpg",
+        }
+      }
+      style={
+        Object {
+          "height": 300,
+          "width": "100%",
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#181818",
+          "fontFamily": "Roobert-Bold",
+          "fontSize": 28,
+          "textAlign": "center",
+        }
+      }
+    >
+      All of Us Are Dead
+    </Text>
+  </View>
+</RNCSafeAreaView>
+`;

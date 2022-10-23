@@ -1,0 +1,6 @@
+{
+  "version": "0.1",
+  "language": "en",
+  "words": ["CARDLESS", "roobert", "Pressable", "hookform", "passcode"],
+  "ignorePaths": ["./src/test-shared/entities"]
+}
