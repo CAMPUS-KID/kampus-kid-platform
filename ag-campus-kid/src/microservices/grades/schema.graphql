@@ -5,8 +5,6 @@ input GradeInput{
   grade : Int
   percentage : Int 
   isActive : Boolean
-  createdAt : timestamptz
-  updatedAt : timestamptz
 }
 
 type Grade{
@@ -16,8 +14,6 @@ type Grade{
   grade : Int
   percentage : Int 
   isActive : Boolean
-  createdAt : timestamptz
-  updatedAt : timestamptz
 }
 
 type Query{
