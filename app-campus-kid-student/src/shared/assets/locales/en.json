@@ -1,1 +1,11 @@
-{}
+{
+    "tabs": {
+        "movies": "Movies",
+        "series": "Series"
+    },
+    "login": {
+        "welcomeLabel": "Welcome to Campus Kid",
+        "email": "Email",
+        "password": "Password"
+    }
+}

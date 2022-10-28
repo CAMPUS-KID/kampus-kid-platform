@@ -7,6 +7,9 @@ const Routes = {
     SERIE_LIST: 'serie-list',
     SERIE_DETAIL: 'serie-detail'
   },
+  STUDENT: {
+    LOGIN: 'login'
+  },
   NAVIGATORS: {
     TABS: 'tabs'
   }
