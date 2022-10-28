@@ -11,7 +11,6 @@
     "clean:ios": "cd ios && xcodebuild clean && cd ../",
     "clean": "yarn clean:android && yarn clean:ios",
     "format": "yarn prettier --write \"(src|scripts)/**/*.{ts,tsx,js}\"",
-    "ios": "ENVFILE=.env && react-native run-ios",
     "lint": "eslint . --ext .ts,.tsx",
     "pod": "pod install --project-directory=ios/ --repo-update",
     "prettier": "prettier --parser typescript --single-quote",
