@@ -3,10 +3,12 @@ import { SvgProps } from 'react-native-svg';
 import { IconEnum } from '@shared_enums';
 import Movie from '@icons/Movie.svg';
 import Serie from '@icons/Serie.svg';
+import Schedule from '@icons/Schedule.svg';
 
 const IconMap: { [key: number]: FC<SvgProps> } = {
   [IconEnum.MOVIES]: Movie,
-  [IconEnum.SERIES]: Serie
+  [IconEnum.SERIES]: Serie,
+  [IconEnum.SCHEDULE]: Schedule
 };
 
 interface Props extends SvgProps {
