@@ -1,30 +1,30 @@
-const { StudentController } = require('../controllers');
+const { TeacherController } = require('../controllers');
 
 const router = require('express').Router();
 
 router.post(
   '/',
-  StudentController.create
+  TeacherController.create
 );
 
 router.put(
   '/:id',
-  StudentController.update
+  TeacherController.update
 );
 
 router.get(
   '/',
-  StudentController.findAll
+  TeacherController.findAll
 );
 
 router.get(
   '/:id',
-  StudentController.findById
+  TeacherController.findById
 );
 
 router.delete(
   '/:id',
-  StudentController.archive
+  TeacherController.archive
 );
 
 module.exports = router;
