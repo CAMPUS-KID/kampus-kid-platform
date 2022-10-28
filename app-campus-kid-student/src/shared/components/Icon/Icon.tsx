@@ -4,10 +4,12 @@ import { IconEnum } from '@shared_enums';
 import Movie from '@icons/Movie.svg';
 import Serie from '@icons/Serie.svg';
 import Schedule from '@icons/Schedule.svg';
+import Search from '@icons/Search.svg'
 
 const IconMap: { [key: number]: FC<SvgProps> } = {
   [IconEnum.MOVIES]: Movie,
   [IconEnum.SERIES]: Serie,
+  [IconEnum.SEARCH]: Search,
   [IconEnum.SCHEDULE]: Schedule
 };
 
