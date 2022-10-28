@@ -17,7 +17,7 @@
     "prettier:check": "yarn prettier --list-different \"(src|scripts)/**/*.{ts,tsx,js}\"",
     "release:android": "yarn build:android && yarn align:android && yarn sign:android",
     "sign:android": "apksigner sign --ks ./android/app/release.keystore ./build/release.apk",
-    "start": "react-native start",
+    "start": "export NODE_OPTIONS=--openssl-legacy-provider && react-native start",
     "spellcheck": "cspell --no-progress --relative \"src/**/*.{ts,tsx,js}\"",
     "test:simple": "cross-env TZ=America/Los_Angeles jest --watchAll=false --coverage",
     "test": "yarn test:simple --clear-cache && yarn test:simple",

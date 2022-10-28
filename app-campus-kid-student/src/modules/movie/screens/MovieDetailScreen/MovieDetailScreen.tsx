@@ -21,8 +21,7 @@ const MovieDetailScreen = ({
 }: Props) => {
   const styles = useBuildStyles(styleSheet);
   
-  const { isFetchingMovieDetail, fetchMovieDetailError, movieDetail } =
-    useFetchMovieDetail(movieId);
+  const { isFetchingMovieDetail, fetchMovieDetailError, movieDetail } = useFetchMovieDetail(movieId);
 
   if (isFetchingMovieDetail) {
     return (

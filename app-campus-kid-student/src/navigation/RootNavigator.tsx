@@ -6,6 +6,7 @@ import { Routes } from '@shared_constants';
 import { NavigationContainer } from '@react-navigation/native';
 import { MovieDetailScreen } from '@modules/movie';
 import { SerieDetailScreen } from '@modules/serie';
+import { LoginScreen } from '@modules/student';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,11 @@ const RootNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name={Routes.STUDENT.LOGIN}
+          component={LoginScreen}
+          options={defaultOptions}
+        />
         <Stack.Screen
           name={Routes.NAVIGATORS.TABS}
           component={TabsNavigator}

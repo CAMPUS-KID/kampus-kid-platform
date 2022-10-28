@@ -23,6 +23,19 @@ module.exports.build = (DataTypes) => {
       },
       type: DataTypes.INTEGER,
     },
+    isActive: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
   };
 };
 

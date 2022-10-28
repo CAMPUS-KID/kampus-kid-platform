@@ -3,7 +3,7 @@
     "username": "root",
     "password": "1234",
     "database": "db_grade",
-    "host": "host.docker.internal",
+    "host": "localhost",
     "port": "4006",
     "dialect": "postgres",
     "logging": false
