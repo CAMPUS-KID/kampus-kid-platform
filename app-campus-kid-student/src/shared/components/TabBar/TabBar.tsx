@@ -33,7 +33,7 @@ const TabBar = ({ state: { index } }: BottomTabBarProps) => {
       <TabMenuItem
         {...getTestingProps(`tab-item-series`)}
         route={Routes.SERIES.SERIE_LIST}
-        icon={IconEnum.SERIES}
+        icon={IconEnum.SEARCH}
         tabName={t('tabs:series')}
         isActive={index === 2}
       />
