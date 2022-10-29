@@ -24,10 +24,10 @@ const TabBar = ({ state: { index } }: BottomTabBarProps) => {
         isActive={index === 0}
       />
       <TabMenuItem
-        {...getTestingProps(`tab-item-series`)}
-        route={Routes.SERIES.SERIE_LIST}
+        {...getTestingProps(`tab-item-schedule`)}
+        route={Routes.STUDENT.SCHEDULE}
         icon={IconEnum.SCHEDULE}
-        tabName={t('tabs:series')}
+        tabName={t('tabs:schedule')}
         isActive={index === 1}
       />
       <TabMenuItem

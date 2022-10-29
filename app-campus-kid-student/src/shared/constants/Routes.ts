@@ -9,6 +9,7 @@ const Routes = {
   },
   STUDENT: {
     LOGIN: 'login',
+    SCHEDULE: 'schedule',
     SEARCHER: 'searcher'
   },
   NAVIGATORS: {

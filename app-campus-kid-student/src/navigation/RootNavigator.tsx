@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { MovieDetailScreen } from '@modules/movie';
 import { SerieDetailScreen } from '@modules/serie';
 import { LoginScreen } from '@modules/student';
+import { ScheduleScreen } from '@modules/student/screens/Schedule';
 import { SearcherScreen } from '@modules/student/screens/Searcher';
 
 const Stack = createStackNavigator();
@@ -28,6 +29,11 @@ const RootNavigator = () => {
         <Stack.Screen
           name={Routes.NAVIGATORS.TABS}
           component={TabsNavigator}
+          options={defaultOptions}
+        />
+        <Stack.Screen
+          name={Routes.STUDENT.SCHEDULE}
+          component={ScheduleScreen}
           options={defaultOptions}
         />
         <Stack.Screen
