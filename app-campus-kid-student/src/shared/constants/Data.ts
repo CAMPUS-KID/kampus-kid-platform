@@ -27,7 +27,13 @@ const Data = {
             }
         }}
     ],
-    subjects: []
+    subjects: [
+        {
+        id:"2015765",
+        name:"programacion de computadores",
+        description:"introduccion a la nocion de tipo de dato, funcion etc"
+        }
+    ]
 }
 
 export default Data;

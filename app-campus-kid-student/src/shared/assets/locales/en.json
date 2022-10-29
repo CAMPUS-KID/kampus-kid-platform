@@ -15,5 +15,9 @@
         "3": "wednesday",
         "4": "thursday",
         "5": "friday"  
+    },
+    "search":{
+        "title": "buscador de cursos",
+        "holder":"Introduce la busqueda"
     }
 }

@@ -54,4 +54,4 @@ const ScheduleScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default ScheduleScreen;

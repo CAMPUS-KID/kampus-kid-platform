@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { MovieDetailScreen } from '@modules/movie';
 import { SerieDetailScreen } from '@modules/serie';
 import { LoginScreen } from '@modules/student';
+import { SearcherScreen } from '@modules/student/screens/Searcher';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,11 @@ const RootNavigator = () => {
         <Stack.Screen
           name={Routes.SERIES.SERIE_DETAIL}
           component={SerieDetailScreen}
+          options={defaultOptions}
+        />
+        <Stack.Screen
+          name={Routes.STUDENT.SEARCHER}
+          component={SearcherScreen}
           options={defaultOptions}
         />
       </Stack.Navigator>
