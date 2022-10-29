@@ -7,6 +7,7 @@ import { TabBar } from '@shared_components';
 import { Routes } from '@shared_constants';
 import { MovieListScreen } from '@modules/movie';
 import { SerieListScreen } from '@modules/serie';
+import { ScheduleScreen } from '@modules/student/screens/Schedule';
 
 const Tabs = createBottomTabNavigator();
 
@@ -25,6 +26,11 @@ const TabsNavigator = () => {
       <Tabs.Screen
         name={Routes.SERIES.SERIE_LIST}
         component={SerieListScreen}
+        options={defaultOptions}
+      />
+      <Tabs.Screen
+        name={Routes.STUDENT.SCHEDULE}
+        component={ScheduleScreen}
         options={defaultOptions}
       />
     </Tabs.Navigator>
