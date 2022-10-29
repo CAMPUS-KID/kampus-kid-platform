@@ -3,6 +3,7 @@ import { useBuildStyles, useNavigate } from '@shared_hooks';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TextInput, View, Text, Pressable, Alert } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styleSheet } from './styles';
 
@@ -17,36 +18,20 @@ const SearcherScreen = () => {
   const [description, setDescription] = useState('');
 */
   const [searchInput, setSearchInput] = useState('');
+  const [searchOutput, setSearchOutput] = useState('');
 
-  const handleChange = (e) =>{
-    e.preventDefault();
-    setSearchInput(e.target.value);
-  };
-  if (searchInput.length > 0){
-    Data.subjects.filter((subject) => {
-      return subject.name.match(searchInput);
-  });
-  }
-  Data.subjects.map((post) => (
-    <div className="box" key={post.id}>
-      <p>{post.name}</p>
-      <p>{post.description}</p>
-    </div>
-  ));
-/*
   const doSearch = () => {
-    const foundSubject = Data.subjects.find((subject)=>subject.id == id || subject.name == name || subject.description == description);
-    if(foundUser && foundUser.password == password){
-      navigate(Routes.NAVIGATORS.TABS)
-    }else{
-      alert("No se encontraron registros");
+    const foundSubject = Data.subjects.filter((subject)=>subject.id.toLowerCase().includes(searchInput.toLowerCase()) || subject.name.toLowerCase().includes(searchInput.toLowerCase()) || subject.description.toLowerCase().includes(searchInput.toLowerCase()));
+    let returner = "" ;
+    for(let i = 0; i < foundSubject.length;i++){
+      returner = returner + "* " + foundSubject[i].id +" "+ foundSubject[i].name + "\n";
     }
+    setSearchOutput(returner);
   }
-*/
 
   return (
-    /*
     <SafeAreaView>
+      <ScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>{t('search:title')}</Text>
         <TextInput
@@ -55,12 +40,15 @@ const SearcherScreen = () => {
           style={styles.textInput}
           placeholder={t('search:holder')}
           keyboardType="web-search" />
-          <label>Search</label>
+        <Pressable
+          style={styles.button}
+          onPress={doSearch}>
+          <Text style={styles.buttonText}>Search</Text>
+        </Pressable>
+        <Text style={styles.normal}>{searchOutput}</Text>
       </View>
+      </ScrollView>
     </SafeAreaView>
-    */
-    <Text style={styles.title}>{t('search:title')}</Text>
-  );
-};
+)};
 
 export default SearcherScreen;

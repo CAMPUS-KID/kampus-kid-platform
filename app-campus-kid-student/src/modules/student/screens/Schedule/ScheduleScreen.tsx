@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { styleSheet } from './styles';
 
 const ScheduleScreen = () => {
-  const userEntry = "pepe@pepe.com"
+  const userEntry = "jeisson@unal.edu.co"
   const styles = useBuildStyles(styleSheet);
   const { t } = useTranslation();
 

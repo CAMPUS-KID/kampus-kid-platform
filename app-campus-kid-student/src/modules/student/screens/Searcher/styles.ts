@@ -19,6 +19,18 @@ export const styleSheet = ({ colors, fontFamilies, fontSizes }: Theme) => ({
     color: ${colors.secondary};
     margin: 20px;
   `,
+  section: css`
+    font-family: ${fontFamilies.roobertRegular};
+    font-size: ${fontSizes.medium};
+    color: ${colors.accent};
+    margin: 20px;
+  `,
+  normal: css`
+    font-family: ${fontFamilies.roobertRegular};
+    font-size: ${fontSizes.medium};
+    color: ${colors.primary};
+    margin: 20px;
+  `,
   button: css`
     background-color: ${colors.accent};
     padding: 10px;

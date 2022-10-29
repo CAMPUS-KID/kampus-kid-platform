@@ -1,6 +1,6 @@
 const Data = {
     users: [
-        { email: 'pepe@pepe.com', password: "123456", schedule: {
+        { email: 'jeisson@unal.edu.co', password: "123456", schedule: {
             monday: {
                 m7: '',
                 m8: '',
@@ -78,7 +78,72 @@ const Data = {
         id:"2015765",
         name:"programacion de computadores",
         description:"introduccion a la nocion de tipo de dato, funcion etc"
-        }
+        },
+        {
+            id:"2020123",
+            name:"programacion Orientada a objetos",
+            description:"introduccion a la nocion de clase"
+        },
+        {
+            id:"100001-B",
+            name:"calculo diferencial",
+            description:"introduccion a la nocion de funcion"
+        },
+        {
+            id:"2015765",
+            name:"Estructuras de datos",
+            description:"introduccion programacion de colas"
+        },
+        {
+            id:"100002-B",
+            name:"Calculo Integral",
+            description:"Introduccion al concepto de area"
+        },
+        {
+            id:"1000023-B",
+            name:"Calculo Multivariado",
+            description:"Introduccion al concepto de campo"
+        },
+        {
+            id:"2025712",
+            name:"Computacion visual",
+            description:"Introduccion al concepto de programacion HUGO"
+        },
+        {
+            id:"2023123",
+            name:"Algoritmos",
+            description:"Introduccion al concepto de programacion avanzada"
+        },
+        {
+            id:"1000089-B",
+            name:"Matematicas especiales",
+            description:"Introduccion al concepto de i"
+        },
+        {
+            id:"2015779",
+            name:"Modelos Estocasticos",
+            description:"Introduccion al concepto de poesia"
+        },
+        {
+            id:"2012939",
+            name:"Lenguajes de programacion",
+            description:"Introduccion al concepto de analizador"
+        },
+        {
+            id:"2091823-B",
+            name:"Algebra lineal",
+            description:"Introduccion al concepto de vector"
+        },
+        {
+            id:"1000086-B",
+            name:"Algebra lineal 2",
+            description:"Introduccion al concepto de cajita"
+        },
+        {
+            id:"1008478",
+            name:"Criptografia",
+            description:"Introduccion al concepto de Cesar"
+        },
     ]
 }
 

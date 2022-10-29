@@ -20,16 +20,6 @@ const TabsNavigator = () => {
   return (
     <Tabs.Navigator tabBar={props => <TabBar {...props} />}>
       <Tabs.Screen
-        name={Routes.MOVIES.MOVIE_LIST}
-        component={MovieListScreen}
-        options={defaultOptions}
-      />
-      <Tabs.Screen
-        name={Routes.SERIES.SERIE_LIST}
-        component={SerieListScreen}
-        options={defaultOptions}
-      />
-      <Tabs.Screen
         name={Routes.STUDENT.SCHEDULE}
         component={ScheduleScreen}
         options={defaultOptions}
