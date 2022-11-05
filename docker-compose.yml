@@ -245,3 +245,14 @@ services:
       - localstack
     volumes:
       - "./scripts/init-localstack.sh:/init-localstack.sh"  
+# API_GATEWAY
+  proxy-campus-kid-ag:
+    container_name: proxy-campus-kid-ag
+    build: ./proxy-campus-kid-ag
+    ports:
+      - 4101:4101
+    environment:
+      - PORT=4101
+      - NODE_ENV=production
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
