@@ -245,7 +245,7 @@ services:
       - localstack
     volumes:
       - "./scripts/init-localstack.sh:/init-localstack.sh"  
-# API_GATEWAY
+# REVERSE-PROXY-API-GATEWAY
   proxy-campus-kid-ag:
     container_name: proxy-campus-kid-ag
     build: ./proxy-campus-kid-ag
