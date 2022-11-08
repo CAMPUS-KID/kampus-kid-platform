@@ -79,6 +79,12 @@ services:
       - 4000:4000
     environment:
       - PORT=4000
+      - DB_HOST=host.docker.internal
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_NAME=db_auth
+      - DB_PORT=4008
+      - NODE_ENV=production
     extra_hosts:
       - "host.docker.internal:host-gateway"
   ms-campus-kid-grades:
@@ -298,7 +304,7 @@ services:
     hostname: "unal.edu.co"
   phpldapadmin:
     image: osixia/phpldapadmin:latest
-    container_name: ldap_cliente
+    container_name: ldap_client
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: "ldap-campus-kid"
       PHPLDAPADMIN_HTTPS: "false"
