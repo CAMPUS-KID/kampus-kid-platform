@@ -1,14 +1,16 @@
-FROM eclipse-temurin:8-jdk-jammy
+FROM node:16
+# Create app directory
+WORKDIR /usr/src/app
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
 
-WORKDIR /app
-
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN sed -i 's/\r$//' ./mvnw
-RUN ./mvnw dependency:resolve
-
-COPY src ./src
+RUN yarn
+# If you are building your code for production
+# RUN npm ci --only=production
+# Bundle app source
+COPY . .
 
 EXPOSE 4000
-
-CMD ["./mvnw", "spring-boot:run"]
+CMD [ "yarn", "start" ]
