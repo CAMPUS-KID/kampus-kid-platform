@@ -226,21 +226,7 @@ services:
       - NODE_ENV=staging
     extra_hosts:
       - "host.docker.internal:host-gateway"
-# SETUP CONTAINERS
-  db-auth-seeder:
-    container_name: db-auth-seeder
-    build: ./db-campus-kid-auth-seeder
-    depends_on:
-      db-auth:
-        condition: service_healthy
-    links:
-      - db-auth
-    environment:
-      - DB_USER=root
-      - DB_PASSWORD=1234
-      - DB_HOST=host.docker.internal
-      - DB_PORT=4008
-      - DB_NAME=db_auth   
+# SETUP CONTAINERS 
   setup-localstack:
     container_name: localstack-setup
     image: cgswong/aws
