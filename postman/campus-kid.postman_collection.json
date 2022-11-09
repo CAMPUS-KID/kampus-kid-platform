@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d74220dd-5367-4b28-8e6a-ca3921d8ca59",
+		"_postman_id": "f1b79109-a573-4e61-a6f0-917a230d5f2a",
 		"name": "campus-kid",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7300565"
@@ -8,7 +8,53 @@
 	"item": [
 		{
 			"name": "auth",
-			"item": []
+			"item": [
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "pepe@email.co",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "STUDENT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}:4000/api/users/",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "grades",
@@ -22,13 +68,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/sites",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/sites",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -53,13 +95,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/sites",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/sites",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -75,13 +113,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/sites/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/sites/1",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -107,13 +141,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/sites",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/sites",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -129,13 +159,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/sites/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/sites/1",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -154,13 +180,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:4001/users",
-							"protocol": "http",
+							"raw": "{{HOST}}:4001/users",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{HOST}}"
 							],
 							"port": "4001",
 							"path": [
@@ -183,7 +205,7 @@
 					"name": "Student",
 					"item": [
 						{
-							"name": "Create",
+							"name": "Create Student",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -213,12 +235,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/students",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/students",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"students"
@@ -228,7 +249,7 @@
 							"response": []
 						},
 						{
-							"name": "Update",
+							"name": "Update Student",
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -258,12 +279,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/students/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/students/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"students",
@@ -274,17 +294,16 @@
 							"response": []
 						},
 						{
-							"name": "Get All",
+							"name": "Get All Students",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/students",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/students",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"students"
@@ -294,17 +313,16 @@
 							"response": []
 						},
 						{
-							"name": "Get By Id",
+							"name": "Get Student By Id",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/students/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/students/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"students",
@@ -315,17 +333,16 @@
 							"response": []
 						},
 						{
-							"name": "Delete",
+							"name": "Delete Student",
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/students/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/students/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"students",
@@ -341,7 +358,7 @@
 					"name": "Teacher",
 					"item": [
 						{
-							"name": "Create",
+							"name": "Create Tecaher",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -366,12 +383,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/teachers",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/teachers",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"teachers"
@@ -381,7 +397,7 @@
 							"response": []
 						},
 						{
-							"name": "Update",
+							"name": "Update Teacher",
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -406,12 +422,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/teachers/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/teachers/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"teachers",
@@ -422,17 +437,16 @@
 							"response": []
 						},
 						{
-							"name": "Get All",
+							"name": "Get All Teachers",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/teachers",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/teachers",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"teachers"
@@ -442,17 +456,16 @@
 							"response": []
 						},
 						{
-							"name": "Get By Id",
+							"name": "Get Teacher By Id",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/teachers/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/teachers/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"teachers",
@@ -463,17 +476,16 @@
 							"response": []
 						},
 						{
-							"name": "Delete",
+							"name": "Delete Teacher",
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/teachers/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/teachers/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"teachers",
@@ -519,12 +531,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/groups",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/groups",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"groups"
@@ -564,12 +575,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/groups/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/groups/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"groups",
@@ -585,12 +595,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/groups",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/groups",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"groups"
@@ -605,12 +614,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/groups/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/groups/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"groups",
@@ -626,12 +634,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/groups/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/groups/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"groups",
@@ -667,12 +674,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/subject-periods",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/subject-periods",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"subject-periods"
@@ -702,12 +708,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/subject-periods/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/subject-periods/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"subject-periods",
@@ -723,12 +728,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/subject-periods",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/subject-periods",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"subject-periods"
@@ -743,12 +747,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/subject-periods/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/subject-periods/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"subject-periods",
@@ -764,12 +767,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/subject-periods/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/subject-periods/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"subject-periods",
@@ -810,12 +812,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/schedules",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/schedules",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"schedules"
@@ -850,12 +851,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/schedules/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/schedules/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"schedules",
@@ -871,12 +871,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/schedules",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/schedules",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"schedules"
@@ -891,12 +890,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/schedules/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/schedules/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"schedules",
@@ -912,12 +910,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/schedules/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/schedules/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"schedules",
@@ -958,12 +955,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/periods",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/periods",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"periods"
@@ -998,12 +994,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/periods/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/periods/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"periods",
@@ -1019,12 +1014,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/periods",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/periods",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"periods"
@@ -1039,12 +1033,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/periods/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/periods/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"periods",
@@ -1060,12 +1053,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/periods/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/periods/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"periods",
@@ -1101,12 +1093,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/enrollments",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/enrollments",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"enrollments"
@@ -1136,12 +1127,11 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8082/api/enrollments/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/enrollments/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"enrollments",
@@ -1157,12 +1147,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/enrollments",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/enrollments",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"enrollments"
@@ -1177,12 +1166,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/enrollments/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/enrollments/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"enrollments",
@@ -1198,12 +1186,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/enrollments/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4003/api/enrollments/1",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "8082",
+									"port": "4003",
 									"path": [
 										"api",
 										"enrollments",
@@ -1229,13 +1216,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/sites",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/sites",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1261,13 +1244,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/sites",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/sites",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1284,13 +1263,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/sites/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/sites/1",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1317,13 +1292,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/sites",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/sites",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1340,13 +1311,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/sites/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/sites/1",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1369,13 +1336,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/careers",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/careers",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1401,13 +1364,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/careers",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/careers",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1424,13 +1383,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/careers/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/careers/1",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1457,13 +1412,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/careers",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/careers",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1480,13 +1431,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/careers/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/careers/1",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1509,13 +1456,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/faculties",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/faculties",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1541,13 +1484,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/faculties",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/faculties",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1564,13 +1503,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/faculties/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/faculties/1",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1597,13 +1532,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/faculties",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/faculties",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1620,13 +1551,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4004/api/faculties/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4004/api/faculties/1",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4004",
 									"path": [
@@ -1654,13 +1581,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4005/api/course",
-									"protocol": "http",
+									"raw": "{{HOST}}:4005/api/course",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4005",
 									"path": [
@@ -1677,13 +1600,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4005/api/Course/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4005/api/Course/1",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4005",
 									"path": [
@@ -1710,13 +1629,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4005/api/course",
-									"protocol": "http",
+									"raw": "{{HOST}}:4005/api/course",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4005",
 									"path": [
@@ -1745,13 +1660,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4005/api/Course/Search?query=magnetismo",
-									"protocol": "http",
+									"raw": "{{HOST}}:4005/api/Course/Search?query=magnetismo",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4005",
 									"path": [
@@ -1785,13 +1696,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:4005/api/Course",
-									"protocol": "http",
+									"raw": "{{HOST}}:4005/api/Course",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4005",
 									"path": [
@@ -1808,13 +1715,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:4005/api/Course/1",
-									"protocol": "http",
+									"raw": "{{HOST}}:4005/api/Course/1",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{HOST}}"
 									],
 									"port": "4005",
 									"path": [
