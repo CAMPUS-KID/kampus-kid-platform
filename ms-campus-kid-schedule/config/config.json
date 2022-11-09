@@ -1,0 +1,21 @@
+{
+    "development": {
+      "username": "root",
+      "password": "1234",
+      "database": "db_grade",
+      "host": "localhost",
+      "port": "4006",
+      "dialect": "postgres",
+      "logging": false
+    },
+    "staging": {
+      "username": "root",
+      "password": "1234",
+      "database": "db_grade",
+      "host": "host.docker.internal",
+      "port": "4006",
+      "dialect": "postgres",
+      "logging": false
+    }
+  }
+  
