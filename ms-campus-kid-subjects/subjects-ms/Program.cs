@@ -1,5 +1,7 @@
 using DataBase;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.IO;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +15,12 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddDbContext<SubjectsContext>(options => {
-    var conString = builder.Configuration.GetConnectionString("FacultyConnection");
+    string dbUser = Environment.GetEnvironmentVariable("DB_USER");
+    string dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+    string dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+    string dbPort = Environment.GetEnvironmentVariable("DB_PORT");
+    string dbName = Environment.GetEnvironmentVariable("DB_NAME");
+    var conString = $"Server={dbHost};Port={dbPort};Uid={dbUser};Pwd={dbPassword};Database={dbName};";
     options.UseMySql(conString, ServerVersion.AutoDetect(conString));
 }) ;
 

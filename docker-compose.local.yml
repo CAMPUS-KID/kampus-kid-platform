@@ -84,7 +84,7 @@ services:
       - DB_PASSWORD=1234
       - DB_NAME=db_auth
       - DB_PORT=4008
-      - NODE_ENV=production
+      - NODE_ENV=staging
     extra_hosts:
       - "host.docker.internal:host-gateway"
   ms-campus-kid-grades:
@@ -167,6 +167,11 @@ services:
       - 4005:80
     environment:
       - PORT=4005
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_HOST=host.docker.internal
+      - DB_PORT=4007
+      - DB_NAME=db_subject
     extra_hosts:
       - "host.docker.internal:host-gateway"
 # MESSAGE QUEUE
@@ -207,7 +212,7 @@ services:
       - 4011:4011
     environment:
       - PORT=4011
-      - NODE_ENV=production
+      - NODE_ENV=staging
     extra_hosts:
       - "host.docker.internal:host-gateway"
 # APPS
@@ -218,7 +223,7 @@ services:
       - 4012:4012
     environment:
       - PORT=4012
-      - NODE_ENV=production
+      - NODE_ENV=staging
     extra_hosts:
       - "host.docker.internal:host-gateway"
 # SETUP CONTAINERS
@@ -259,7 +264,7 @@ services:
       - 4101:4101
     environment:
       - PORT=4101
-      - NODE_ENV=production
+      - NODE_ENV=staging
     extra_hosts:
       - "host.docker.internal:host-gateway"
 # LDAP
