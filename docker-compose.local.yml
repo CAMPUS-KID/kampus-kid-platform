@@ -133,7 +133,7 @@ services:
       - DB_PASSWORD=1234
       - DB_NAME=db_grade
       - DB_PORT=4006
-      - NODE_ENV=production
+      - NODE_ENV=staging
     extra_hosts:
       - "host.docker.internal:host-gateway"
   ms-campus-kid-school:

@@ -45,3 +45,5 @@ Thumbs.db
 
 package-lock.json
 *.zip
+
+/config/config.json
