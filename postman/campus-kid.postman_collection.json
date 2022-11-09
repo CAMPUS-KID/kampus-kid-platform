@@ -53,6 +53,76 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "pepe@email.co",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}:4000/api/auth/login",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Authorize",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBlcGVAZW1haWwuY28iLCJyb2xlIjoiU1RVREVOVCIsImlhdCI6MTY2ODAzMzI3OCwiZXhwIjoxNjY4MTE5Njc4fQ.nNRfdhnnzApGUcOY0ElJX_XzvxivW2yvk_IBslAkzqE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{HOST}}:4000/api/auth/authorize",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"authorize"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
