@@ -9,9 +9,6 @@ export class TokenWhitelist {
     @Prop({ required: true })
     token: string;
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-    user: User;
-
     @Prop({ required: true })
     createdAt: Date;
 }

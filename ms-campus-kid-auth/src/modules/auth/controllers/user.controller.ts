@@ -2,13 +2,15 @@ import { Body, Controller, Get, Post, Request } from '@nestjs/common';
 import { RoleEnum } from '../enums';
 import { User } from '../schemas';
 import { UserService } from '../services';
+import { UserInput, UserOutput } from '../types';
 
 @Controller('/api/users/')
 export class UserController {
     constructor(private readonly service: UserService) { }
 
     @Post()
-    create(@Body('email') email: string, @Body('password') password: string, @Body('role') role: RoleEnum): Promise<User> {
-        return this.service.create(email, password, role);
+    async create(@Body() user: UserInput): Promise<UserOutput> {
+        const { email, role } = await this.service.create(user);
+        return { email, role }
     }
 }

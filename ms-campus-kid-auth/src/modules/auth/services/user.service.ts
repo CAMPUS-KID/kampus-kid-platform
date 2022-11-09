@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { RoleEnum } from '../enums';
-import { User, UserDocument, TokenWhitelist, TokenWhitelistDocument } from '../schemas';
 import * as bcrypt from 'bcrypt';
+
+import { User, UserDocument, TokenWhitelist, TokenWhitelistDocument } from '../schemas';
+import { UserInput } from '../types';
 
 @Injectable()
 export class UserService {
@@ -16,7 +17,7 @@ export class UserService {
         return this.userModel.findOne({ email });
     }
 
-    async create(email: string, password: string, role: RoleEnum): Promise<User> {
+    async create({ email, password, role }: UserInput): Promise<User> {
         const salt = bcrypt.genSaltSync(Number(process.env.SALT_ROUNDS));
         const encryptedPassword = bcrypt.hashSync(password, salt);
         return this.userModel.create({ email, encryptedPassword, salt, role })
