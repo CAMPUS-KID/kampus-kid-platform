@@ -15,7 +15,7 @@ import { AuthModule } from './modules/auth';
         `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority&authSource=admin` :
         `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`;
 
-      return MongooseModule.forRoot(connectionString)
+      return MongooseModule.forRoot(connectionString, { autoIndex: true })
     })(),
     AuthModule
   ],
