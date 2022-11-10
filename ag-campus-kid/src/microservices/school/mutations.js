@@ -12,32 +12,40 @@ module.exports = {
     RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.post(`${baseUrl}/api/sites`, data);
   },
-  createFaculty: async (root, { data }) => {
+  createFaculty: async ({ currentUser }, { data }) => {
+    RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.post(`${baseUrl}/api/faculties`, data);
   },
-  createCareer: async (root, { data }) => {
+  createCareer: async ({ currentUser }, { data }) => {
+    RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.post(`${baseUrl}/api/careers`, data);
   },
 
   //Updaters
-  updateSite: async (root, { data }) => {
+  updateSite: async ({ currentUser }, { data }) => {
+    RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.put(`${baseUrl}/api/sites`, data);
   },
-  updateFaculty: async (root, { data }) => {
+  updateFaculty: async ({ currentUser }, { data }) => {
+    RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.put(`${baseUrl}/api/faculties`, data);
   },
-  updateCareer: async (root, { data }) => {
+  updateCareer: async ({ currentUser }, { data }) => {
+    RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.put(`${baseUrl}/api/careers`, data);
   },
 
   //Deleters
-  deleteSites: async (root, { id }) => {
+  deleteSites: async ({ currentUser }, { id }) => {
+    RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.deleted(`${baseUrl}/api/sites/${id}`);
   },
-  deleteFaculties: async (root, { id }) => {
+  deleteFaculties: async ({ currentUser }, { id }) => {
+    RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.deleted(`${baseUrl}/api/faculties/${id}`);
   },
-  deleteCareers: async (root, { id }) => {
+  deleteCareers: async ({ currentUser }, { id }) => {
+    RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.deleted(`${baseUrl}/api/careers/${id}`);
   }
 };
