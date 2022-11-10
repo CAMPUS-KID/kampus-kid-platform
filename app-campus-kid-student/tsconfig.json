@@ -31,7 +31,8 @@
       "@shared_types": ["src/shared/types"],
       "@shared_utils": ["src/shared/utils"],
       "@test_shared": ["src/test-shared"],
-      "@theme": ["src/theme"]
+      "@theme": ["src/theme"],
+      "@state": ["src/state"]
     }
   },
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]

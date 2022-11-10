@@ -77,6 +77,10 @@ module.exports = {
           {
             rootPathPrefix: '@theme',
             rootPathSuffix: './src/theme'
+          },
+          {
+            rootPathPrefix: '@state',
+            rootPathSuffix: './src/state'
           }
         ]
       }

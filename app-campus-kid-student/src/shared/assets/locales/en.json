@@ -1,7 +1,7 @@
 {
     "tabs": {
-        "movies": "Movies",
-        "series": "Series"
+        "subjects": "Subjects",
+        "account": "Account"
     },
     "login": {
         "welcomeLabel": "Welcome to Campus Kid",

@@ -1,4 +1,6 @@
 export enum IconEnum {
   MOVIES,
-  SERIES
+  SERIES,
+  BOOK,
+  ACCOUNT
 }
