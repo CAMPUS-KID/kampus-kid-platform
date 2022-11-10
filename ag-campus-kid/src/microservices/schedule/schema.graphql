@@ -1,0 +1,132 @@
+input StudentInput{
+    name: String 
+    email: String
+    facultyId: Int
+    careerId: Int
+}
+type Student{
+    id: Int
+    name: String 
+    email: String
+    facultyId: Int
+    careerId: Int
+}
+type StudentOutput{
+    id: Int
+    name: String 
+    email: String
+    faculty: Int
+    career: Int
+    isActive: Boolean
+    createdAt: String
+    updatedAt: String
+}
+input TeacherInput{
+    name: String
+    email: String
+    faculty: Int
+}
+type TeacherOutput{
+    isActive: Boolean
+    id: Int
+    name: String 
+    email: String
+    faculty: Int
+    createdAt: String
+    updatedAt: String
+}
+type Teacher{
+    id: Int
+    name: String
+    email: String
+    faculty: Int
+    isActive: Boolean 
+    createdAt: String
+    updatedAt: String
+}
+input GroupInput{
+    schedule: Int
+    teacher: Int
+    period: Int
+    code: Int
+}
+type Group{
+    id: Int
+    schedule: Int
+    teacher: Int
+    period: Int
+    code: Int
+}
+input SubjectPeriodInput{
+    period: Int
+    subject: Int
+}
+type SubjectPeriod{
+    id: Int
+    period: Int
+    subject: Int
+}
+input ScheduleInput{
+    weekDay: Int
+    startHour: String
+    endHour: String
+}
+type ScheduleOutput{
+    isActive: Boolean
+    id: Int
+    weekDay: Int
+    startHour: String
+    endHour: String 
+    updatedAt: String
+    createdAt: String
+}
+input PeriodString{
+    name: String
+    startDate: String
+    endDate: String
+}
+type PeriodOutput{
+    isActive: Boolean
+    id: Int
+    name: String
+    startDate: String
+    endDate: String 
+    updatedAt: String
+    createdAt: String
+}
+
+type Query{
+    getAllStudents: [StudentOutput]
+    getStudentById(id: Int!): StudentOutput
+    getAllTeachers: [Teacher]
+    getTeacherById(id: Int!): Teacher
+    getAllGroups: [Group]
+    getGroupById(id: Int!): Group
+    getAllSubjectPeriods: [SubjectPeriod]
+    getSubjectPeriodById(id: Int!): SubjectPeriod
+    getAllSchedules: [ScheduleOutput]
+    getScheduleById(Id: Int!): ScheduleOutput
+    getAllPeriods: [PeriodOutput]
+    getPeriodById(Id: Int!): PeriodOutput
+
+}
+type Mutation{
+    createStudent(data: StudentInput!): StudentOutput
+    updateStudent(id: Int!,data: StudentInput!): Boolean
+    deleteStudent(id: Int!): Int
+    createTeacher(data: TeacherInput!): TeacherOutput
+    updateTeacher(id: Int!,data: TeacherInput!): Boolean
+    deleteTeacher(id: Int!): Int
+    createGroup(data: GroupInput!): Group
+    updateGroup(id: Int!,data: GroupInput!): Boolean
+    deleteGroup(id: Int!): Int
+    createSubjectPeriod(data: SubjectPeriodInput!): SubjectPeriod
+    updateSubjectPeriod(id: Int!,data: SubjectPeriodInput!): Boolean
+    deleteSubjectPeriod(id: Int!): Int
+    createSchedule(data: ScheduleInput!): ScheduleOutput
+    updateSchedule(id: Int!,data: ScheduleInput!): Boolean
+    deleteSchedule(id: Int!): Int
+    createPeriod(data: PeriodInput!): PeriodOutput
+    updatePeriod(id: Int!,data: PeriodInput!): Boolean
+    deletePeriod(id: Int!): Int
+}
