@@ -1,82 +1,81 @@
 # Crete inputs
-input SiteInput{
+input SiteInput {
   name: String!
   code: String!
 }
-input FacultyInput{
-  name:   String!
-  code:   String!
+input FacultyInput {
+  name: String!
+  code: String!
   siteId: Int!
 }
-input CareerInput{
-  name:       String!
-  facultyId:  Int!
+input CareerInput {
+  name: String!
+  facultyId: Int!
 }
 
 # Update inputs
-input SiteUpdate{
-  id:   Int!
+input SiteUpdate {
+  id: Int!
   name: String!
   code: String!
 }
-input FacultyUpdate{
-  id:     Int!
-  name:   String!
-  code:   String!
+input FacultyUpdate {
+  id: Int!
+  name: String!
+  code: String!
   siteId: Int!
 }
-input CareerUpdate{
-  id:         Int!
-  name:       String!
-  facultyId:  Int!
+input CareerUpdate {
+  id: Int!
+  name: String!
+  facultyId: Int!
 }
 
 # Types
-type Site{
-  id:   Int
+type Site {
+  id: Int
   name: String
   code: String
 }
-type Faculty{
-  id:     Int
-  name:   String
-  code:   String
+type Faculty {
+  id: Int
+  name: String
+  code: String
   siteId: Int
 }
-type Career{
-  id:         Int
-  name:       String
-  facultyId:  Int
+type Career {
+  id: Int
+  name: String
+  facultyId: Int
 }
 
 # Query list
-type Query{
+type Query {
   # Getters
-  getSites:                   [Site]
-  getFaculties:               [Faculty]
-  getCareers:                 [Career]
+  getSites: [Site]
+  getFaculties: [Faculty]
+  getCareers: [Career]
 
   # Getters by id
-  getSitesById(id: Int!):     Site
+  getSitesById(id: Int!): Site
   getFacultiesById(id: Int!): Faculty
-  getCareersById(id: Int!):   Career
-
+  getCareersById(id: Int!): Career
 }
 
 #Mutation list
-type Mutation{
+type Mutation {
   # Creators
-  createSite(data: SiteInput!):       Site
+  createSite(data: SiteInput!): Site
   createFaculty(data: FacultyInput!): Faculty
-  createCareer(data: CareerInput!):   Career
+  createCareer(data: CareerInput!): Career
 
   # Updaters
-  updateSite(data: SiteUpdate!):       Site
+  updateSite(data: SiteUpdate!): Site
   updateFaculty(data: FacultyUpdate!): Faculty
-  updateCareer(data: CareerUpdate!):   Career
+  updateCareer(data: CareerUpdate!): Career
 
   # Deleters
-  deleteSites(id: Int!):     Boolean
+  deleteSites(id: Int!): Boolean
   deleteFaculties(id: Int!): Boolean
-  deleteCareers(id: Int!):   Boolean
+  deleteCareers(id: Int!): Boolean
 }

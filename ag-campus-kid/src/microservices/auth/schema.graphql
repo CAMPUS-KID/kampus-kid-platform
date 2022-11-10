@@ -4,7 +4,7 @@ input CreateUserInput {
   role: String!
 }
 
-input LoginInput{
+input LoginInput {
   email: String!
   password: String!
 }
@@ -14,7 +14,7 @@ type CreateUserOutput {
   role: String
 }
 
-type LoginOutput{
+type LoginOutput {
   accessToken: String
   email: String
   role: String
@@ -24,7 +24,8 @@ type Query {
   default: String
 }
 
-type Mutation{
+type Mutation {
   createUser(data: CreateUserInput!): CreateUserOutput
   login(data: LoginInput!): LoginOutput
+  authorize: LoginOutput
 }

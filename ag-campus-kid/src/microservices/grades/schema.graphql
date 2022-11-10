@@ -1,27 +1,27 @@
-input GradeInput{
-  id : Int
-  enrollment : Int
-  description : String
-  grade : Int
-  percentage : Int 
-  isActive : Boolean
+input GradeInput {
+  id: Int
+  enrollment: Int
+  description: String
+  grade: Int
+  percentage: Int
+  isActive: Boolean
 }
 
-type Grade{
-  id : Int
-  enrollment : Int
-  description : String
-  grade : Int
-  percentage : Int 
-  isActive : Boolean
+type Grade {
+  id: Int
+  enrollment: Int
+  description: String
+  grade: Int
+  percentage: Int
+  isActive: Boolean
 }
 
-type Query{
+type Query {
   getGrades: [Grade]
-  getGradeById(id : Int!): Grade
+  getGradeById(id: Int!): Grade
 }
 
-type Mutation{
+type Mutation {
   createGrades(data: GradeInput!): Int
   updateGrades(id: Int!, data: GradeInput!): Int
   deleteGrades(id: Int!): Int
