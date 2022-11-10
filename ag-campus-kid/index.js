@@ -32,7 +32,7 @@ app.use(cors());
 app.use(AuthMiddleware)
 app.use(
   "/api",
-  graphqlHTTP(async (request, response, graphQLParams) => ({
+  graphqlHTTP(async (request) => ({
     schema: schema,
     graphiql: process.env != 'production',
     rootValue: {

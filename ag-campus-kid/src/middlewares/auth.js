@@ -9,8 +9,18 @@ module.exports.AuthMiddleware = async (req, res, next) => {
             const currentUser = await HttpProvider.post(`${baseUrl}/auth/authorize`, undefined, authorization);
             req.currentUser = currentUser;
         } catch {
-            res.status(401).json("Unauthorized");
-            return; 
+            res.status(200).json({
+                errors: [
+                    {
+                        message: "Unauthorized",
+                        statusCode: 401
+                    }
+                ],
+                data: {
+                    createSite: null
+                }
+            });
+            return;
         }
     }
     next();
