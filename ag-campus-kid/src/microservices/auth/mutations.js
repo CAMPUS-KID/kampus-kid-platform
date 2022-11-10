@@ -8,7 +8,8 @@ module.exports = {
   login: async (root, { data }) => {
     return await HttpProvider.post(`${baseUrl}/auth/login`, data);
   },
-  signup: async (root, { data }) => {
-    return await HttpProvider.post(`${baseUrl}/auth/signup`, data);
+  createUser: async (root, { data }) => {
+    console.log(root)
+    return await HttpProvider.post(`${baseUrl}/users`, data);
   },
 };

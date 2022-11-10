@@ -1,25 +1,30 @@
+input CreateUserInput {
+  email: String!
+  password: String!
+  role: String!
+}
+
 input LoginInput{
-  email: String
-  password: String
+  email: String!
+  password: String!
 }
 
-input UserInput{
-  username: String
+type CreateUserOutput {
   email: String
-  password: String
+  role: String
 }
 
-type Token{
-  accesToken: String
-  username: String
+type LoginOutput{
+  accessToken: String
   email: String
+  role: String
 }
 
-type Query{
-  athorize(token: String): Boolean
+type Query {
+  default: String
 }
 
 type Mutation{
-  login(data: LoginInput): Token
-  signup(data: UserInput ): Boolean
+  createUser(data: CreateUserInput!): CreateUserOutput
+  login(data: LoginInput!): LoginOutput
 }

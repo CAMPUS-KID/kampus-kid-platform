@@ -1,12 +1,15 @@
 "use strict";
 
+const { RoleEnum } = require("../../constants");
 const { HttpProvider } = require("../../providers");
+const { RequestPermissions } = require("../../providers/permissions");
 
 const baseUrl = process.env.MS_SCHOOL_BASE_URL;
 
 module.exports = {
   //Creators
-  createSite: async (root, { data }) => {
+  createSite: async ({ currentUser }, { data }) => {
+    RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.post(`${baseUrl}/api/sites`, data);
   },
   createFaculty: async (root, { data }) => {

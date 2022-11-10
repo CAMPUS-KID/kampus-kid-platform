@@ -7,12 +7,14 @@ const cors = require("cors");
 
 const { stitchSchemas } = require("@graphql-tools/stitch");
 const express = require("express");
-const gqlMiddleware = require("express-graphql");
+const { graphqlHTTP } = require('express-graphql');
 
 const auth = require("./src/microservices/auth");
 const school = require("./src/microservices/school");
-const subjects= require("./src/microservices/subjects");
+const subjects = require("./src/microservices/subjects");
 const grades = require("./src/microservices/grades");
+const { HttpErrors } = require('./src/constants');
+const { AuthMiddleware } = require('./src/middlewares/auth');
 
 const schema = stitchSchemas({
   subschemas: [
@@ -27,12 +29,23 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(AuthMiddleware)
 app.use(
   "/api",
-  gqlMiddleware({
+  graphqlHTTP(async (request, response, graphQLParams) => ({
     schema: schema,
-    graphiql: true,
-  })
+    graphiql: process.env != 'production',
+    rootValue: {
+      currentUser: request.currentUser
+    },
+    customFormatErrorFn: (error) => {
+      const httpError = HttpErrors[error.message];
+      if (httpError) {
+        return httpError;
+      }
+      return error;
+    }
+  }))
 );
 
 app.listen(port, () => {

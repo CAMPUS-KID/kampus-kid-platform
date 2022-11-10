@@ -25,7 +25,6 @@ module.exports.get = (url, query = {}, token = "") => {
       })
       .then((response) => resolve(response.data))
       .catch((error) => {
-        console.error(error);
         let exception = Object.assign(error);
         exception.query = query;
         reject(exception);
@@ -54,7 +53,6 @@ module.exports.postWithQuery = (url, query = {}, data, token = "") => {
       })
       .then((response) => resolve(response.data))
       .catch((error) => {
-        let exception = Object.assign(error);
         exception.data = data;
         exception.query = query;
         reject(exception);
@@ -84,7 +82,6 @@ module.exports.post = (url, data, token = "") => {
       })
       .then((response) => resolve(response.data))
       .catch((error) => {
-        console.error(error);
         let exception = Object.assign(error);
         exception.data = data;
         reject(exception);
@@ -100,7 +97,6 @@ module.exports.put = (url, data, token = "") => {
       })
       .then((response) => resolve(response.data))
       .catch((error) => {
-        console.error(error);
         let exception = Object.assign(error);
         exception.data = data;
         reject(exception);
@@ -116,7 +112,6 @@ module.exports.patch = (url, data, token = "") => {
       })
       .then((response) => resolve(response.data))
       .catch((error) => {
-        console.error(error);
         let exception = Object.assign(error);
         exception.data = data;
         reject(exception);
@@ -132,7 +127,6 @@ module.exports.deleted = (url, data, token = "") => {
       })
       .then((response) => resolve(response.data))
       .catch((error) => {
-        console.error(error);
         let exception = Object.assign(error);
         exception.data = data;
         reject(exception);
