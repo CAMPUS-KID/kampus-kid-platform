@@ -1,6 +1,7 @@
 "use strict";
 
 const { HttpProvider } = require("../../providers");
+const { HttpErrorEnum } = require('../../constants')
 
 const baseUrl = process.env.MS_AUTH_BASE_URL;
 
