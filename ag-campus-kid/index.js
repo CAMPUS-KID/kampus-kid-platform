@@ -13,6 +13,7 @@ const auth = require("./src/microservices/auth");
 const school = require("./src/microservices/school");
 const subjects = require("./src/microservices/subjects");
 const grades = require("./src/microservices/grades");
+const schedule = require("./src/microservices/schedule")
 const { HttpErrors } = require('./src/constants');
 const { AuthMiddleware } = require('./src/middlewares/auth');
 
@@ -21,7 +22,8 @@ const schema = stitchSchemas({
     { schema: auth, batch: true },
     { schema: school, batch: true },
     { schema: subjects, batch: true },
-    { schema: grades, batch: true }
+    { schema: grades, batch: true },
+    { schema: schedule, batch: true}
   ],
 });
 
@@ -34,7 +36,7 @@ app.use(
   "/api",
   graphqlHTTP(async (request) => ({
     schema: schema,
-    graphiql: process.env != 'production',
+    graphiql: process.env.NODE_ENV !== 'production',
     rootValue: {
       currentUser: request.currentUser
     },

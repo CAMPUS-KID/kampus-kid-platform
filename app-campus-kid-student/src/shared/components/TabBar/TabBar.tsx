@@ -19,30 +19,16 @@ const TabBar = ({ state: { index } }: BottomTabBarProps) => {
       <TabMenuItem
         {...getTestingProps(`tab-item-movies`)}
         route={Routes.MOVIES.MOVIE_LIST}
-        icon={IconEnum.MOVIES}
-        tabName={t('tabs:movies')}
+        icon={IconEnum.BOOK}
+        tabName={t('tabs:subjects')}
         isActive={index === 0}
       />
       <TabMenuItem
         {...getTestingProps(`tab-item-series`)}
         route={Routes.SERIES.SERIE_LIST}
-        icon={IconEnum.SERIES}
-        tabName={t('tabs:series')}
+        icon={IconEnum.ACCOUNT}
+        tabName={t('tabs:account')}
         isActive={index === 1}
-      />
-      <TabMenuItem
-        {...getTestingProps(`tab-item-series`)}
-        route={Routes.SERIES.SERIE_LIST}
-        icon={IconEnum.SERIES}
-        tabName={t('tabs:series')}
-        isActive={index === 2}
-      />
-      <TabMenuItem
-        {...getTestingProps(`tab-item-series`)}
-        route={Routes.SERIES.SERIE_LIST}
-        icon={IconEnum.SERIES}
-        tabName={t('tabs:series')}
-        isActive={index === 3}
       />
     </SafeAreaView>
   );

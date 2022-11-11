@@ -4,9 +4,9 @@ import { createStackNavigator, StackNavigationOptions } from '@react-navigation/
 import TabsNavigator from './TabsNavigator';
 import { Routes } from '@shared_constants';
 import { NavigationContainer } from '@react-navigation/native';
-import { MovieDetailScreen } from '@modules/movie';
-import { SerieDetailScreen } from '@modules/serie';
-import { LoginScreen } from '@modules/student';
+import { SubjectDetailScreen } from '@modules/subject';
+import { AccountDetailScreen } from '@modules/account';
+import { LoginScreen } from '@modules/auth';
 
 const Stack = createStackNavigator();
 
@@ -31,12 +31,12 @@ const RootNavigator = () => {
         />
         <Stack.Screen
           name={Routes.MOVIES.MOVIE_DETAIL}
-          component={MovieDetailScreen}
+          component={SubjectDetailScreen}
           options={defaultOptions}
         />
         <Stack.Screen
           name={Routes.SERIES.SERIE_DETAIL}
-          component={SerieDetailScreen}
+          component={AccountDetailScreen}
           options={defaultOptions}
         />
       </Stack.Navigator>

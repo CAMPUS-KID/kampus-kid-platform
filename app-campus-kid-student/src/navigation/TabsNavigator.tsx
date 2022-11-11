@@ -5,8 +5,8 @@ import {
 } from '@react-navigation/bottom-tabs';
 import { TabBar } from '@shared_components';
 import { Routes } from '@shared_constants';
-import { MovieListScreen } from '@modules/movie';
-import { SerieListScreen } from '@modules/serie';
+import { SubjectListScreen } from '@modules/subject';
+import { AccountDetailScreen, SerieListScreen } from '@modules/account';
 
 const Tabs = createBottomTabNavigator();
 
@@ -19,12 +19,12 @@ const TabsNavigator = () => {
     <Tabs.Navigator tabBar={props => <TabBar {...props} />}>
       <Tabs.Screen
         name={Routes.MOVIES.MOVIE_LIST}
-        component={MovieListScreen}
+        component={SubjectListScreen}
         options={defaultOptions}
       />
       <Tabs.Screen
         name={Routes.SERIES.SERIE_LIST}
-        component={SerieListScreen}
+        component={AccountDetailScreen}
         options={defaultOptions}
       />
     </Tabs.Navigator>
