@@ -18,7 +18,7 @@ export class AuthService {
     ) { }
 
     async login(loginData: LoginInput): Promise<LoginOutput> {
-        const user = await this.userService.findByEmail(loginData.email);
+        const user = await this.userService.findByEmail(loginData.email.toLowerCase());
         if (!user) throw new UnauthorizedException();
         const encryptedPassword = bcrypt.hashSync(loginData.password, user.salt);
         if (user.encryptedPassword != encryptedPassword) throw new UnauthorizedException();
