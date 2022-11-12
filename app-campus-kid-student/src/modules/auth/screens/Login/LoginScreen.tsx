@@ -22,6 +22,7 @@ const LoginScreen = () => {
   const setCurrentUser = useSetRecoilState(CurrentUserAtom);
 
   const [loading, setLoading] = useState(true);
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

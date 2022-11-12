@@ -61,7 +61,6 @@ buck-out/
 /ios/Pods/
 
 
-.env
 package-lock.json
 .vscode
 coverage/

@@ -20,6 +20,6 @@ export class UserService {
     async create({ email, password, role }: UserInput): Promise<User> {
         const salt = bcrypt.genSaltSync(Number(process.env.SALT_ROUNDS));
         const encryptedPassword = bcrypt.hashSync(password, salt);
-        return this.userModel.create({ email, encryptedPassword, salt, role })
+        return this.userModel.create({ email: email.toLowerCase(), encryptedPassword, salt, role })
     }
 }

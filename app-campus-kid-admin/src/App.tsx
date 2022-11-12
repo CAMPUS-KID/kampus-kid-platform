@@ -1,11 +1,11 @@
-import React from 'react';
-import { HomeScreen } from './modules/shared/screens/HomeScreen';
+import { Router } from "./navigation";
+import { Providers } from "./providers";
 
 function App() {
   return (
-    <div >
-      <HomeScreen/>
-    </div>
+    <Providers>
+      <Router />
+    </Providers>
   );
 }
 
