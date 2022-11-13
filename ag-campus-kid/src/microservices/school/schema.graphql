@@ -57,9 +57,9 @@ type Query {
   getCareers: [Career]
 
   # Getters by id
-  getSitesById(id: Int!): Site
-  getFacultiesById(id: Int!): Faculty
-  getCareersById(id: Int!): Career
+  getSiteById(id: Int!): Site
+  getFacultyById(id: Int!): Faculty
+  getCareerById(id: Int!): Career
 }
 
 #Mutation list
@@ -75,7 +75,7 @@ type Mutation {
   updateCareer(data: CareerUpdate!): Career
 
   # Deleters
-  deleteSites(id: Int!): Boolean
-  deleteFaculties(id: Int!): Boolean
-  deleteCareers(id: Int!): Boolean
+  deleteSite(id: Int!): Boolean
+  deleteFaculty(id: Int!): Boolean
+  deleteCareer(id: Int!): Boolean
 }

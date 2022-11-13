@@ -36,15 +36,15 @@ module.exports = {
   },
 
   //Deleters
-  deleteSites: async ({ currentUser }, { id }) => {
+  deleteSite: async ({ currentUser }, { id }) => {
     RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.deleted(`${baseUrl}/api/sites/${id}`);
   },
-  deleteFaculties: async ({ currentUser }, { id }) => {
+  deleteFaculty: async ({ currentUser }, { id }) => {
     RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.deleted(`${baseUrl}/api/faculties/${id}`);
   },
-  deleteCareers: async ({ currentUser }, { id }) => {
+  deleteCareer: async ({ currentUser }, { id }) => {
     RequestPermissions(currentUser, [RoleEnum.ADMIN]);
     return await HttpProvider.deleted(`${baseUrl}/api/careers/${id}`);
   }

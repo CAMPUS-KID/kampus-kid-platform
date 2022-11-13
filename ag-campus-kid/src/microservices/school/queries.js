@@ -17,13 +17,13 @@ module.exports = {
   },
 
   //getters by id
-  getSitesById: async (root,{ id }) => {
+  getSiteById: async (root,{ id }) => {
     return await HttpProvider.get(`${baseUrl}/api/sites/${id}`);
   },
-  getFacultiesById: async (root,{ id }) => {
+  getFacultyById: async (root,{ id }) => {
     return await HttpProvider.get(`${baseUrl}/api/faculties/${id}`);
   },
-  getCareersById: async (root,{ id }) => {
+  getCareerById: async (root,{ id }) => {
     return await HttpProvider.get(`${baseUrl}/api/careers/${id}`);
   }
 };
