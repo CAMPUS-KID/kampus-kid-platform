@@ -43,5 +43,12 @@ module.exports = {
     getPeriodById: async (root,{id}) => {
         return await HttpProvider.get(`${baseUrl}/periods/${id}`)
     },
+    getAllEnrollments: async () => {
+        return await HttpProvider.get(`${baseUrl}/enrollments`)
+    },
+    getEnrollmentById: async (root,{id}) => {
+        return await HttpProvider.get(`${baseUrl}/enrollments/${id}`)
+    },
+    
 
 }

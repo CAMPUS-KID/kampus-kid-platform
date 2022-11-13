@@ -79,5 +79,17 @@ module.exports = {
         RequestPermissions(currentUser, [RoleEnum.ADMIN]);
         return await HttpProvider.deleted(`${baseUrl}/periods/${id}`);
     },
+    createEnrollment: async ({ currentUser }, { data }) => {
+        RequestPermissions(currentUser, [RoleEnum.ADMIN][RoleEnum.TEACHER][RoleEnum.STUDENT]);
+        return await HttpProvider.post(`${baseUrl}/enrollments/`, data);
+    },
+    updateEnrollment: async ({ currentUser }, { data },{id}) => {
+        RequestPermissions(currentUser, [RoleEnum.ADMIN][RoleEnum.TEACHER][RoleEnum.STUDENT]);
+        return await HttpProvider.put(`${baseUrl}/enrollments/${id}`, data);
+    },
+    deleteEnrollment: async ({ currentUser }, {id}) => {
+        RequestPermissions(currentUser, [RoleEnum.ADMIN][RoleEnum.TEACHER][RoleEnum.STUDENT]);
+        return await HttpProvider.deleted(`${baseUrl}/enrollments/${id}`);
+    },
 
 };
