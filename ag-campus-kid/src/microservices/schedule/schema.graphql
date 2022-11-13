@@ -94,6 +94,10 @@ type PeriodOutput {
   updatedAt: String
   createdAt: String
 }
+input EnrollmentInput{
+  group: Int
+  student: Int
+}
 
 type Query {
   getAllStudents: [StudentOutput]
