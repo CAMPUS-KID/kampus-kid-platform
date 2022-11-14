@@ -25,7 +25,7 @@ const AccountDetailScreen = () => {
     navigate(Routes.STUDENT.LOGIN, null, NavigateActionEnum.REPLACE);
   }
 
-  if (loading) {
+  if (loading || !currentUser) {
     return <SafeAreaView><ActivityIndicator size="large" /></SafeAreaView>
   }
 
