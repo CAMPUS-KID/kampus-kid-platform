@@ -1,6 +1,0 @@
-export enum RoleEnum {
-    ADMIN = 'ADMIN',
-    STUDENT = 'STUDENT',
-    TEACHER = 'TEACHER',
-    EXTERNAL_CONSUMER = 'EXTERNAL_CONSUMER',
-}
