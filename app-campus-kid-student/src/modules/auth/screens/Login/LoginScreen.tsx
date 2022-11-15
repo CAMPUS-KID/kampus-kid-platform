@@ -11,8 +11,10 @@ import { buildVariables } from '@shared_utils';
 import { styleSheet } from './styles';
 import { NavigateActionEnum, RoleEnum, StorageKeyEnum } from '@shared_enums';
 import { StorageAssistant } from '@shared_assistants';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { CurrentUserAtom } from '@state';
+import { useTheme } from '@emotion/react';
+import { Theme } from '@theme';
 
 const LoginScreen = () => {
   const styles = useBuildStyles(styleSheet);
@@ -22,9 +24,10 @@ const LoginScreen = () => {
   const setCurrentUser = useSetRecoilState(CurrentUserAtom);
 
   const [loading, setLoading] = useState(true);
-  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const theme = useTheme() as Theme;
 
   const [doLogin] = useMutation<LoginOutput, LoginVariables>(LoginMutation);
   const [authorize] = useMutation<AuthorizeOutput>(AuthorizeMutation);
@@ -71,12 +74,14 @@ const LoginScreen = () => {
         <Text style={styles.title}>{t('login:welcomeLabel')}</Text>
         <TextInput
           value={email}
+          placeholderTextColor={theme.colors.primary}
           onChangeText={(value) => setEmail(value)}
-          style={styles.textInput}
+          style={[styles.textInput]}
           placeholder={t('login:email')}
           keyboardType="email-address" />
         <TextInput
           value={password}
+          placeholderTextColor={theme.colors.primary}
           onChangeText={(value) => setPassword(value)}
           secureTextEntry
           style={styles.textInput}
