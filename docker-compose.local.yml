@@ -107,15 +107,6 @@ services:
       - DB_PORT=4006
     extra_hosts:
       - "host.docker.internal:host-gateway"
-  ms-campus-kid-request:
-    container_name: ms-campus-kid-request
-    build: ./ms-campus-kid-request
-    ports:
-      - 4002:4002
-    environment:
-      - PORT=4002
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
   ms-campus-kid-schedule:
     container_name: ms-campus-kid-schedule
     build: ./ms-campus-kid-schedule

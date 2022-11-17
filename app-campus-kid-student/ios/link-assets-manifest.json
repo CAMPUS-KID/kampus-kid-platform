@@ -1,0 +1,57 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/shared/assets/fonts/Inter/Inter.ttf",
+      "sha1": "d483e2c7f8032c6638d047167efbeba0030f0649"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-Bold.otf",
+      "sha1": "622ecb37ab67e630e0eea863b20bc14b723f0157"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-BoldItalic.otf",
+      "sha1": "aaa7131f23a98b5f355d05ce0e1b215fb3cb9f48"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-Heavy.otf",
+      "sha1": "b2945bb62e3455935b741755ad4b3c5d3574f196"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-HeavyItalic.otf",
+      "sha1": "0020801e0ae5b7805b19cac87e06dd2c59953b35"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-Light.otf",
+      "sha1": "6a62f1b3895c2790aa6039769dacb974a1a21737"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-LightItalic.otf",
+      "sha1": "30003c1821c176354915b36f51ca68a06132be68"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-Medium.otf",
+      "sha1": "cac3497d780c66745c56d980de99d05f0988a481"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-MediumItalic.otf",
+      "sha1": "0066ddc4290087f8a46789b4bccdcf998d026062"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-Regular.otf",
+      "sha1": "6cfc3f6dacb6e64ebf4ecb3ad455c2c12777a80a"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-RegularItalic.otf",
+      "sha1": "2b04e59e05e9e81f3e781386a2831898bb2e2133"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-SemiBold.otf",
+      "sha1": "2efbbce2629a0d6bedbd50074c340e375a137fb3"
+    },
+    {
+      "path": "src/shared/assets/fonts/Robert/Roobert-SemiBoldItalic.otf",
+      "sha1": "21818a733bcb6530fee2b06092a17bade22fda77"
+    }
+  ]
+}
