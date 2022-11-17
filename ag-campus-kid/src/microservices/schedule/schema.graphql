@@ -94,7 +94,18 @@ type PeriodOutput {
   updatedAt: String
   createdAt: String
 }
-
+input EnrollmentInput{
+  group: Int
+  student: Int
+}
+type EnrollmentOutput{
+    isActive: Boolean
+    id: Int
+    group: Int
+    student: Int
+    updatedAt: String
+    createdAt: String
+}
 type Query {
   getAllStudents: [StudentOutput]
   getStudentById(id: Int!): StudentOutput
@@ -108,6 +119,8 @@ type Query {
   getScheduleById(Id: Int!): ScheduleOutput
   getAllPeriods: [PeriodOutput]
   getPeriodById(Id: Int!): PeriodOutput
+  getAllEnrollments: [EnrollmentOutput]
+  getEnrollmentById(id: Int!): EnrollmentOutput
 }
 type Mutation {
   createStudent(data: StudentInput!): StudentOutput
@@ -128,4 +141,7 @@ type Mutation {
   createPeriod(data: PeriodInput!): PeriodOutput
   updatePeriod(id: Int!, data: PeriodInput!): Boolean
   deletePeriod(id: Int!): Int
+  createEnrollment(data: EnrollmentInput!): EnrollmentOutput
+  updateEnrollment(id: Int!, data: EnrollmentInput!): Boolean
+  deleteEnrollment(id: Int!): Int
 }
