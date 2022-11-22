@@ -11,18 +11,18 @@ module.exports.build = (DataTypes) => {
     name: {
       validate: {
         notEmpty: true,
-        unique: true,
       },
       type: DataTypes.TEXT,
     },
-    startDate: {
+    email: {
       allowNull: false,
-      type: DataTypes.DATE,
-    },
-    endDate: {
-      allowNull: false,
-      type: DataTypes.DATE,
-    },
+      unique: true,
+      validate: {
+        notEmpty: true,
+        isEmail: true,
+      },
+      type: DataTypes.TEXT,
+    }, 
     isActive: {
       allowNull: false,
       type: DataTypes.BOOLEAN,

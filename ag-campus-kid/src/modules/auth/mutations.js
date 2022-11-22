@@ -9,9 +9,6 @@ module.exports = {
   login: async (root, { data }) => {
     return await HttpProvider.post(`${baseUrl}/auth/login`, data);
   },
-  createUser: async ({ currentUser }, { data }) => {
-    return await HttpProvider.post(`${baseUrl}/users`, data);
-  },
   authorize: async ({ currentUser }) => {
     if(!currentUser) throw new Error(HttpErrorEnum.UNAUTHORIZED);
     return currentUser;

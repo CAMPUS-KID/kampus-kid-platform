@@ -1,20 +1,22 @@
 import { useMutation } from '@apollo/client';
-import { AuthorizeMutation, LoginMutation } from '@modules/auth/mutations';
-import { AuthorizeOutput, CurrentUser, LoginOutput, LoginVariables } from '@modules/auth/types';
-import { Routes } from '@shared_constants';
-import { useBuildStyles, useNavigate } from '@shared_hooks';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TextInput, View, Text, Pressable, Alert, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSetRecoilState } from 'recoil';
+import { useTheme } from '@emotion/react';
+
+import { AuthorizeMutation, LoginMutation } from '@modules/auth/mutations';
+import { AuthorizeOutput, CurrentUser, LoginOutput, LoginVariables } from '@modules/auth/types';
+import { Routes } from '@shared_constants';
+import { useBuildStyles, useNavigate } from '@shared_hooks';
 import { buildVariables } from '@shared_utils';
-import { styleSheet } from './styles';
 import { NavigateActionEnum, RoleEnum, StorageKeyEnum } from '@shared_enums';
 import { StorageAssistant } from '@shared_assistants';
-import { useSetRecoilState } from 'recoil';
 import { CurrentUserAtom } from '@state';
-import { useTheme } from '@emotion/react';
 import { Theme } from '@theme';
+
+import { styleSheet } from './styles';
 
 const LoginScreen = () => {
   const styles = useBuildStyles(styleSheet);

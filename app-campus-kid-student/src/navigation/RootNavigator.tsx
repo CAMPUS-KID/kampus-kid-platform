@@ -4,7 +4,7 @@ import { createStackNavigator, StackNavigationOptions } from '@react-navigation/
 import TabsNavigator from './TabsNavigator';
 import { Routes } from '@shared_constants';
 import { NavigationContainer } from '@react-navigation/native';
-import { SubjectDetailScreen } from '@modules/subject';
+import { SubjectDetailScreen, SubjectDetailScreenProps } from '@modules/subject';
 import { AccountDetailScreen } from '@modules/account';
 import { LoginScreen } from '@modules/auth';
 
@@ -32,6 +32,7 @@ const RootNavigator = () => {
         <Stack.Screen
           name={Routes.MOVIES.MOVIE_DETAIL}
           component={SubjectDetailScreen}
+          initialParams={{ subjectId: 42 }}
           options={defaultOptions}
         />
         <Stack.Screen

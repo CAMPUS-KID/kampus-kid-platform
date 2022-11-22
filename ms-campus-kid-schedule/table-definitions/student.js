@@ -15,8 +15,11 @@ module.exports.build = (DataTypes) => {
       type: DataTypes.TEXT,
     },
     email: {
+      allowNull: false,
+      unique: true,
       validate: {
         notEmpty: true,
+        isEmail: true,
       },
       type: DataTypes.TEXT,
     }, 

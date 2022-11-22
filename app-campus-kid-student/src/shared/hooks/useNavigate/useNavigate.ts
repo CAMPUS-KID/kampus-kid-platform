@@ -1,7 +1,7 @@
 import { Routes } from '@shared_constants';
 import { NavigateActionEnum } from '@shared_enums';
 import { useCallback, useMemo } from 'react';
-import { useStackNavigation } from '..';
+import { useStackNavigation } from '../useStackNavigation';
 
 type RouteDefinition<TParams> = {
   screen: string;
@@ -40,7 +40,10 @@ const useNavigate = () => {
       action: NavigateActionEnum = NavigateActionEnum.PUSH
     ) => {
       const routeMap = buildRouteMap(params);
-      const selectedAction = actionMap[action];
+      const selectedAction: (
+        routeName: string,
+        params: RouteDefinition<TParams> | TParams
+      ) => void = actionMap[action];
       routeMap[route]
         ? selectedAction(routeMap[route].screen, routeMap[route].params)
         : selectedAction(route, params);

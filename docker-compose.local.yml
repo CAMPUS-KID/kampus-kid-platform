@@ -215,6 +215,7 @@ services:
     environment:
       - PORT=4012
       - NODE_ENV=staging
+      - REACT_APP_API_URL=https://host.docker.internal:4101/api
     extra_hosts:
       - "host.docker.internal:host-gateway"
 # SETUP CONTAINERS 

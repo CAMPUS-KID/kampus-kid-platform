@@ -1,5 +1,11 @@
+import { Page } from "../../components";
+
 const DashboardScreen = () => {
-  return <h1>Welcome</h1>;
+  return (
+    <Page title="Dashboard">
+      <h1>Welcome</h1>
+    </Page>
+  );
 };
 
 export default DashboardScreen;

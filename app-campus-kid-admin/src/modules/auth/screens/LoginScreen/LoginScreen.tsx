@@ -4,11 +4,15 @@ import { LoginOutput, LoginVariables } from "../../types";
 import { LoginMutation } from "../../mutations";
 import { buildRequestOptions } from "../../../shared/utils";
 import { RoleEnum, StorageKeyEnum } from "../../../shared/enums";
-import { LoginContainer, LoginFormContainer } from "./LoginScreen.styles";
-import { CampusKidButton } from "../../../shared/styles";
+import { LoginContent, LoginFormContainer } from "./LoginScreen.styles";
+import {
+  CampusKidTextField, FullCenteredContainer,
+} from "../../../shared/styles";
 import { useSetRecoilState } from "recoil";
 import { CurrentUserAtom } from "../../../../state";
 import { StorageAssistant } from "../../../shared/assistants";
+import Card from "@mui/material/Card";
+import Button from "@mui/material/Button";
 
 const LoginScreen = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -21,6 +25,7 @@ const LoginScreen = () => {
   // const {loading, error, data} = useQuery<LoginOutput, LoginVariables>(GetSubjectByIdQuery, buildRequestOptions({id}, token));
 
   const onLogin = async () => {
+    console.log(emailRef.current)
     if (!emailRef.current?.value || !passwordRef.current?.value) {
       alert("Please insert an email and password");
       return;
@@ -43,7 +48,11 @@ const LoginScreen = () => {
         return;
       }
 
-      StorageAssistant.setItem(StorageKeyEnum.AUTHENTICATION, currentUser, true);
+      StorageAssistant.setItem(
+        StorageKeyEnum.AUTHENTICATION,
+        currentUser,
+        true
+      );
       currentUser.isAuthenticated = true;
       setCurrentUser(currentUser);
     } catch {
@@ -52,14 +61,18 @@ const LoginScreen = () => {
   };
 
   return (
-    <LoginContainer>
-      <h1>Campus Kid</h1>
+    <FullCenteredContainer>
       <LoginFormContainer>
-        <input ref={emailRef} type="email" />
-        <input ref={passwordRef} type="password" />
-        <CampusKidButton onClick={onLogin}>Login</CampusKidButton>
+        <Card>
+          <LoginContent>
+            <h2>Campus Kid Admin</h2>
+            <CampusKidTextField inputRef={emailRef} type="email" label="Email"/>
+            <CampusKidTextField inputRef={passwordRef} type="password" label="Password"/>
+            <Button variant="contained" onClick={onLogin}>Login</Button>
+          </LoginContent>
+        </Card>
       </LoginFormContainer>
-    </LoginContainer>
+    </FullCenteredContainer>
   );
 };
 

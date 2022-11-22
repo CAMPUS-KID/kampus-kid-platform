@@ -1,0 +1,51 @@
+input CreateStudentInput {
+  name: String!
+  email: String!
+  password: String!
+  faculty: Int!
+  career: Int!
+}
+
+type CreateStudentOutput {
+  id: Int
+  name: String
+  email: String
+  faculty: Int
+  career: Int
+}
+
+input CreateTeacherInput {
+  name: String!
+  email: String!
+  password: String!
+  faculty: Int!
+}
+
+type CreateTeacherOutput {
+  id: Int
+  name: String
+  email: String
+  faculty: Int
+}
+
+input CreateAdminInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+type CreateAdminOutput {
+  id: Int
+  name: String
+  email: String
+}
+
+type Query {
+  default: String
+}
+
+type Mutation {
+  createStudent(data: CreateStudentInput!): CreateStudentOutput
+  createTeacher(data: CreateTeacherInput!): CreateTeacherOutput
+  createAdmin(data: CreateAdminInput!): CreateAdminOutput
+}

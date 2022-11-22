@@ -18,8 +18,6 @@ type StudentOutput {
   faculty: Int
   career: Int
   isActive: Boolean
-  createdAt: String
-  updatedAt: String
 }
 input TeacherInput {
   name: String
@@ -27,22 +25,11 @@ input TeacherInput {
   faculty: Int
 }
 type TeacherOutput {
-  isActive: Boolean
-  id: Int
-  name: String
-  email: String
-  faculty: Int
-  createdAt: String
-  updatedAt: String
-}
-type Teacher {
   id: Int
   name: String
   email: String
   faculty: Int
   isActive: Boolean
-  createdAt: String
-  updatedAt: String
 }
 input GroupInput {
   schedule: Int
@@ -77,8 +64,6 @@ type ScheduleOutput {
   weekDay: Int
   startHour: String
   endHour: String
-  updatedAt: String
-  createdAt: String
 }
 input PeriodInput {
   name: String
@@ -91,26 +76,22 @@ type PeriodOutput {
   name: String
   startDate: String
   endDate: String
-  updatedAt: String
-  createdAt: String
 }
-input EnrollmentInput{
+input EnrollmentInput {
   group: Int
   student: Int
 }
-type EnrollmentOutput{
-    isActive: Boolean
-    id: Int
-    group: Int
-    student: Int
-    updatedAt: String
-    createdAt: String
+type EnrollmentOutput {
+  isActive: Boolean
+  id: Int
+  group: Int
+  student: Int
 }
 type Query {
   getAllStudents: [StudentOutput]
   getStudentById(id: Int!): StudentOutput
-  getAllTeachers: [Teacher]
-  getTeacherById(id: Int!): Teacher
+  getAllTeachers: [TeacherOutput]
+  getTeacherById(id: Int!): TeacherOutput
   getAllGroups: [Group]
   getGroupById(id: Int!): Group
   getAllSubjectPeriods: [SubjectPeriod]
@@ -123,10 +104,8 @@ type Query {
   getEnrollmentById(id: Int!): EnrollmentOutput
 }
 type Mutation {
-  createStudent(data: StudentInput!): StudentOutput
   updateStudent(id: Int!, data: StudentInput!): Boolean
   deleteStudent(id: Int!): Int
-  createTeacher(data: TeacherInput!): TeacherOutput
   updateTeacher(id: Int!, data: TeacherInput!): Boolean
   deleteTeacher(id: Int!): Int
   createGroup(data: GroupInput!): Group

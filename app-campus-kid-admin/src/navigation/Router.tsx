@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -8,6 +9,7 @@ import { LoginScreen } from "../modules/auth";
 import { RoleEnum } from "../modules/shared/enums";
 import { useAutologin } from "../modules/shared/hooks";
 import { DashboardScreen } from "../modules/shared/screens/DashboardScreen";
+import { FullCenteredContainer } from "../modules/shared/styles";
 import { CurrentUserAtom } from "../state";
 
 const Router = () => {
@@ -15,7 +17,12 @@ const Router = () => {
 
   const loading = useAutologin();
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <FullCenteredContainer>
+        <CircularProgress />
+      </FullCenteredContainer>
+    );
 
   const commonRoutes: RouteObject[] = [];
 

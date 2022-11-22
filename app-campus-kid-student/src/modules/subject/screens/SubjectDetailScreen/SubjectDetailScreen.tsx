@@ -3,7 +3,7 @@ import { GetSubjectsByIdQuery } from '@modules/subject/queries';
 import { GetSubjectByIdOutput } from '@modules/subject/types';
 import { useBuildStyles } from '@shared_hooks';
 import { buildImageURL } from '@shared_utils';
-import React from 'react';
+import React, { FC } from 'react';
 import { Text, ActivityIndicator, View, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styleSheet } from './styles';
@@ -13,6 +13,7 @@ export interface Props {
     params: {
       subjectId: number;
     };
+    [key: string]: any;
   };
 }
 
@@ -22,7 +23,9 @@ const SubjectDetailScreen = ({
   }
 }: Props) => {
   const styles = useBuildStyles(styleSheet);
-  const { data, loading, error } = useQuery<GetSubjectByIdOutput>(GetSubjectsByIdQuery, { variables: { id: subjectId } })
+  const { data, loading, error } = useQuery<GetSubjectByIdOutput>(GetSubjectsByIdQuery, {
+    variables: { id: subjectId }
+  });
 
   if (loading) {
     return (
@@ -43,9 +46,13 @@ const SubjectDetailScreen = ({
       <View>
         <Image
           style={styles.headerImage}
-          source={{ uri: 'https://thumbs.dreamstime.com/b/colorful-illustration-sport-physical-education-modern-flat-style-college-subject-icon-colorful-illustration-112452856.jpg' }}
+          source={{
+            uri: 'https://thumbs.dreamstime.com/b/colorful-illustration-sport-physical-education-modern-flat-style-college-subject-icon-colorful-illustration-112452856.jpg'
+          }}
         />
-        <Text style={styles.titleText}>[{data.getSubjectsById.code}]-{data.getSubjectsById.name}</Text>
+        <Text style={styles.titleText}>
+          [{data.getSubjectsById.code}]-{data.getSubjectsById.name}
+        </Text>
         <Text style={styles.descriptionText}>{data.getSubjectsById.description}</Text>
       </View>
     </SafeAreaView>
