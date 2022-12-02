@@ -7,6 +7,14 @@ const { RequestPermissions } = require("../../providers/permissions");
 const baseUrl = process.env.MS_SCHEDULE_BASE_URL;
 
 module.exports = {
+    updateAdmin: async ({ currentUser }, { data },{id}) => {
+        RequestPermissions(currentUser, [RoleEnum.ADMIN]);
+        return await HttpProvider.put(`${baseUrl}/admins/${id}`, data);
+    },
+    deleteAdmin: async ({ currentUser }, {id}) => {
+        RequestPermissions(currentUser, [RoleEnum.ADMIN]);
+        return await HttpProvider.deleted(`${baseUrl}/admins/${id}`);
+    },
     updateStudent: async ({ currentUser }, { data },{id}) => {
         RequestPermissions(currentUser, [RoleEnum.ADMIN]);
         return await HttpProvider.put(`${baseUrl}/students/${id}`, data);

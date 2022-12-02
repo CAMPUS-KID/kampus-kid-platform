@@ -19,6 +19,21 @@ type StudentOutput {
   career: Int
   isActive: Boolean
 }
+input AdminInput {
+  name: String
+  email: String
+}
+type Admin {
+  id: Int
+  name: String
+  email: String
+}
+type AdminOutput {
+  id: Int
+  name: String
+  email: String
+  isActive: Boolean
+}
 input TeacherInput {
   name: String
   email: String
@@ -90,6 +105,8 @@ type EnrollmentOutput {
 type Query {
   getAllStudents: [StudentOutput]
   getStudentById(id: Int!): StudentOutput
+  getAllAdmins: [AdminOutput]
+  getAdminById(id: Int!): AdminOutput
   getAllTeachers: [TeacherOutput]
   getTeacherById(id: Int!): TeacherOutput
   getAllGroups: [Group]
@@ -106,6 +123,8 @@ type Query {
 type Mutation {
   updateStudent(id: Int!, data: StudentInput!): Boolean
   deleteStudent(id: Int!): Int
+  updateAdmin(id: Int!, data: AdminInput!): Boolean
+  deleteAdmin(id: Int!): Int
   updateTeacher(id: Int!, data: TeacherInput!): Boolean
   deleteTeacher(id: Int!): Int
   createGroup(data: GroupInput!): Group

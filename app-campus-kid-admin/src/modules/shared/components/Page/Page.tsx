@@ -16,12 +16,21 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import UsersIcon from "@mui/icons-material/Person";
+import GradeIcon from "@mui/icons-material/Grade";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import SiteIcon from "@mui/icons-material/Park";
+import SchoolIcon from "@mui/icons-material/School";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 
 import { AccountCircle } from "@mui/icons-material";
+import { useRecoilState } from "recoil";
+import { CurrentUserAtom } from "../../../../state";
+import { DefaultCurrentUser } from "../../../../state/CurrentUserAtom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { StorageAssistant } from "../../assistants";
+import { StorageKeyEnum, RoleEnum } from '../../enums'
 
 const drawerWidth = 240;
 
@@ -73,6 +82,12 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
+interface MenuOption {
+  name: string,
+  route: string,
+  icon: any
+}
+
 export default function Page({
   children,
   title,
@@ -82,6 +97,9 @@ export default function Page({
 }) {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [currentUser, setCurrentUser] = useRecoilState(CurrentUserAtom);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -89,6 +107,12 @@ export default function Page({
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    StorageAssistant.removeItem(StorageKeyEnum.AUTHENTICATION);
+    setCurrentUser(DefaultCurrentUser);
+    navigate('/');
   };
 
   const [open, setOpen] = React.useState(false);
@@ -100,6 +124,22 @@ export default function Page({
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const sharedMenuOptions: MenuOption[] = [
+    { name: 'Dashboard', route: '/', icon: <DashboardIcon /> }
+  ];
+
+  const menuOptions: MenuOption[] = currentUser.role === RoleEnum.ADMIN ?
+    [
+      ...sharedMenuOptions,
+      { name: 'Sites', route: '/sites', icon: <SiteIcon /> },
+      { name: 'Faculties', route: '/faculties', icon: <SchoolIcon /> },
+      { name: 'Users', route: '/users', icon: <UsersIcon /> }
+    ] :
+    [
+      ...sharedMenuOptions,
+      { name: 'Grades', route: '/grades', icon: <GradeIcon /> }
+    ];
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -115,20 +155,25 @@ export default function Page({
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography fontWeight="bold" variant="h6" noWrap component="div">
             {title}
           </Typography>
           <div style={{ marginLeft: "auto" }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+              <Typography variant="h6" noWrap component="div">
+                {currentUser.email}
+              </Typography>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </div>
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
@@ -144,8 +189,8 @@ export default function Page({
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
               <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>
         </Toolbar>
@@ -164,6 +209,9 @@ export default function Page({
         open={open}
       >
         <DrawerHeader>
+          <Typography fontWeight="bold" variant="h6" noWrap component="div" style={{ marginRight: 'auto' }}>
+            Campus Kid
+          </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
@@ -174,26 +222,13 @@ export default function Page({
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
+          {menuOptions.map(({ name, route, icon }) => (
+            <ListItem key={name} disablePadding style={{ background: route === location.pathname ? '#1976d2' : undefined, color: route === location.pathname ? 'white' : undefined }}>
+              <ListItemButton onClick={() => route !== location.pathname && navigate(route)}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {icon}
                 </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={name} />
               </ListItemButton>
             </ListItem>
           ))}

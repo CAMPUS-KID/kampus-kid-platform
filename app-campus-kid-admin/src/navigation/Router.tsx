@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { LoginScreen } from "../modules/auth";
+import { FacultyListScreen, SiteListScreen } from "../modules/school";
 import { RoleEnum } from "../modules/shared/enums";
 import { useAutologin } from "../modules/shared/hooks";
 import { DashboardScreen } from "../modules/shared/screens/DashboardScreen";
@@ -26,17 +27,26 @@ const Router = () => {
 
   const commonRoutes: RouteObject[] = [];
 
-  const teacherRouter = [...commonRoutes];
+  const teacherRouter: RouteObject[] = [...commonRoutes];
 
-  const adminRoutes = [...commonRoutes];
+  const adminRoutes: RouteObject[] = [
+    ...commonRoutes,
+    {
+      path: '/sites',
+      element: <SiteListScreen />,
+    },
+    {
+      path: '/faculties',
+      element: <FacultyListScreen />,
+    },
+  ];
 
   const authorizedRoutes: RouteObject[] = [
     {
       path: "/",
-      element: <DashboardScreen />,
-      children:
-        currentUser.role === RoleEnum.ADMIN ? adminRoutes : teacherRouter,
+      element: <DashboardScreen />
     },
+    ...(currentUser.role === RoleEnum.ADMIN ? adminRoutes : teacherRouter)
   ];
 
   const unauthorizedRoutes: RouteObject[] = [
