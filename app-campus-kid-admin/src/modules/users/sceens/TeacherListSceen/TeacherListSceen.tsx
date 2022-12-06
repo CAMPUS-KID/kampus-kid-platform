@@ -50,14 +50,14 @@ const TeacherListSceen = () => {
 
   if (loading || !data)
     return (
-      <Page title="Faculties">
+      <Page title="Teachers">
         <FullCenteredContainer>
           <CircularProgress />
         </FullCenteredContainer>
       </Page>
     );
   return (
-    <Page title="Faculties">
+    <Page title="Teachers">
       <Box sx={{ height: "100vh", width: "100%" }}>
         <Fab sx={fabStyle} color="primary" aria-label="add">
           <AddIcon />
