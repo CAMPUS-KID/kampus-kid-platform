@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxy-web-app
+spec:
+  selector:
+    matchLabels:
+      app: proxy-web-app
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: proxy-web-app
+    spec:
+      containers:
+      - name: proxy-web-app
+        image: jhonatantf/proxy-campus-kid-web-app
+        env:
+        - name: PORT
+          value: "4102"
+        - name: HOST
+          value: "a76e112362654466aa366c60ee252f64-525163830.us-east-1.elb.amazonaws.com"
+        - name: HOST_PORT
+          value: "32331"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxy-ag
+spec:
+  selector:
+    matchLabels:
+      app: proxy-ag
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: proxy-ag
+    spec:
+      containers:
+      - name: proxy-ag
+        image: jhonatantf/proxy-campus-kid-ag
+        env:
+        - name: PORT
+          value: "4101"
+        - name: HOST
+          value: "a28a479fa76544b9697efc5638b67e96-1968686424.us-east-1.elb.amazonaws.com"
+        - name: HOST_PORT
+          value: "32492"

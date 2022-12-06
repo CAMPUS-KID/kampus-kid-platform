@@ -6,6 +6,6 @@ RUN mkdir log
 COPY app.conf /tmp/app.nginx
 COPY entrypoint.sh /
 
-EXPOSE 4101
+EXPOSE 4102
 
 ENTRYPOINT ["sh", "/entrypoint.sh"]

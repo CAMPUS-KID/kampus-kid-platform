@@ -11,6 +11,11 @@ import { RoleEnum } from "../modules/shared/enums";
 import { useAutologin } from "../modules/shared/hooks";
 import { DashboardScreen } from "../modules/shared/screens/DashboardScreen";
 import { FullCenteredContainer } from "../modules/shared/styles";
+import {
+  AdminListSceen,
+  StudentListSceen,
+  TeacherListSceen,
+} from "../modules/users";
 import { CurrentUserAtom } from "../state";
 
 const Router = () => {
@@ -32,21 +37,33 @@ const Router = () => {
   const adminRoutes: RouteObject[] = [
     ...commonRoutes,
     {
-      path: '/sites',
+      path: "/sites",
       element: <SiteListScreen />,
     },
     {
-      path: '/faculties',
+      path: "/faculties",
       element: <FacultyListScreen />,
+    },
+    {
+      path: "/admins",
+      element: <AdminListSceen />,
+    },
+    {
+      path: "/students",
+      element: <StudentListSceen />,
+    },
+    {
+      path: "/teachers",
+      element: <TeacherListSceen />,
     },
   ];
 
   const authorizedRoutes: RouteObject[] = [
     {
       path: "/",
-      element: <DashboardScreen />
+      element: <DashboardScreen />,
     },
-    ...(currentUser.role === RoleEnum.ADMIN ? adminRoutes : teacherRouter)
+    ...(currentUser.role === RoleEnum.ADMIN ? adminRoutes : teacherRouter),
   ];
 
   const unauthorizedRoutes: RouteObject[] = [

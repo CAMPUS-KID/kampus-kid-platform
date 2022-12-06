@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxy-web-app
+spec:
+  selector:
+    app: proxy-web-app
+  ports:
+    - name: http
+      port: 4102
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxy-ag
+spec:
+  selector:
+    app: proxy-ag
+  ports:
+    - name: http
+      port: 4101
+  type: LoadBalancer

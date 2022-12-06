@@ -242,7 +242,20 @@ services:
       - 4101:4101
     environment:
       - PORT=4101
-      - NODE_ENV=staging
+      - HOST=host.docker.internal
+      - HOST_PORT=4011
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# REVERSE-PROXY-WEB-APP
+  proxy-campus-kid-web-app:
+    container_name: proxy-campus-kid-web-app
+    build: ./proxy-campus-kid-web-app
+    ports:
+      - 4102:4102
+    environment:
+      - PORT=4102
+      - HOST=host.docker.internal
+      - HOST_PORT=4012
     extra_hosts:
       - "host.docker.internal:host-gateway"
 # LDAP

@@ -1,0 +1,187 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-schedule
+spec:
+  selector:
+    matchLabels:
+      app: ms-schedule
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ms-schedule
+    spec:
+      containers:
+      - name: ms-schedule
+        image: jhonatantf/ms-campus-kid-schedule
+        env:
+        - name: PORT
+          value: "4003"
+        - name: NODE_ENV
+          value: "production"
+        - name: DB_HOST
+          value: "db-grade.c6mgtlnmek0e.us-east-2.rds.amazonaws.com"
+        - name: DB_USER
+          value: "postgres"
+        - name: DB_PASSWORD
+          value: "W4z37hSFqj!8wZZ6"
+        - name: DB_NAME
+          value: "db_grade"
+        - name: DB_PORT
+          value: "5432"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-subject
+spec:
+  selector:
+    matchLabels:
+      app: ms-subject
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ms-subject
+    spec:
+      containers:
+      - name: ms-subject
+        image: jhonatantf/ms-campus-kid-subject
+        env:
+        - name: PORT
+          value: "4005"
+        - name: NODE_ENV
+          value: "production"
+        - name: DB_HOST
+          value: "db-subject.c6mgtlnmek0e.us-east-2.rds.amazonaws.com"
+        - name: DB_USER
+          value: "admin"
+        - name: DB_PASSWORD
+          value: "9n^$$8m5CL$$4YY$$om"
+        - name: DB_NAME
+          value: "db_subject"
+        - name: DB_PORT
+          value: "3306"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-auth
+spec:
+  selector:
+    matchLabels:
+      app: ms-auth
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ms-auth
+    spec:
+      containers:
+      - name: ms-auth
+        image: jhonatantf/ms-campus-kid-auth
+        env:
+        - name: PORT
+          value: "4000"
+        - name: NODE_ENV
+          value: "production"
+        - name: DB_HOST
+          value: "campus-kid-cluster.5dadgrl.mongodb.net"
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          value: "1234"
+        - name: DB_NAME
+          value: "db_auth"
+        - name: DB_PORT
+          value: "27017"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-school
+spec:
+  selector:
+    matchLabels:
+      app: ms-school
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ms-school
+    spec:
+      containers:
+      - name: ms-school
+        image: jhonatantf/ms-campus-kid-school
+        env:
+        - name: PORT
+          value: "4004"
+        - name: NODE_ENV
+          value: "production"
+        - name: DB_HOST
+          value: "db-subject.c6mgtlnmek0e.us-east-2.rds.amazonaws.com"
+        - name: DB_USER
+          value: "admin"
+        - name: DB_PASSWORD
+          value: "9n^$$8m5CL$$4YY$$om"
+        - name: DB_NAME
+          value: "db_subject"
+        - name: DB_PORT
+          value: "3306"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ag
+spec:
+  selector:
+    matchLabels:
+      app: ag
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: ag
+    spec:
+      containers:
+      - name: ag
+        image: jhonatantf/ag-campus-kid
+        env:
+        - name: PORT
+          value: "4011"
+        - name: NODE_ENV
+          value: "production"
+        - name: MS_AUTH_BASE_URL
+          value: "http://ms-auth.default.svc.cluster.local:4000/api"
+        - name: MS_SCHOOL_BASE_URL
+          value: "http://ms-school.default.svc.cluster.local:4004/api"
+        - name: MS_SUBJECTS_BASE_URL
+          value: "http://ms-subjects.default.svc.cluster.local:4005/api"
+        - name: MS_SCHEDULE_BASE_URL
+          value: "http://ms-schedule.default.svc.cluster.local:4003/api"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wa-admin
+spec:
+  selector:
+    matchLabels:
+      app: wa-admin
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: wa-admin
+    spec:
+      containers:
+      - name: wa-admin
+        image: jhonatantf/app-campus-kid-admin
+        env:
+        - name: PORT
+          value: "4012"
+        - name: NODE_ENV
+          value: "production"
+        - name: REACT_APP_API_URL
+          value: "http://ag.default.svc.cluster.local:4011/api"

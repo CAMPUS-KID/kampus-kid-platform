@@ -134,7 +134,9 @@ export default function Page({
       ...sharedMenuOptions,
       { name: 'Sites', route: '/sites', icon: <SiteIcon /> },
       { name: 'Faculties', route: '/faculties', icon: <SchoolIcon /> },
-      { name: 'Users', route: '/users', icon: <UsersIcon /> }
+      { name: 'Admins', route: '/admins', icon: <UsersIcon /> },
+      { name: 'Teachers', route: '/teachers', icon: <UsersIcon /> },
+      { name: 'Students', route: '/students', icon: <UsersIcon /> }
     ] :
     [
       ...sharedMenuOptions,

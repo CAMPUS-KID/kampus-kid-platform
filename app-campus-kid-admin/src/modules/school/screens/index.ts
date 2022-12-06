@@ -1,2 +1,2 @@
-export * from './FacultyScreen';
-export * from './SiteScreen';
+export * from "./FacultyListScreen";
+export * from "./SiteListScreen";

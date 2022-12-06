@@ -42,7 +42,7 @@ const columns: GridColDef[] = [
     },
 ];
 
-const Facultycreen = () => {
+const FacultyListScreen = () => {
     const currentUser = useRecoilValue(CurrentUserAtom);
     const { loading: loadingFaculties, data: facultiesData } = useQuery<GetFacultiesOutput>(GetFacultiesQuery, buildRequestOptions(undefined, currentUser.accessToken));
     const { loading: loadingSites, data: sitesData } = useQuery<GetSitesOutput>(GetSitesQuerie, buildRequestOptions(undefined, currentUser.accessToken));
@@ -86,4 +86,4 @@ const Facultycreen = () => {
     </Page>
 }
 
-export default Facultycreen
+export default FacultyListScreen
